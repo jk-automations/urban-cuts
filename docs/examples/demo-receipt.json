@@ -38,8 +38,7 @@
   5.0023,
   6.0014,
   7.0011,
-  7.9996,
-  9.0013
+  7.9996
  ],
  "cut_snapped_to": [
   "beat",
@@ -49,69 +48,77 @@
   "beat",
   "beat",
   "beat",
-  "beat",
-  "grid"
+  "beat"
  ],
  "cuts": [
   {
-   "look": 1,
+   "kind": "before",
+   "look": null,
    "start": 0.0,
    "end": 1.0031,
-   "fx": "punch"
+   "fx": null
   },
   {
-   "look": 2,
+   "kind": "look",
+   "look": 1,
    "start": 1.0031,
    "end": 2.0015,
    "fx": "whip"
   },
   {
-   "look": 3,
+   "kind": "look",
+   "look": 2,
    "start": 2.0015,
    "end": 3.0008,
    "fx": "punch"
   },
   {
-   "look": 4,
+   "kind": "look",
+   "look": 3,
    "start": 3.0008,
    "end": 3.9995,
    "fx": "flash"
   },
   {
-   "look": 1,
+   "kind": "look",
+   "look": 4,
    "start": 3.9995,
    "end": 5.0023,
    "fx": "punch"
   },
   {
-   "look": 2,
+   "kind": "look",
+   "look": 1,
    "start": 5.0023,
    "end": 6.0014,
    "fx": "whip"
   },
   {
-   "look": 3,
+   "kind": "look",
+   "look": 2,
    "start": 6.0014,
    "end": 7.0011,
    "fx": "punch"
   },
   {
-   "look": 4,
+   "kind": "look",
+   "look": 3,
    "start": 7.0011,
    "end": 7.9996,
    "fx": "flash"
   },
   {
-   "look": 1,
+   "kind": "lineup",
+   "look": null,
    "start": 7.9996,
-   "end": 9.0013,
-   "fx": "punch"
-  },
-  {
-   "look": 2,
-   "start": 9.0013,
    "end": 10.0,
-   "fx": "whip"
+   "fx": "pop",
+   "pops": [
+    7.9996,
+    8.5004,
+    9.0013,
+    9.5021
+   ]
   }
  ],
  "loop_blend_frames": 8,
@@ -125,15 +132,23 @@
  },
  "label": "AI-generated",
  "headline": null,
+ "hook": true,
+ "lineup": true,
+ "skipped": [],
+ "drift_trimmed": {
+  "1": "kept 78 of 91 frames",
+  "2": "kept 55 of 91 frames"
+ },
  "partner_calls": [
   "look 1: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
   "look 2: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
   "look 3: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
   "look 4: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
-  "music: Sonilo text to music (12 s)"
+  "music: Sonilo text to music (12 s)",
+  "look 3 motion regenerated: Kling 3.0 (3 s, 720p), background-locked prompt"
  ],
  "cost_estimate": {
-  "total_usd": 1.6786,
+  "total_usd": 1.9306,
   "rows": [
    [
     "Kling Virtual Try-On",
@@ -149,8 +164,13 @@
     "Sonilo text to music, 12 s",
     1,
     0.03
+   ],
+   [
+    "Kling 3.0 redo of look 3",
+    1,
+    0.252
    ]
   ]
  },
- "note": "re-cut for $0 from the paid run's saved Kling clips and Sonilo track after the grid-snap fix"
+ "note": "re-cut for $0 from the paid run's saved clips (look 3 regenerated) with the before->after hook and lineup finale"
 }

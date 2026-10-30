@@ -1,8 +1,8 @@
 {
- "id": "27c577fb-dca9-4635-950a-e60aed5aa6e3",
+ "id": "5eb72477-3203-4500-a9e3-cf04c4762bae",
  "revision": 0,
  "last_node_id": 20,
- "last_link_id": 21,
+ "last_link_id": 22,
  "nodes": [
   {
    "id": 1,
@@ -77,7 +77,7 @@
    ],
    "size": [
     400,
-    384
+    432
    ],
    "flags": {},
    "order": 12,
@@ -185,6 +185,26 @@
       "name": "ai_label"
      },
      "link": null
+    },
+    {
+     "label": "Before→after hook",
+     "localized_name": "hook",
+     "name": "hook",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "hook"
+     },
+     "link": null
+    },
+    {
+     "label": "Lineup finale",
+     "localized_name": "lineup",
+     "name": "lineup",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "lineup"
+     },
+     "link": null
     }
    ],
    "outputs": [
@@ -192,7 +212,9 @@
      "localized_name": "person",
      "name": "person",
      "type": "IMAGE",
-     "links": null
+     "links": [
+      9
+     ]
     },
     {
      "localized_name": "brief",
@@ -236,6 +258,8 @@
     "my own track (upload)",
     "",
     "",
+    true,
+    true,
     true
    ],
    "widgets_values_named": {
@@ -248,7 +272,9 @@
     "music_source": "my own track (upload)",
     "music_prompt": "",
     "headline": "",
-    "ai_label": true
+    "ai_label": true,
+    "hook": true,
+    "lineup": true
    }
   },
   {
@@ -292,7 +318,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      9
+      10
      ]
     },
     {
@@ -356,7 +382,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      11
+      12
      ]
     },
     {
@@ -420,7 +446,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      13
+      14
      ]
     },
     {
@@ -484,7 +510,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      15
+      16
      ]
     },
     {
@@ -548,7 +574,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      17
+      18
      ]
     },
     {
@@ -740,7 +766,7 @@
    "type": "PreviewAny",
    "pos": [
     1477.5304687500002,
-    586
+    606
    ],
    "size": [
     210,
@@ -813,7 +839,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      10
+      11
      ]
     },
     {
@@ -877,7 +903,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      12
+      13
      ]
     },
     {
@@ -941,7 +967,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      14
+      15
      ]
     },
     {
@@ -1005,7 +1031,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      16
+      17
      ]
     },
     {
@@ -1069,7 +1095,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      18
+      19
      ]
     },
     {
@@ -1101,7 +1127,7 @@
    ],
    "size": [
     248.7447265625,
-    366
+    386
    ],
    "flags": {},
    "order": 15,
@@ -1130,14 +1156,14 @@
      "name": "item_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 9
+     "link": 10
     },
     {
      "localized_name": "look_1",
      "name": "look_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 10
+     "link": 11
     },
     {
      "localized_name": "clip_1",
@@ -1151,14 +1177,14 @@
      "name": "item_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 11
+     "link": 12
     },
     {
      "localized_name": "look_2",
      "name": "look_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 12
+     "link": 13
     },
     {
      "localized_name": "clip_2",
@@ -1172,14 +1198,14 @@
      "name": "item_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 13
+     "link": 14
     },
     {
      "localized_name": "look_3",
      "name": "look_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 14
+     "link": 15
     },
     {
      "localized_name": "clip_3",
@@ -1193,14 +1219,14 @@
      "name": "item_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 15
+     "link": 16
     },
     {
      "localized_name": "look_4",
      "name": "look_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 16
+     "link": 17
     },
     {
      "localized_name": "clip_4",
@@ -1214,14 +1240,14 @@
      "name": "item_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 17
+     "link": 18
     },
     {
      "localized_name": "look_5",
      "name": "look_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 18
+     "link": 19
     },
     {
      "localized_name": "clip_5",
@@ -1229,6 +1255,13 @@
      "shape": 7,
      "type": "VIDEO",
      "link": null
+    },
+    {
+     "localized_name": "before",
+     "name": "before",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 9
     }
    ],
    "outputs": [
@@ -1237,7 +1270,7 @@
      "name": "reel",
      "type": "VIDEO",
      "links": [
-      19
+      20
      ]
     },
     {
@@ -1245,7 +1278,7 @@
      "name": "contact_sheet",
      "type": "IMAGE",
      "links": [
-      20
+      21
      ]
     },
     {
@@ -1253,7 +1286,7 @@
      "name": "receipt",
      "type": "STRING",
      "links": [
-      21
+      22
      ]
     }
    ],
@@ -1281,7 +1314,7 @@
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 19
+     "link": 20
     },
     {
      "localized_name": "filename_prefix",
@@ -1363,7 +1396,7 @@
      "localized_name": "images",
      "name": "images",
      "type": "IMAGE",
-     "link": 20
+     "link": 21
     }
    ],
    "outputs": [
@@ -1398,7 +1431,7 @@
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 21
+     "link": 22
     }
    ],
    "outputs": [
@@ -1484,6 +1517,14 @@
   ],
   [
    9,
+   2,
+   0,
+   17,
+   18,
+   "IMAGE"
+  ],
+  [
+   10,
    3,
    0,
    17,
@@ -1491,7 +1532,7 @@
    "IMAGE"
   ],
   [
-   10,
+   11,
    12,
    0,
    17,
@@ -1499,7 +1540,7 @@
    "IMAGE"
   ],
   [
-   11,
+   12,
    4,
    0,
    17,
@@ -1507,7 +1548,7 @@
    "IMAGE"
   ],
   [
-   12,
+   13,
    13,
    0,
    17,
@@ -1515,7 +1556,7 @@
    "IMAGE"
   ],
   [
-   13,
+   14,
    5,
    0,
    17,
@@ -1523,7 +1564,7 @@
    "IMAGE"
   ],
   [
-   14,
+   15,
    14,
    0,
    17,
@@ -1531,7 +1572,7 @@
    "IMAGE"
   ],
   [
-   15,
+   16,
    6,
    0,
    17,
@@ -1539,7 +1580,7 @@
    "IMAGE"
   ],
   [
-   16,
+   17,
    15,
    0,
    17,
@@ -1547,7 +1588,7 @@
    "IMAGE"
   ],
   [
-   17,
+   18,
    7,
    0,
    17,
@@ -1555,7 +1596,7 @@
    "IMAGE"
   ],
   [
-   18,
+   19,
    16,
    0,
    17,
@@ -1563,7 +1604,7 @@
    "IMAGE"
   ],
   [
-   19,
+   20,
    17,
    0,
    18,
@@ -1571,7 +1612,7 @@
    "VIDEO"
   ],
   [
-   20,
+   21,
    17,
    1,
    19,
@@ -1579,7 +1620,7 @@
    "IMAGE"
   ],
   [
-   21,
+   22,
    17,
    2,
    20,
@@ -1667,6 +1708,14 @@
     [
      2,
      "aspect"
+    ],
+    [
+     2,
+     "hook"
+    ],
+    [
+     2,
+     "lineup"
     ],
     [
      2,

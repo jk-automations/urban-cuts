@@ -37,6 +37,13 @@ VIBES = {
 ASPECTS = {"9:16": (720, 1280), "4:5": (864, 1080), "1:1": (1080, 1080)}
 LOOK_ENGINES = ["Kling try-on", "Nano Banana 2 edit"]
 MUSIC_SOURCES = ["my own track (upload)", "Sonilo (text to music)"]
+SPOT_MOVES = ["shifts their weight and turns slightly to the side, then back to face the camera with a confident look",
+              "does a slow half turn on the spot to show the back of the outfit, then turns back to the camera",
+              "puts one hand on the hip and turns the shoulders toward the camera with a small smile",
+              "takes one small step forward and settles into a relaxed pose",
+              "adjusts the collar or sleeve, then looks straight into the camera"]
+for _v, _e in zip(VIBES.values(), ["cool, confident attitude", "poised model energy", "warm, playful charm"]):
+    _v["energy"] = _e
 MAX_LOOKS = 5
 CLIP_SECONDS = 3                       # Kling 3.0 image-to-video, the shortest (cheapest) clip
 PUNCH = {"street": 0.14, "runway": 0.10, "boutique": 0.07}
@@ -46,12 +53,14 @@ PRICES = {"KlingTryOnNode": 0.16016, "GeminiNanoBanana2V2_1K_minimal": 0.048048,
           "SoniloTextToMusic_per_s": 0.0025}
 
 TP_HEADROOM = -2.5
-NEGATIVE = "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera"
+NEGATIVE = ("logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, "
+            "background change, new location, scene change, walking out of frame")
 
 
 # ---------------------------------------------------------------- the brief and the prompts
 def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_engine=LOOK_ENGINES[0],
-               music_source=MUSIC_SOURCES[0], music_prompt="", headline="", consent=False, ai_label=True):
+               music_source=MUSIC_SOURCES[0], music_prompt="", headline="", consent=False, ai_label=True, hook=True,
+               lineup=True):
     if not consent:
         raise ValueError("Urban Cuts needs the person's consent: tick 'I have this person's consent to use their photo' "
                          "(you, or someone who agreed). Nothing was generated.")
@@ -68,7 +77,7 @@ def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_e
     mp = music_prompt.strip() or default_music_prompt(vibe)
     return {"mode": mode, "vibe": vibe, "length": float(length), "aspect": aspect, "engine": engine, "music": music,
             "music_prompt": mp, "music_seconds": int(np.ceil(float(length))) + 5, "headline": headline.strip(),
-            "ai_label": bool(ai_label)}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
+            "ai_label": bool(ai_label), "hook": bool(hook), "lineup": bool(lineup)}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
 
 
 def default_music_prompt(vibe):
@@ -94,10 +103,18 @@ def look_prompt(brief, k):
 
 
 def motion_prompt(brief, k):
-    """The Kling image-to-video prompt for look k: one short continuous move, no cuts (the edit makes the cuts)."""
+    """The Kling image-to-video prompt for look k: one short continuous move, no cuts (the edit makes the cuts).
+    Kling try-on keeps the person photo's own background, so that path must not name a new setting: a setting in the
+    prompt made Kling walk the person out of the studio onto a street (paid demo, look 3). It gets moves made on the
+    spot and an explicit background lock. The Nano Banana path already restaged the person in the vibe's setting."""
     v = VIBES[brief["vibe"]]
-    move = v["moves"][(k - 1) % len(v["moves"])]
     held = "holding the product toward the camera" if brief["mode"] == "products" else "the outfit stays exactly the same"
+    if brief["engine"] == "kling":
+        move = SPOT_MOVES[(k - 1) % len(SPOT_MOVES)]
+        return (f"The person {move}, {held}. Same background, same light and same framing as the first frame; the person "
+                f"stays in place. Locked-off steady camera, {v['energy']}, one continuous shot, no cuts, face and outfit "
+                f"unchanged.")
+    move = v["moves"][(k - 1) % len(v["moves"])]
     return (f"The person {move}, {held}. {v['setting'].capitalize()}. Smooth steady camera, fashion reel energy, "
             f"one continuous shot, no cuts, face and outfit unchanged.")
 
@@ -213,10 +230,13 @@ def detect_beats(samples, sr, prefer_librosa=True):
 
 
 # ---------------------------------------------------------------- the cut list
-def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None):
+def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None, hook=False, lineup=False):
     """Where each look starts and ends on the music. The reel starts on a downbeat (music offset `start`), a new look
     lands every `beats_per_look` beats, and the looks cycle 1..n. Returns the music offset, the segments
-    [{look, t0, t1}] on the reel timeline (t1 of the last = length) and the cut times (reel time) that land on beats."""
+    [{kind, look, t0, t1}] on the reel timeline (t1 of the last = length) and the cut times (reel time) that land on
+    beats. hook: the first slot is the plain 'before' photo. lineup: the last whole bar shows every look in a grid, one
+    tile popping in per beat ('pops', reel times). Either is dropped (see 'skipped') when there is too little time for
+    every look to show at least once."""
     bt = np.array(beats["beats"], dtype=float)
     if n_looks < 1:
         raise ValueError("need at least one look")
@@ -241,12 +261,39 @@ def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None):
             cuts.append(float(target)); snapped.append("grid")
     if len(cuts) < 2:   # very slow music: fall back to an even grid so every look still shows
         cuts = list(np.linspace(0, length, n_looks + 1)[:-1])
-    segs = []
-    for k, t0 in enumerate(cuts):
-        t1 = cuts[k + 1] if k + 1 < len(cuts) else length
-        segs.append({"look": k % n_looks, "t0": round(t0, 4), "t1": round(t1, 4)})
-    return {"music_start": round(float(start), 4), "segments": segs, "cuts": [round(c, 4) for c in cuts[1:]], "snapped": snapped,
-            "beat_times": [round(float(t), 4) for t in rel], "length": float(length)}
+    per_bar = max(1, 4 // beats_per_look)   # cut slots per 4-beat bar
+    skipped = []
+    lineup_at = None
+    if lineup and n_looks >= 2:
+        # the last bar line (from the downbeat) that still leaves most of a bar before the end
+        bars = [i for i in range(0, len(cuts), per_bar) if length - cuts[i] >= 3.6 * period]
+        if bars and bars[-1] - (1 if hook else 0) >= n_looks:
+            lineup_at = bars[-1]
+        else:
+            skipped.append("lineup: reel too short for a whole bar after every look")
+    if hook and (lineup_at or len(cuts)) - 1 < n_looks:
+        hook = False; skipped.append("hook: reel too short to show every look after the before photo")
+    end_slot = lineup_at if lineup_at is not None else len(cuts)
+    segs, n_look = [], 0
+    for k in range(end_slot):
+        t0, t1 = cuts[k], (cuts[k + 1] if k + 1 < len(cuts) else length)
+        if hook and k == 0:
+            segs.append({"kind": "before", "look": None, "t0": round(t0, 4), "t1": round(t1, 4)})
+        else:
+            segs.append({"kind": "look", "look": n_look % n_looks, "t0": round(t0, 4), "t1": round(t1, 4)}); n_look += 1
+    if lineup_at is not None:
+        t0 = cuts[lineup_at]
+        pops = []
+        for j in range(min(n_looks, 4)):   # one tile per beat; a 5th tile shares the 4th beat
+            target = t0 + j * period
+            near = rel[np.argmin(np.abs(rel - target))] if len(rel) else target
+            pops.append(round(float(near if abs(near - target) <= 0.15 * period else target), 4))
+        pops += [pops[-1]] * (n_looks - len(pops))
+        segs.append({"kind": "lineup", "look": None, "t0": round(t0, 4), "t1": length, "pops": pops})
+    used_cuts = [s["t0"] for s in segs[1:]]
+    return {"music_start": round(float(start), 4), "segments": segs, "cuts": used_cuts,
+            "snapped": snapped[:len(used_cuts)], "beat_times": [round(float(t), 4) for t in rel], "length": float(length),
+            "skipped": skipped}
 
 
 # ---------------------------------------------------------------- media helpers
@@ -406,27 +453,118 @@ def kenburns(still, n, W, H, k, punch):
     return np.stack(frames)
 
 
+def background_drift(frames):
+    """How far each frame's background (top band and side strips, where the person rarely is) has moved from frame 0,
+    as mean absolute difference in 0..255. Kling sometimes walks the person into a new place mid-clip."""
+    def band(x):
+        return np.concatenate([x[:60].reshape(-1, 3), x[:, :70].reshape(-1, 3), x[:, -70:].reshape(-1, 3)]).astype(np.float32)
+    b0 = band(frames[0])
+    return np.array([np.abs(band(f) - b0).mean() for f in frames])
+
+
+def drift_cut(frames, limit=45.0, hold=4, min_frames=30):
+    """Frames to keep: everything before the background drifts past `limit` and stays there for `hold` frames.
+    Calibrated on the paid demo clips: clips that stay in the studio peak near 36, clips that walk onto a street jump
+    past 55 and stay. At least `min_frames` are kept."""
+    d = background_drift(frames)
+    over = d > limit
+    for i in range(len(d) - hold + 1):
+        if over[i:i + hold].all():
+            return max(min_frames, i)
+    return len(frames)
+
+
+def match_colour(frames, ref, strength=0.6):
+    """Pull a look's colour toward the reference look (per-channel mean and spread), so cuts between clips from
+    different generations don't flicker in colour or exposure. strength 0 = untouched, 1 = full match."""
+    f = frames.astype(np.float32)
+    r = ref.astype(np.float32)
+    m, sd = f.mean(axis=(0, 1, 2)), f.std(axis=(0, 1, 2)) + 1e-3
+    rm, rsd = r.mean(axis=(0, 1, 2)), r.std(axis=(0, 1, 2)) + 1e-3
+    out = (f - m) * (1 + strength * (rsd / sd - 1)) + m + strength * (rm - m)
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
+def lineup_boxes(n, W, H, gap=12):
+    """Grid boxes (x, y, w, h) for n tiles of the reel's own aspect: 2 in a row, 3 in a row, 2x2, 3+2."""
+    cols = {1: 1, 2: 2, 3: 3, 4: 2, 5: 3}.get(n, 3)
+    rows = -(-n // cols)
+    w = min((W - (cols + 1) * gap) / cols, (H - (rows + 1) * gap) / rows * W / H)
+    h = w * H / W
+    y0 = (H - rows * h - (rows - 1) * gap) / 2
+    boxes = []
+    for k in range(n):
+        r, c = divmod(k, cols)
+        in_row = min(cols, n - r * cols)
+        x0 = (W - in_row * w - (in_row - 1) * gap) / 2
+        boxes.append((int(x0 + c * (w + gap)), int(y0 + r * (h + gap)), int(w), int(h)))
+    return boxes
+
+
+def lineup_frames(stills, n, W, H, pop_frames, bg=(24, 21, 18)):
+    """The finale: every look in a grid, each tile popping in on its beat (scale-in plus a short flash)."""
+    boxes = lineup_boxes(len(stills), W, H)
+    tiles = [Image.fromarray(st).resize((b[2], b[3]), Image.LANCZOS) for st, b in zip(stills, boxes)]
+    out = np.zeros((n, H, W, 3), np.uint8)
+    for i in range(n):
+        im = Image.new("RGB", (W, H), bg)
+        flash = 0.0
+        for t, b, pf in zip(tiles, boxes, pop_frames):
+            if i < pf:
+                continue
+            a = max(0.0, 1 - (i - pf) / 5)
+            sc = 1 + 0.22 * a
+            tw, th = int(b[2] * sc), int(b[3] * sc)
+            im.paste(t.resize((tw, th), Image.BILINEAR) if a > 0 else t, (b[0] - (tw - b[2]) // 2, b[1] - (th - b[3]) // 2))
+            flash = max(flash, 0.3 * a * a)
+        out[i] = _flash(np.asarray(im), flash)
+    return out
+
+
 # ---------------------------------------------------------------- the edit
-def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, labels=None):
+def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, labels=None, before=None):
     """Cut the looks to the beat. looks: list of dicts {"clip": path} (generated motion) or {"still": PIL/ndarray}
-    (free draft: Ken Burns). beats: detect_beats() output for the music in music_path. Returns the receipt."""
+    (free draft: Ken Burns), each optionally with "tile" (the still used in the lineup finale). before: the plain
+    person photo for the before->after hook. beats: detect_beats() output for the music in music_path."""
     ffmpeg, _ = _ff()
     work = Path(work); work.mkdir(parents=True, exist_ok=True)
     W, H = ASPECTS[brief["aspect"]]
     L = float(brief["length"])
-    plan = plan_cuts(beats, len(looks), L)
+    plan = plan_cuts(beats, len(looks), L, hook=brief.get("hook", False) and before is not None,
+                     lineup=brief.get("lineup", False))
+    if brief.get("hook") and before is None:
+        plan["skipped"].append("hook: no person photo given")
     n_total = int(round(L * fps))
     vibe = brief["vibe"]
     fx_cycle = VIBES[vibe]["fx"]
     punch = PUNCH[vibe]
     # source frames for each look
-    src = []
+    src, trimmed = [], {}
     for k, lk in enumerate(looks):
         if lk.get("clip"):
-            src.append(read_frames(lk["clip"], W, H, fps))
+            fr = read_frames(lk["clip"], W, H, fps)
+            keep = drift_cut(fr)
+            if keep < len(fr):
+                trimmed[k + 1] = [keep, len(fr)]
+            src.append(fr[:keep])
         else:
             n_need = sum(int(round((s["t1"] - s["t0"]) * fps)) + 8 for s in plan["segments"] if s["look"] == k)
             src.append(kenburns(lk["still"], max(n_need, 8), W, H, k, punch))
+    for k in range(1, len(src)):   # one colour across all looks: match each to look 1
+        src[k] = match_colour(src[k], src[0])
+    tiles = []
+    for k, lk in enumerate(looks):
+        t = lk.get("tile")
+        tiles.append(match_colour(np.asarray(cover(t if isinstance(t, Image.Image) else Image.fromarray(t), W, H)), src[0][:1])
+                     if t is not None else src[k][0])
+    seg_src = {}
+    for si, s in enumerate(plan["segments"]):
+        n = min(int(round(s["t1"] * fps)), n_total) - int(round(s["t0"] * fps))
+        if s["kind"] == "before":
+            seg_src[si] = kenburns(before, n + 10, W, H, 0, punch)
+        elif s["kind"] == "lineup":
+            f0 = int(round(s["t0"] * fps))
+            seg_src[si] = lineup_frames(tiles, n, W, H, [int(round(p * fps)) - f0 for p in s["pops"]])
     cursor = [0] * len(looks)
     frames = np.zeros((n_total, H, W, 3), np.uint8)
     cut_frames = []
@@ -438,18 +576,24 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         if n <= 0:
             continue
         cut_frames.append(f0)
-        S = src[s["look"]]
+        if s["kind"] == "lineup":
+            frames[f0:f1] = seg_src[si][:n]
+            fx_used.append("pop")
+            continue
+        S = src[s["look"]] if s["kind"] == "look" else seg_src[si]
         ramp = min(max(2, n // 4), 8) if si + 1 < len(plan["segments"]) else 0   # speed up into the next cut
         idx = np.arange(n, dtype=float)
         if ramp:
             j = idx[n - ramp:] - (n - ramp)
             idx[n - ramp:] = (n - ramp) + j + j * (j + 1) / (2 * ramp) * 2   # accelerates to ~2x at the cut
         need = int(idx[-1]) + 1
-        if cursor[s["look"]] + need > len(S):   # used up: start the look's motion again
-            cursor[s["look"]] = 0
-        src_idx = np.clip((cursor[s["look"]] + idx).astype(int), 0, len(S) - 1)
-        cursor[s["look"]] += need
-        fx = fx_cycle[si % len(fx_cycle)]
+        ck = s["look"] if s["kind"] == "look" else None
+        if ck is not None and cursor[ck] + need > len(S):   # used up: start the look's motion again
+            cursor[ck] = 0
+        src_idx = np.clip(((cursor[ck] if ck is not None else 0) + idx).astype(int), 0, len(S) - 1)
+        if ck is not None:
+            cursor[ck] += need
+        fx = fx_cycle[si % len(fx_cycle)] if s["kind"] == "look" else None
         fx_used.append(fx)
         for i in range(n):
             fr = S[src_idx[i]]
@@ -461,7 +605,8 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                     fr = _flash(_zoom(fr, 1 + punch * 0.5 * a), 0.85 * a * a)
                 elif fx == "whip":
                     fr = _whip(fr, a, direction=-1)
-            if ramp and i >= n - 3 and fx_cycle[(si + 1) % len(fx_cycle)] == "whip":   # whip out of the shot
+            nxt = plan["segments"][si + 1] if si + 1 < len(plan["segments"]) else None
+            if ramp and i >= n - 3 and nxt and nxt["kind"] == "look" and fx_cycle[(si + 1) % len(fx_cycle)] == "whip":   # whip out
                 fr = _whip(fr, (i - (n - 4)) / 3, direction=1)
             frames[f0 + i] = fr
     # loop: blend the last frames into the first so frame[-1] == frame[0]
@@ -475,7 +620,10 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
     over = []
     if brief.get("headline"):
         cap = text_png(brief["headline"], max(36, W // 12), W)
-        over.append((cap, ((W - cap.width) // 2, int(H * 0.12)), 0, min(n_total, cut_frames[1] if len(cut_frames) > 1 else n_total)))
+        first_look = next(k for k, s in enumerate(plan["segments"]) if s["kind"] == "look")
+        a0 = cut_frames[first_look]
+        a1 = cut_frames[first_look + 1] if first_look + 1 < len(cut_frames) else n_total
+        over.append((cap, ((W - cap.width) // 2, int(H * 0.12)), a0, a1))
     lab_txt = (labels or {}).get("label", "AI-generated" if brief.get("ai_label", True) else "")
     if lab_txt:
         over.append((label_png(lab_txt, W), (24, 24), 0, n_total))
@@ -519,7 +667,8 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
     p.stdin.write(frames.tobytes()); p.stdin.close()
     if p.wait() != 0:
         raise RuntimeError("ffmpeg encode failed")
-    cut_list = [{"look": s["look"] + 1, "start": s["t0"], "end": s["t1"], "fx": fx_used[k] if k < len(fx_used) else None}
+    cut_list = [{"kind": s["kind"], "look": s["look"] + 1 if s["look"] is not None else None, "start": s["t0"], "end": s["t1"],
+                 "fx": fx_used[k] if k < len(fx_used) else None, **({"pops": s["pops"]} if "pops" in s else {})}
                 for k, s in enumerate(plan["segments"])]
     receipt = {"length": L, "fps": fps, "size": [W, H], "bpm": beats["bpm"], "beat_method": beats["method"],
                "music_start": plan["music_start"],
@@ -527,10 +676,13 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                "cut_times": plan["cuts"], "cut_snapped_to": plan["snapped"], "cuts": cut_list, "loop_blend_frames": nb,
                "loudness": {"target_I": -14, "target_TP": -1, "music_I": m0["I"], "out_I": m["I"], "out_TP": m["TP"],
                             "gain_db": round(gain, 2)},
-               "label": lab_txt or None, "headline": brief.get("headline") or None}
+               "label": lab_txt or None, "headline": brief.get("headline") or None,
+               "hook": plan["segments"][0]["kind"] == "before", "lineup": plan["segments"][-1]["kind"] == "lineup",
+               "skipped": plan["skipped"], "drift_trimmed": {k: f"kept {a} of {b} frames" for k, (a, b) in trimmed.items()}}
     (work / "receipt.json").write_text(json.dumps(receipt, indent=1))
     np.save(work / "first_last.npy", np.stack([frames[0], frames[-1]]))
-    receipt["_thumbs"] = [frames[min(f + 2, n_total - 1)] for f in cut_frames]
+    receipt["_thumbs"] = [frames[min(f + 2, n_total - 1)] if s["kind"] != "lineup" else frames[n_total - nb - 1]
+                          for f, s in zip(cut_frames, plan["segments"])]
     return receipt
 
 
@@ -546,7 +698,7 @@ def contact_sheet(looks, thumbs, cuts, out=None, tw=180, th=320):
     for k, (fr, c) in enumerate(zip(thumbs, cuts)):
         x, y = (k % cols) * tw, th + 40 + (k // cols) * (th + 40)
         sheet.paste(cover(Image.fromarray(fr), tw, th), (x, y))
-        d.text((x + 8, y + th + 10), f"{c['start']:.2f}s  look {c['look']}  {c['fx'] or ''}", font=f, fill=(240, 232, 220))
+        d.text((x + 8, y + th + 10), f"{c['start']:.2f}s  " + (f"look {c['look']}  {c['fx'] or ''}" if c.get("kind", "look") == "look" else c["kind"]), font=f, fill=(240, 232, 220))
     if out:
         sheet.save(out)
     return sheet

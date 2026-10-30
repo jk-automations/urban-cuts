@@ -20,12 +20,13 @@ const INPUTS = [
   [person, "image"], [brief, "consent"], [brief, "mode"], [brief, "vibe"],
   ...items.map((n) => [n, "image"]), ...lookPhotos.map((n) => [n, "image"]),
   ...(draft ? [] : [[brief, "look_engine"], [brief, "music_source"], [brief, "music_prompt"]]), [upload, "audio"],
-  [brief, "length"], [brief, "aspect"], [brief, "headline"], [brief, "ai_label"],
+  [brief, "length"], [brief, "aspect"], [brief, "hook"], [brief, "lineup"], [brief, "headline"], [brief, "ai_label"],
 ];
 const OUTPUTS = [titled("Your reel"), titled("Contact sheet"), titled("Receipt"), titled("Beats")];
 const LABELS = { consent: "I have this person's consent to use their photo", mode: "Outfits or products", vibe: "Vibe",
   look_engine: "Try-on engine", music_source: "Music", music_prompt: "Music prompt (Sonilo; empty = vibe default)",
-  length: "Length (seconds)", aspect: "Aspect", headline: "Headline on the first look (optional)", ai_label: "AI label (keep on)" };
+  length: "Length (seconds)", aspect: "Aspect", headline: "Headline on the first look (optional)", ai_label: "AI label (keep on)",
+  hook: "Before→after hook", lineup: "Lineup finale" };
 const NAMED = { [person]: "Person photo (full body, 9:16)", [upload]: "Your music (a track you own)" };
 items.forEach((n, k) => (NAMED[n] = `Outfit or product ${k + 1}${k >= 3 ? " (optional: leave blank)" : ""}`));
 lookPhotos.forEach((n, k) => (NAMED[n] = `Look ${k + 1} photo (draft: person in outfit ${k + 1})`));

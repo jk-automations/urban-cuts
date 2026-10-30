@@ -50,7 +50,7 @@ def test_receipt_has_bpm_beats_and_cut_list(motion_reel):
     r = motion_reel["receipt"]
     assert abs(r["bpm"] - 120) < 1
     assert r["cuts"][0]["start"] == 0.0 and r["cuts"][-1]["end"] == 10.0
-    assert {c["fx"] for c in r["cuts"]} <= {"punch", "flash", "whip"}
+    assert {c["fx"] for c in r["cuts"] if c["kind"] == "look"} <= {"punch", "flash", "whip"}
     assert r["label"] == "AI-generated"
     json.dumps({k: v for k, v in r.items() if k != "_thumbs"})
 
@@ -65,7 +65,7 @@ def test_product_mode_with_headline(tmp_path, clips, click_wav):
     r = core.render([{"clip": c} for c in clips[:3]], beats, tmp_path / "p.mp4", tmp_path / "w", brief, music_path=click_wav)
     p = core.probe(tmp_path / "p.mp4")
     assert abs(p["dur"] - 8.0) <= 0.1 and (p["w"], p["h"]) == (864, 1080)
-    assert r["headline"] == "New arrivals" and max(c["look"] for c in r["cuts"]) == 3
+    assert r["headline"] == "New arrivals" and max(c["look"] for c in r["cuts"] if c["look"]) == 3
 
 
 def test_free_draft_stills_ken_burns(tmp_path, click_wav):

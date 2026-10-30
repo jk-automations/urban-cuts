@@ -11,9 +11,11 @@ Apache-2.0.
 
 ## What you get
 
-- `Your reel`: an H.264 + AAC MP4 at 9:16 (or 4:5 / 1:1). Each look lands on every 2nd beat, starting on a downbeat.
+- `Your reel`: an H.264 + AAC MP4 at 9:16 (or 4:5 / 1:1). It opens on the plain "before" photo for 2 beats (the
+  before→after hook), then each look lands on every 2nd beat, starting on a downbeat. It ends on a lineup of every
+  look, one tile popping in per beat.
   Each cut hits with a punch-zoom, flash or whip pan, and each shot speeds up into the next cut. The last frame blends
-  into the first so the reel loops. Sound is -14 LUFS with true peak under -1 dBTP, and an `AI-generated` label is on by default.
+  into the first, so the reel loops back to "before". Sound is -14 LUFS with true peak under -1 dBTP, and an `AI-generated` label is on by default.
 - `Contact sheet`: the looks, plus one frame per cut with its time and effect.
 - `Receipt`: JSON with BPM, beat times, the cut list, the partner calls made and their cost.
 - `Beats`: BPM and beat times, as text.
@@ -22,7 +24,13 @@ Two modes:
 - **Outfits**: the person wears each outfit.
 - **Products**: the person presents each product, a "new arrivals" reel for a shop. There's an optional headline on the first look.
 
-Three vibes (`street`, `runway`, `boutique`) set the scene, the moves and the cut effects.
+Three vibes (`street`, `runway`, `boutique`) set the moves and the cut effects. The hook and the lineup are switches in the form, and both are on by default.
+
+**Consistency:**
+- **Background lock:** with Kling try-on the motion prompt locks the background, so the person stays in their own photo's setting.
+- **Colour match:** every look is matched to look 1, so cuts don't flicker.
+- **Drift guard:** a clip is cut off where its background drifts away from frame 0.
+- All three are noted in the receipt.
 
 ## How it works
 
@@ -96,11 +104,12 @@ Partner nodes need a Comfy account with credits.
 ## Demo output (paid partner run, 2026-10-29)
 
 - `docs/examples/demo-reel-street.mp4`: a fictional model made with Nano Banana 2.1 (not a real person), 4 plain
-  outfits with no logos, Kling try-on, Kling 3.0 motion, and a Sonilo track. 10.00 s, -14.2 LUFS, -2.1 dBTP. The cuts
-  land at 1.00 / 2.00 / 3.00 / 4.00 / 5.00 / 6.00 / 7.00 / 8.00 / 9.00 s on 119.8 BPM.
+  outfits with no logos, Kling try-on, Kling 3.0 motion, and a Sonilo track. 10.00 s, -14.2 LUFS, -2.1 dBTP, 119.8 BPM.
+  - Timeline: before 0–1.00 s; looks cut at 1.00 / 2.00 / 3.00 / 4.00 / 5.00 / 6.00 / 7.00 s; the lineup starts at 8.00 s with tiles at 8.00 / 8.50 / 9.00 / 9.50 s.
 - `docs/examples/demo-contact-sheet-street.png` and `docs/examples/demo-receipt.json`.
 - Demo video (90 s): `docs/demo/urban-cuts-demo.mp4`, built by `tools/record_demo.mjs` (real screenshots of the app) and `tools/make_demo_video.py`.
-- Spend: $0.24 for the input stills and $1.68 for the app run, estimated from the price badges.
+- Spend: $0.24 for the input stills, $1.68 for the app run, and $0.25 to regenerate look 3 with the background-locked
+  prompt (the first version walked onto a street). That's $2.17 in all, estimated from the price badges.
 - After the run, a fix made each cut snap to the tempo grid (the tracker had slipped near the end of the track). The reel
   was then re-cut from the same saved clips at no extra cost.
 

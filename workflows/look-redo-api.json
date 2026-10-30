@@ -1,0 +1,47 @@
+{
+ "1": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_demo_look_3.png"
+  },
+  "_meta": {
+   "title": "Look still"
+  }
+ },
+ "2": {
+  "class_type": "KlingVideoNode",
+  "_meta": {
+   "title": "Motion 3 (Kling 3.0)"
+  },
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 303,
+   "start_frame": [
+    "1",
+    0
+   ],
+   "multi_shot.prompt": "The person puts one hand on the hip and turns the shoulders toward the camera with a small smile, the outfit stays exactly the same. Same background, same light and same framing as the first frame; the person stays in place. Locked-off steady camera, cool, confident attitude, one continuous shot, no cuts, face and outfit unchanged.",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  }
+ },
+ "3": {
+  "class_type": "SaveVideo",
+  "_meta": {
+   "title": "clip 3"
+  },
+  "inputs": {
+   "video": [
+    "2",
+    0
+   ],
+   "filename_prefix": "urban-demo/clip_3_redo",
+   "format": "mp4",
+   "format.codec": "auto"
+  }
+ }
+}

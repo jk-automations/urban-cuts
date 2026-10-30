@@ -24,7 +24,9 @@
    "music_source": "Sonilo (text to music)",
    "music_prompt": "",
    "headline": "",
-   "ai_label": true
+   "ai_label": true,
+   "hook": true,
+   "lineup": true
   },
   "_meta": {
    "title": "Your choices"
@@ -237,7 +239,7 @@
     "13",
     1
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
    "multi_shot.duration": 3,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
@@ -338,7 +340,7 @@
     "18",
     1
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
    "multi_shot.duration": 3,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
@@ -439,7 +441,7 @@
     "23",
     1
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
    "multi_shot.duration": 3,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
@@ -540,7 +542,7 @@
     "28",
     1
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
    "multi_shot.duration": 3,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
@@ -641,7 +643,7 @@
     "33",
     1
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
    "multi_shot.duration": 3,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
@@ -663,6 +665,10 @@
    ],
    "beats": [
     "11",
+    0
+   ],
+   "before": [
+    "2",
     0
    ],
    "item_1": [

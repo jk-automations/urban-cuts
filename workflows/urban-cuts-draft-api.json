@@ -24,7 +24,9 @@
    "music_source": "my own track (upload)",
    "music_prompt": "",
    "headline": "",
-   "ai_label": true
+   "ai_label": true,
+   "hook": true,
+   "lineup": true
   },
   "_meta": {
    "title": "Your choices"
@@ -182,6 +184,10 @@
    ],
    "beats": [
     "10",
+    0
+   ],
+   "before": [
+    "2",
     0
    ],
    "item_1": [

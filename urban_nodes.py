@@ -71,10 +71,15 @@ class UrbanBrief:
             "music_prompt": ("STRING", {"default": "", "multiline": True, "tooltip": "For Sonilo. Empty = the vibe's default."}),
             "headline": ("STRING", {"default": "", "tooltip": "Optional big text on the first look, e.g. 'New arrivals'."}),
             "ai_label": ("BOOLEAN", {"default": True, "tooltip": "Keep this on when you post."}),
+            "hook": ("BOOLEAN", {"default": True, "tooltip": "Open on the plain 'before' photo for 2 beats, then cut into "
+                     "look 1 on the beat. The loop comes back to it."}),
+            "lineup": ("BOOLEAN", {"default": True, "tooltip": "End on a grid of every look, one popping in per beat."}),
         }}
 
-    def run(self, person, consent, mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, ai_label):
-        b = core.make_brief(mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, consent, ai_label)
+    def run(self, person, consent, mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, ai_label,
+            hook=True, lineup=True):
+        b = core.make_brief(mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, consent, ai_label,
+                            hook, lineup)
         return (person, json.dumps(b), b["engine"], b["music_prompt"], b["music_seconds"])
 
 
@@ -182,6 +187,7 @@ class UrbanBeatCut:
             opt[f"item_{k}"] = ("IMAGE", {"tooltip": f"Outfit or product {k} (the blank placeholder = slot not used)."})
             opt[f"look_{k}"] = ("IMAGE", {"lazy": True, "tooltip": f"The still for look {k} (try-on, edit, or your own photo)."})
             opt[f"clip_{k}"] = ("VIDEO", {"lazy": True, "tooltip": f"Generated motion for look {k}. Empty = free Ken Burns draft."})
+        opt["before"] = ("IMAGE", {"tooltip": "The plain person photo for the before->after hook (from Your Choices)."})
         return {"required": {"brief": ("STRING", {"forceInput": True}), "music": ("AUDIO",),
                              "beats": ("STRING", {"forceInput": True})}, "optional": opt}
 
@@ -211,7 +217,7 @@ class UrbanBeatCut:
             clip = kw.get(f"clip_{k}")
             if clip is not None:
                 p = tmp / f"clip_{k}.mp4"; clip.save_to(str(p))
-                looks.append({"clip": p})
+                looks.append({"clip": p, "tile": still})
             else:
                 looks.append({"still": still})
         motion = any("clip" in lk for lk in looks)
@@ -224,7 +230,8 @@ class UrbanBeatCut:
             calls.append(f"music: Sonilo text to music ({b['music_seconds']} s)")
         out = _out_dir() / f"urban_cuts_{tmp.name}.mp4"
         label = "AI-generated" if (b["ai_label"] and motion) else ("Free draft" if b["ai_label"] else "")
-        r = core.render(looks, json.loads(beats), out, tmp, b, music_path=wav, labels={"label": label})
+        before = _pil(kw["before"]) if kw.get("before") is not None else None
+        r = core.render(looks, json.loads(beats), out, tmp, b, music_path=wav, labels={"label": label}, before=before)
         thumbs = r.pop("_thumbs")
         sheet = core.contact_sheet(stills, thumbs, r["cuts"])
         r.update(mode=b["mode"], vibe=b["vibe"], looks_used=used, partner_calls=calls or ["none (free draft)"],

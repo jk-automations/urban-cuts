@@ -62,6 +62,7 @@ for (let i = 0; i < 300; i++) {
   if (h[queued] && h[queued].status && h[queued].status.completed !== undefined) { console.log("draft", h[queued].status.status_str, i, "s"); break; }
 }
 await page.waitForTimeout(5000);
+try { await page.mouse.click(563, 1553); await page.waitForTimeout(2000); } catch {}   // the contact sheet thumbnail
 await page.screenshot({ path: `${outDir}/draft-sheet.png` });
 try { await page.mouse.click(618, 1553); await page.waitForTimeout(2500); } catch {}
 await page.screenshot({ path: `${outDir}/draft-reel.png` });
