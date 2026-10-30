@@ -104,7 +104,7 @@ still(card([("Urban Cuts", 110, FG), ("an open-source clone of Higgsfield's Urba
             ("one photo + 3 to 5 outfits or products + music  ->  a beat-cut reel that loops", 34, FG)]), 5)
 reel(EX / "demo-reel-street.mp4", "The result", "A shop's new-arrivals reel. A one-beat teaser of every look, then each "
      "look in a bright white wall room: the model poses, turns to show the back, looks over the shoulder, then a close-up "
-     "on the fabric. Plain cuts on the beat, a warm grade, one headline, and a card with the shop's handle. Then it loops.")
+     "on the fabric. Plain cuts on the beat, a warm grade, an opening title, and a card with the shop's handle. Then it loops.")
 still(card([("Edited like brand posts", 64, ACC),
             ("We watched 15 recent outfit Shorts from top fashion brands.", 34, FG),
             ("None used flashes, whip pans, punch-zooms, prices or lineup grids.", 34, FG),
@@ -130,7 +130,9 @@ lines += [(f"cost: ${rec['cost_estimate']['total_usd']:.2f} for a 15 s reel (fro
 still(card(lines), 8)
 still(side(Image.open(S / "draft-sheet.png").crop((56, 240, 1126, 1360)), "Free Draft, $0", "The same edit with no partner nodes: your own photos with a Ken Burns "
            "push on each beat. Try the music, vibe and length before you pay for motion.", 1100), 8)
-reel(EX / "demo-reel-street.mp4", "It loops", "Post it and it plays round and round, on the beat.", loops=2)
+reel(EX / "demo-reel-street.mp4", "It loops", "Post it and it plays round and round, on the beat.")
+reel(EX / "demo-reel-swim.mp4", "Second proof: swimwear", "One paid run of the real app with 3 swimsuit flat-lays and the "
+     "same fictional model: try-on, white wall room, poses, close-ups and a Sonilo track, all from the app's own graph.")
 still(card([("Urban Cuts for ComfyUI", 80, FG), (a.repo, 44, ACC), ("outfits or products  ·  free draft  ·  App Mode  ·  Apache-2.0", 34, FG)]), 6)
 
 # ---- render each segment to 1920x1080 30 fps with stereo audio, then concatenate

@@ -16,7 +16,7 @@ Apache-2.0.
   - **Teaser:** one beat of every look first, so the whole range shows in the first 2 seconds.
   - **Each look:** two shots from one Kling generation, cut on the beat: a 4-beat pose sequence on a locked camera
     (the model moves, not the camera) and a 2-beat handheld close-up on the fabric.
-  - **Clean:** plain hard cuts, a warm natural grade with light grain, one short headline for the whole reel and a small
+  - **Clean:** plain hard cuts, a warm natural grade with light grain, a short opening title over plain wall (the first ~4 s) and a small
     item name on each look (prices optional).
   - **Ending:** a 1 s card in the set's own wall colour with your shop name and @handle, then it loops.
   - Sound is -14 LUFS with true peak under -1 dBTP, and an `AI-generated` label is on by default.
@@ -137,11 +137,18 @@ Partner nodes need a Comfy account with credits.
   storyboards per look (pose sequence + close-up), and a 20 s Sonilo track. 15.00 s, -14.2 LUFS, -1.2 dBTP, 120.2 BPM.
   - Timeline: teaser beats at 0 / 0.50 / 1.00 / 1.50 s; each look is a pose sequence then a close-up, cutting at 2.00 /
     4.01 / 5.00 / 7.00 / 8.00 / 10.00 / 11.01 / 13.00 s; the handle card runs from 14.00 s, then it loops.
+- `docs/examples/demo-reel-swim.mp4` (brand style, boutique vibe): a second proof, made by ONE paid run of the real app
+  graph `workflows/urban-cuts-api.json` with 3 swimsuit flat-lays (made with Nano Banana 2.1, no logos) and the same
+  fictional model. Kling try-on, room edit, pose + close-up, and a Sonilo track, all from the app. 15.00 s, -14.1 LUFS,
+  -2.0 dBTP, 110.2 BPM, about $1.93 + $0.14 for the flat-lays. Then it was re-cut for $0 from that run's own clips after
+  a headline-placement fix. Honest note: the terracotta suit came out closer to burgundy. The shift happened in
+  generation (it is already in the try-on/room still), not in the edit. Contact sheet:
+  `docs/examples/demo-contact-sheet-swim.png`, receipt: `docs/examples/demo-receipt-swim.json`.
 - `docs/examples/demo-contact-sheet-street.png` and `docs/examples/demo-receipt.json`.
 - Demo video (112 s): `docs/demo/urban-cuts-demo.mp4`, built by `tools/record_demo.mjs` (real screenshots of the app) and `tools/make_demo_video.py`.
 - Spend: $0.24 for the input stills, $1.68 for the first app run (single 3 s moves), $0.25 to regenerate look 3 with
   the background-locked prompt, $1.68 + $0.05 for a 360-turnaround version and a 20 s track, then $1.87 for the room
-  edits and the pose-sequence clips. That's $5.77 in all, estimated from the price badges. The reel is cut from the
+  edits and the pose-sequence clips. That's $5.77 in all, plus $2.08 for the swimsuit proof, estimated from the price badges. The reel is cut from the
   saved stills and clips at no extra cost.
 - After the run, a fix made each cut snap to the tempo grid (the tracker had slipped near the end of the track). The reel
   was then re-cut from the same saved clips at no extra cost.

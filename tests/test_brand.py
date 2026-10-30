@@ -88,3 +88,12 @@ def test_bad_style_or_hook_refused():
 def test_text_ink_adapts_to_the_wall():
     assert core.ink_for(np.full((4, 10, 10, 3), 230, np.uint8)) == core.INK_DARK      # light wall: dark text
     assert core.ink_for(np.full((4, 10, 10, 3), 60, np.uint8)) == (255, 255, 255)      # dark area: white text
+
+
+def test_headline_avoids_the_head():
+    H, W = 640, 360
+    fr = np.full((3, H, W, 3), 225, np.uint8)
+    rng = np.random.default_rng(0)
+    fr[:, int(H * 0.10):int(H * 0.22), 120:240] = rng.integers(40, 120, (3, int(H * 0.22) - int(H * 0.10), 120, 3))  # hair/head
+    y = core.clear_band(fr, 30, W, H)
+    assert y >= int(H * 0.22) and y >= int(H * 0.095)   # below the head, and below the item tag

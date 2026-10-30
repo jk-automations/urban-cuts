@@ -733,6 +733,20 @@ def ink_for(region):
     return INK_DARK if float(np.median(np.asarray(region, np.float32).mean(axis=-1))) > 165 else (255, 255, 255)
 
 
+def clear_band(frames, h, W, H, lo=0.095, hi=0.32):   # lo: below the AI label and the item tag
+    """The y (top of a band h pixels tall, centred text) in the top third that crosses the least of the person: the
+    flattest band across the reel's frames (a plain wall is flat; a head and hair are not). Ties go to H * 0.14."""
+    best, best_y = None, int(H * 0.14)
+    x0, x1 = W // 8, W - W // 8
+    for y in range(int(H * lo), int(H * hi) - h, max(4, H // 160)):
+        reg = frames[:, y:y + h, x0:x1].astype(np.float32).mean(axis=-1)
+        busy = float(np.abs(reg - np.median(reg, axis=(1, 2), keepdims=True)).mean())
+        score = busy + abs(y - H * 0.14) / H * 4
+        if best is None or score < best:
+            best, best_y = score, y
+    return best_y
+
+
 def small_tag_png(txt, W, fill=(255, 255, 255)):
     """Brand style item tag: just the name (and the price when prices are on), small, top right."""
     return _soft_text(txt, _font(max(18, W // 28)), fill)
@@ -930,9 +944,13 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
     if brand:
         if brief.get("headline"):
             cap = headline_png(brief["headline"], W)
-            y = int(H * 0.14)
-            cap = headline_png(brief["headline"], W, ink_for(frames[:end_f:15, y:y + cap.height, (W - cap.width) // 2:(W + cap.width) // 2]))
-            over.append((cap, ((W - cap.width) // 2, int(H * 0.14)), 0, end_f))
+            # an opening title: the teaser and look 1's first shot (a title over the whole reel ends up on a face
+            # whenever the model fills the frame), on the row of plain wall in those frames
+            first = next(k for k, s in enumerate(plan["segments"]) if s["kind"] == "look")
+            title_f = cut_frames[first + 1] if first + 1 < len(cut_frames) else end_f
+            y = clear_band(frames[0:title_f:6], cap.height, W, H)
+            cap = headline_png(brief["headline"], W, ink_for(frames[:title_f:15, y:y + cap.height, (W - cap.width) // 2:(W + cap.width) // 2]))
+            over.append((cap, ((W - cap.width) // 2, y), 0, title_f))
         for k, s in enumerate(plan["segments"]):
             if s["kind"] == "look" and s["look"] < len(tags) and tags[s["look"]]:
                 tag = small_tag_png(tags[s["look"]], W)

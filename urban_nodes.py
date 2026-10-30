@@ -70,7 +70,7 @@ class UrbanBrief:
             "music_source": (core.MUSIC_SOURCES, {"default": core.MUSIC_SOURCES[0]}),
             "music_prompt": ("STRING", {"default": "", "multiline": True, "tooltip": "For Sonilo. Empty = the vibe's default."}),
             "headline": ("STRING", {"default": "", "tooltip": "Optional one short line, e.g. '4 fits, 1 weekend'. Brand "
-                         "style: small, top third, the whole reel. Hype style: big, on the first look."}),
+                         "style: an opening title over plain wall for the first ~4 s. Hype style: big, on the first look."}),
             "ai_label": ("BOOLEAN", {"default": True, "tooltip": "Keep this on when you post."}),
             "hook": (core.HOOKS, {"default": "teaser", "tooltip": "teaser: one beat of every look first (show the range "
                      "up front, like brand posts). before→after: the plain photo for 2 beats, then look 1. off: start on look 1."}),

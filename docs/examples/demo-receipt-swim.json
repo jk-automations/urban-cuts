@@ -1,0 +1,220 @@
+{
+ "length": 15.0,
+ "fps": 30,
+ "size": [
+  720,
+  1280
+ ],
+ "bpm": 110.16,
+ "beat_method": "numpy onset envelope + DP tracker",
+ "music_start": 0.8893,
+ "beat_times_in_reel": [
+  0.0,
+  0.5447,
+  1.0923,
+  1.636,
+  2.1828,
+  2.7266,
+  3.2741,
+  3.8188,
+  4.3695,
+  4.9099,
+  5.4573,
+  6.0008,
+  6.5462,
+  7.0906,
+  7.7774,
+  8.1831,
+  8.7308,
+  9.2748,
+  9.8214,
+  10.3626,
+  10.9098,
+  11.4528,
+  12.002,
+  12.5449,
+  13.0956,
+  13.6404,
+  14.1871,
+  14.7267
+ ],
+ "cut_times": [
+  0.5447,
+  1.0923,
+  1.636,
+  3.8188,
+  4.9099,
+  7.0906,
+  8.1831,
+  10.3626,
+  11.4528,
+  13.6404
+ ],
+ "cut_snapped_to": [
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat"
+ ],
+ "cuts": [
+  {
+   "kind": "teaser",
+   "look": 1,
+   "start": 0.0,
+   "end": 0.5447,
+   "fx": null
+  },
+  {
+   "kind": "teaser",
+   "look": 2,
+   "start": 0.5447,
+   "end": 1.0923,
+   "fx": null
+  },
+  {
+   "kind": "teaser",
+   "look": 3,
+   "start": 1.0923,
+   "end": 1.636,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 1,
+   "start": 1.636,
+   "end": 3.8188,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 1,
+   "start": 3.8188,
+   "end": 4.9099,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 2,
+   "start": 4.9099,
+   "end": 7.0906,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 2,
+   "start": 7.0906,
+   "end": 8.1831,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 3,
+   "start": 8.1831,
+   "end": 10.3626,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 3,
+   "start": 10.3626,
+   "end": 11.4528,
+   "fx": null
+  },
+  {
+   "kind": "look",
+   "look": 1,
+   "start": 11.4528,
+   "end": 13.6404,
+   "fx": null
+  },
+  {
+   "kind": "card",
+   "look": null,
+   "start": 13.6404,
+   "end": 15.0,
+   "fx": null
+  }
+ ],
+ "loop_blend_frames": 8,
+ "loudness": {
+  "target_I": -14,
+  "target_TP": -1,
+  "music_I": -14.0,
+  "out_I": -14.1,
+  "out_TP": -2.3,
+  "gain_db": 0.0
+ },
+ "label": "AI-generated",
+ "headline": "swim edit: new in",
+ "style": "brand",
+ "set": "room",
+ "hook": "teaser",
+ "lineup": false,
+ "card": true,
+ "prices": false,
+ "look_labels": [
+  "Terracotta rib one-piece \u00b7 $68",
+  "Black square-neck set \u00b7 $74",
+  "Sage tie-waist one-piece \u00b7 $72"
+ ],
+ "brand": {
+  "name": "YOUR SHOP",
+  "handle": "@yourshop",
+  "cta": ""
+ },
+ "logo": false,
+ "pulse": true,
+ "glowup": false,
+ "skipped": [],
+ "drift_trimmed": {
+  "1.2": "kept 30 of 60 frames",
+  "2.1": "kept 86 of 90 frames",
+  "2.2": "kept 30 of 60 frames",
+  "3.2": "kept 39 of 60 frames"
+ },
+ "mode": "outfits",
+ "vibe": "boutique",
+ "looks_used": [
+  1,
+  2,
+  3
+ ],
+ "partner_calls": [
+  "look 1: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "look 2: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "look 3: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "music: Sonilo text to music (20 s)"
+ ],
+ "cost_estimate": {
+  "total_usd": 1.9346,
+  "rows": [
+   [
+    "Kling Virtual Try-On",
+    3,
+    0.4805
+   ],
+   [
+    "Nano Banana 2.1 edit: move the look into the white wall room",
+    3,
+    0.1441
+   ],
+   [
+    "Kling 3.0 pose sequence + close-up storyboard, 720p, 5 s, no audio",
+    3,
+    1.26
+   ],
+   [
+    "Sonilo text to music, 20 s",
+    1,
+    0.05
+   ]
+  ]
+ },
+ "note": "one full paid run of workflows/urban-cuts-api.json (3 swimsuits); re-cut for $0 from that run's own clips after the headline-placement fix"
+}
