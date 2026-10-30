@@ -31,10 +31,10 @@ def o(i, k=0): return [i, k]
 N = core.MAX_LOOKS
 # ---------- user inputs ----------
 person = node("LoadImage", "Person photo", image=a.person)
-brief = node("UrbanBrief", "Your choices", person=o(person), consent=False, mode="outfits", vibe="street", length=10.0,
+brief = node("UrbanBrief", "Your choices", person=o(person), consent=False, mode="outfits", vibe="street", length=15.0,
              aspect="9:16", look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1 if not a.draft else 0],
              music_prompt="", headline="", ai_label=True, hook=True, lineup=True, look_labels="", brand_name="", handle="",
-             cta="", pulse=True, glowup=True)
+             cta="", pulse=True, glowup=True, angles=True)
 logo = node("LoadImage", "Logo (optional)", image="urban_blank.png")
 items = [node("LoadImage", f"Outfit or product {k}", image=a.items.split(",")[k - 1]) for k in range(1, N + 1)]
 upload = node("LoadAudio", "Your music", audio=a.music)
@@ -61,10 +61,12 @@ for k in range(1, N + 1):
                                                    "model.thinking_level": "MINIMAL", "model.images.image_1": o(brief, 0),
                                                    "model.images.image_2": o(items[k - 1])})
     pick = node("UrbanPickLook", f"Look {k}", engine=o(brief, 2), kling=o(tryon), banana=o(edit))
-    clip = node("KlingVideoNode", f"Motion {k} (Kling 3.0)", multi_shot="disabled", generate_audio=False, model="kling-v3",
+    # one storyboard per look: a 3 s turnaround + a 2 s close-up from the same generation (face and outfit stay the same)
+    clip = node("KlingVideoNode", f"Angles {k} (Kling 3.0)", multi_shot="2 storyboards", generate_audio=False, model="kling-v3",
                 seed=300 + k, start_frame=o(pick),
-                **{"multi_shot.prompt": o(shot, 1), "multi_shot.negative_prompt": core.NEGATIVE,
-                   "multi_shot.duration": core.CLIP_SECONDS, "model.resolution": "720p", "model.aspect_ratio": "9:16"})
+                **{"multi_shot.storyboard_1_prompt": o(shot, 2), "multi_shot.storyboard_1_duration": core.ANGLE_SHOTS[0],
+                   "multi_shot.storyboard_2_prompt": o(shot, 3), "multi_shot.storyboard_2_duration": core.ANGLE_SHOTS[1],
+                   "model.resolution": "720p", "model.aspect_ratio": "9:16"})
     cut_in[f"look_{k}"] = o(pick)
     cut_in[f"clip_{k}"] = o(clip)
 # ---------- 4. the edit ----------

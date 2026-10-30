@@ -18,7 +18,7 @@
    "consent": false,
    "mode": "outfits",
    "vibe": "street",
-   "length": 10.0,
+   "length": 15.0,
    "aspect": "9:16",
    "look_engine": "Kling try-on",
    "music_source": "Sonilo (text to music)",
@@ -32,7 +32,8 @@
    "handle": "",
    "cta": "",
    "pulse": true,
-   "glowup": true
+   "glowup": true,
+   "angles": true
   },
   "_meta": {
    "title": "Your choices"
@@ -242,7 +243,7 @@
  "18": {
   "class_type": "KlingVideoNode",
   "inputs": {
-   "multi_shot": "disabled",
+   "multi_shot": "2 storyboards",
    "generate_audio": false,
    "model": "kling-v3",
    "seed": 301,
@@ -250,17 +251,21 @@
     "17",
     0
    ],
-   "multi_shot.prompt": [
+   "multi_shot.storyboard_1_prompt": [
     "14",
-    1
+    2
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": [
+    "14",
+    3
+   ],
+   "multi_shot.storyboard_2_duration": 2,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
   },
   "_meta": {
-   "title": "Motion 1 (Kling 3.0)"
+   "title": "Angles 1 (Kling 3.0)"
   }
  },
  "19": {
@@ -343,7 +348,7 @@
  "23": {
   "class_type": "KlingVideoNode",
   "inputs": {
-   "multi_shot": "disabled",
+   "multi_shot": "2 storyboards",
    "generate_audio": false,
    "model": "kling-v3",
    "seed": 302,
@@ -351,17 +356,21 @@
     "22",
     0
    ],
-   "multi_shot.prompt": [
+   "multi_shot.storyboard_1_prompt": [
     "19",
-    1
+    2
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": [
+    "19",
+    3
+   ],
+   "multi_shot.storyboard_2_duration": 2,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
   },
   "_meta": {
-   "title": "Motion 2 (Kling 3.0)"
+   "title": "Angles 2 (Kling 3.0)"
   }
  },
  "24": {
@@ -444,7 +453,7 @@
  "28": {
   "class_type": "KlingVideoNode",
   "inputs": {
-   "multi_shot": "disabled",
+   "multi_shot": "2 storyboards",
    "generate_audio": false,
    "model": "kling-v3",
    "seed": 303,
@@ -452,17 +461,21 @@
     "27",
     0
    ],
-   "multi_shot.prompt": [
+   "multi_shot.storyboard_1_prompt": [
     "24",
-    1
+    2
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": [
+    "24",
+    3
+   ],
+   "multi_shot.storyboard_2_duration": 2,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
   },
   "_meta": {
-   "title": "Motion 3 (Kling 3.0)"
+   "title": "Angles 3 (Kling 3.0)"
   }
  },
  "29": {
@@ -545,7 +558,7 @@
  "33": {
   "class_type": "KlingVideoNode",
   "inputs": {
-   "multi_shot": "disabled",
+   "multi_shot": "2 storyboards",
    "generate_audio": false,
    "model": "kling-v3",
    "seed": 304,
@@ -553,17 +566,21 @@
     "32",
     0
    ],
-   "multi_shot.prompt": [
+   "multi_shot.storyboard_1_prompt": [
     "29",
-    1
+    2
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": [
+    "29",
+    3
+   ],
+   "multi_shot.storyboard_2_duration": 2,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
   },
   "_meta": {
-   "title": "Motion 4 (Kling 3.0)"
+   "title": "Angles 4 (Kling 3.0)"
   }
  },
  "34": {
@@ -646,7 +663,7 @@
  "38": {
   "class_type": "KlingVideoNode",
   "inputs": {
-   "multi_shot": "disabled",
+   "multi_shot": "2 storyboards",
    "generate_audio": false,
    "model": "kling-v3",
    "seed": 305,
@@ -654,17 +671,21 @@
     "37",
     0
    ],
-   "multi_shot.prompt": [
+   "multi_shot.storyboard_1_prompt": [
     "34",
-    1
+    2
    ],
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": [
+    "34",
+    3
+   ],
+   "multi_shot.storyboard_2_duration": 2,
    "model.resolution": "720p",
    "model.aspect_ratio": "9:16"
   },
   "_meta": {
-   "title": "Motion 5 (Kling 3.0)"
+   "title": "Angles 5 (Kling 3.0)"
   }
  },
  "39": {

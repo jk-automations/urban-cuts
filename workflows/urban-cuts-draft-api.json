@@ -18,7 +18,7 @@
    "consent": false,
    "mode": "outfits",
    "vibe": "street",
-   "length": 10.0,
+   "length": 15.0,
    "aspect": "9:16",
    "look_engine": "Kling try-on",
    "music_source": "my own track (upload)",
@@ -32,7 +32,8 @@
    "handle": "",
    "cta": "",
    "pulse": true,
-   "glowup": true
+   "glowup": true,
+   "angles": true
   },
   "_meta": {
    "title": "Your choices"

@@ -1,8 +1,8 @@
 {
- "id": "6a92e203-cdf6-40a5-9f9c-996083726dd5",
+ "id": "306c80e9-e615-416e-9ccf-ba0b78aa61bd",
  "revision": 0,
  "last_node_id": 42,
- "last_link_id": 86,
+ "last_link_id": 91,
  "nodes": [
   {
    "id": 1,
@@ -77,7 +77,7 @@
    ],
    "size": [
     400,
-    606
+    630
    ],
    "flags": {},
    "order": 8,
@@ -268,6 +268,16 @@
       "name": "glowup"
      },
      "link": null
+    },
+    {
+     "label": "Camera angles: 360 turnaround + close-up per look",
+     "localized_name": "angles",
+     "name": "angles",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "angles"
+     },
+     "link": null
     }
    ],
    "outputs": [
@@ -278,15 +288,15 @@
      "links": [
       10,
       13,
-      21,
-      24,
-      32,
-      35,
-      43,
+      22,
+      25,
+      34,
+      37,
       46,
-      54,
-      57,
-      67
+      49,
+      58,
+      61,
+      72
      ]
     },
     {
@@ -296,11 +306,11 @@
      "links": [
       4,
       9,
-      20,
-      31,
-      42,
-      53,
-      64
+      21,
+      33,
+      45,
+      57,
+      69
      ]
     },
     {
@@ -309,10 +319,10 @@
      "type": "STRING",
      "links": [
       15,
-      26,
-      37,
-      48,
-      59
+      27,
+      39,
+      51,
+      63
      ]
     },
     {
@@ -340,7 +350,7 @@
     false,
     "outfits",
     "street",
-    10,
+    15,
     "9:16",
     "Kling try-on",
     "Sonilo (text to music)",
@@ -354,13 +364,14 @@
     "",
     "",
     true,
+    true,
     true
    ],
    "widgets_values_named": {
     "consent": false,
     "mode": "outfits",
     "vibe": "street",
-    "length": 10,
+    "length": 15,
     "aspect": "9:16",
     "look_engine": "Kling try-on",
     "music_source": "Sonilo (text to music)",
@@ -374,7 +385,8 @@
     "handle": "",
     "cta": "",
     "pulse": true,
-    "glowup": true
+    "glowup": true,
+    "angles": true
    }
   },
   {
@@ -418,7 +430,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      68
+      73
      ]
     },
     {
@@ -484,7 +496,7 @@
      "links": [
       11,
       14,
-      69
+      74
      ]
     },
     {
@@ -548,9 +560,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      22,
-      25,
-      72
+      23,
+      26,
+      77
      ]
     },
     {
@@ -614,9 +626,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      33,
-      36,
-      75
+      35,
+      38,
+      80
      ]
     },
     {
@@ -680,9 +692,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      44,
       47,
-      78
+      50,
+      83
      ]
     },
     {
@@ -746,9 +758,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      55,
-      58,
-      81
+      59,
+      62,
+      86
      ]
     },
     {
@@ -843,7 +855,7 @@
    "type": "SoniloTextToMusic",
    "pos": [
     922.798828125,
-    2230
+    2430
    ],
    "size": [
     400,
@@ -953,7 +965,7 @@
      "type": "AUDIO",
      "links": [
       7,
-      65
+      70
      ]
     }
    ],
@@ -990,7 +1002,7 @@
      "name": "beats",
      "type": "STRING",
      "links": [
-      66
+      71
      ]
     },
     {
@@ -1012,7 +1024,7 @@
    "type": "PreviewAny",
    "pos": [
     2201.9869140625,
-    2330
+    2450
    ],
    "size": [
     210,
@@ -1053,7 +1065,7 @@
    ],
    "size": [
     274.2642578125,
-    78
+    118
    ],
    "flags": {},
    "order": 14,
@@ -1088,8 +1100,22 @@
      "localized_name": "motion_prompt",
      "name": "motion_prompt",
      "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "turnaround_prompt",
+     "name": "turnaround_prompt",
+     "type": "STRING",
      "links": [
       19
+     ]
+    },
+    {
+     "localized_name": "closeup_prompt",
+     "name": "closeup_prompt",
+     "type": "STRING",
+     "links": [
+      20
      ]
     }
    ],
@@ -1412,7 +1438,7 @@
      "type": "IMAGE",
      "links": [
       18,
-      70
+      75
      ]
     }
    ],
@@ -1430,7 +1456,7 @@
    ],
    "size": [
     400,
-    334
+    358
    ],
    "flags": {},
    "order": 32,
@@ -1453,29 +1479,38 @@
      "link": null
     },
     {
-     "localized_name": "prompt",
-     "name": "multi_shot.prompt",
+     "localized_name": "storyboard_1_prompt",
+     "name": "multi_shot.storyboard_1_prompt",
      "type": "STRING",
      "widget": {
-      "name": "multi_shot.prompt"
+      "name": "multi_shot.storyboard_1_prompt"
      },
      "link": 19
     },
     {
-     "localized_name": "negative_prompt",
-     "name": "multi_shot.negative_prompt",
-     "type": "STRING",
+     "localized_name": "storyboard_1_duration",
+     "name": "multi_shot.storyboard_1_duration",
+     "type": "INT",
      "widget": {
-      "name": "multi_shot.negative_prompt"
+      "name": "multi_shot.storyboard_1_duration"
      },
      "link": null
     },
     {
-     "localized_name": "duration",
-     "name": "multi_shot.duration",
+     "localized_name": "storyboard_2_prompt",
+     "name": "multi_shot.storyboard_2_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.storyboard_2_prompt"
+     },
+     "link": 20
+    },
+    {
+     "localized_name": "storyboard_2_duration",
+     "name": "multi_shot.storyboard_2_duration",
      "type": "INT",
      "widget": {
-      "name": "multi_shot.duration"
+      "name": "multi_shot.storyboard_2_duration"
      },
      "link": null
     },
@@ -1531,19 +1566,20 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      71
+      76
      ]
     }
    ],
-   "title": "Motion 1 (Kling 3.0)",
+   "title": "Angles 1 (Kling 3.0)",
    "properties": {
     "Node name for S&R": "KlingVideoNode"
    },
    "widgets_values": [
-    "disabled",
+    "2 storyboards",
     "",
-    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
     3,
+    "",
+    2,
     false,
     "kling-v3",
     "720p",
@@ -1552,10 +1588,11 @@
     "fixed"
    ],
    "widgets_values_named": {
-    "multi_shot": "disabled",
-    "multi_shot.prompt": "",
-    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-    "multi_shot.duration": 3,
+    "multi_shot": "2 storyboards",
+    "multi_shot.storyboard_1_prompt": "",
+    "multi_shot.storyboard_1_duration": 3,
+    "multi_shot.storyboard_2_prompt": "",
+    "multi_shot.storyboard_2_duration": 2,
     "generate_audio": false,
     "model": "kling-v3",
     "model.resolution": "720p",
@@ -1571,11 +1608,11 @@
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1478
+    1518
    ],
    "size": [
     274.2642578125,
-    78
+    118
    ],
    "flags": {},
    "order": 15,
@@ -1585,7 +1622,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 20
+     "link": 21
     },
     {
      "localized_name": "look",
@@ -1603,15 +1640,29 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      23
+      24
      ]
     },
     {
      "localized_name": "motion_prompt",
      "name": "motion_prompt",
      "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "turnaround_prompt",
+     "name": "turnaround_prompt",
+     "type": "STRING",
      "links": [
-      30
+      31
+     ]
+    },
+    {
+     "localized_name": "closeup_prompt",
+     "name": "closeup_prompt",
+     "type": "STRING",
+     "links": [
+      32
      ]
     }
    ],
@@ -1645,13 +1696,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 21
+     "link": 22
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 22
+     "link": 23
     },
     {
      "localized_name": "keep_pose",
@@ -1678,7 +1729,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      27
+      28
      ]
     }
    ],
@@ -1721,7 +1772,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 23
+     "link": 24
     },
     {
      "localized_name": "model",
@@ -1764,14 +1815,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 24
+     "link": 25
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 25
+     "link": 26
     },
     {
      "localized_name": "image_3",
@@ -1842,7 +1893,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      28
+      29
      ]
     },
     {
@@ -1910,21 +1961,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 26
+     "link": 27
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 27
+     "link": 28
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 28
+     "link": 29
     }
    ],
    "outputs": [
@@ -1933,8 +1984,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      29,
-      73
+      30,
+      78
      ]
     }
    ],
@@ -1948,11 +1999,11 @@
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
-    554
+    578
    ],
    "size": [
     400,
-    334
+    358
    ],
    "flags": {},
    "order": 33,
@@ -1963,7 +2014,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 29
+     "link": 30
     },
     {
      "localized_name": "multi_shot",
@@ -1975,29 +2026,38 @@
      "link": null
     },
     {
-     "localized_name": "prompt",
-     "name": "multi_shot.prompt",
+     "localized_name": "storyboard_1_prompt",
+     "name": "multi_shot.storyboard_1_prompt",
      "type": "STRING",
      "widget": {
-      "name": "multi_shot.prompt"
+      "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 30
+     "link": 31
     },
     {
-     "localized_name": "negative_prompt",
-     "name": "multi_shot.negative_prompt",
-     "type": "STRING",
+     "localized_name": "storyboard_1_duration",
+     "name": "multi_shot.storyboard_1_duration",
+     "type": "INT",
      "widget": {
-      "name": "multi_shot.negative_prompt"
+      "name": "multi_shot.storyboard_1_duration"
      },
      "link": null
     },
     {
-     "localized_name": "duration",
-     "name": "multi_shot.duration",
+     "localized_name": "storyboard_2_prompt",
+     "name": "multi_shot.storyboard_2_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.storyboard_2_prompt"
+     },
+     "link": 32
+    },
+    {
+     "localized_name": "storyboard_2_duration",
+     "name": "multi_shot.storyboard_2_duration",
      "type": "INT",
      "widget": {
-      "name": "multi_shot.duration"
+      "name": "multi_shot.storyboard_2_duration"
      },
      "link": null
     },
@@ -2053,19 +2113,20 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      74
+      79
      ]
     }
    ],
-   "title": "Motion 2 (Kling 3.0)",
+   "title": "Angles 2 (Kling 3.0)",
    "properties": {
     "Node name for S&R": "KlingVideoNode"
    },
    "widgets_values": [
-    "disabled",
+    "2 storyboards",
     "",
-    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
     3,
+    "",
+    2,
     false,
     "kling-v3",
     "720p",
@@ -2074,10 +2135,11 @@
     "fixed"
    ],
    "widgets_values_named": {
-    "multi_shot": "disabled",
-    "multi_shot.prompt": "",
-    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-    "multi_shot.duration": 3,
+    "multi_shot": "2 storyboards",
+    "multi_shot.storyboard_1_prompt": "",
+    "multi_shot.storyboard_1_duration": 3,
+    "multi_shot.storyboard_2_prompt": "",
+    "multi_shot.storyboard_2_duration": 2,
     "generate_audio": false,
     "model": "kling-v3",
     "model.resolution": "720p",
@@ -2093,11 +2155,11 @@
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1666
+    1746
    ],
    "size": [
     274.2642578125,
-    78
+    118
    ],
    "flags": {},
    "order": 16,
@@ -2107,7 +2169,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 31
+     "link": 33
     },
     {
      "localized_name": "look",
@@ -2125,15 +2187,29 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      34
+      36
      ]
     },
     {
      "localized_name": "motion_prompt",
      "name": "motion_prompt",
      "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "turnaround_prompt",
+     "name": "turnaround_prompt",
+     "type": "STRING",
      "links": [
-      41
+      43
+     ]
+    },
+    {
+     "localized_name": "closeup_prompt",
+     "name": "closeup_prompt",
+     "type": "STRING",
+     "links": [
+      44
      ]
     }
    ],
@@ -2167,13 +2243,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 32
+     "link": 34
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 33
+     "link": 35
     },
     {
      "localized_name": "keep_pose",
@@ -2200,7 +2276,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      38
+      40
      ]
     }
    ],
@@ -2243,7 +2319,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 34
+     "link": 36
     },
     {
      "localized_name": "model",
@@ -2286,14 +2362,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 35
+     "link": 37
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 36
+     "link": 38
     },
     {
      "localized_name": "image_3",
@@ -2364,7 +2440,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      39
+      41
      ]
     },
     {
@@ -2432,21 +2508,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 37
+     "link": 39
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 38
+     "link": 40
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 39
+     "link": 41
     }
    ],
    "outputs": [
@@ -2455,8 +2531,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      40,
-      76
+      42,
+      81
      ]
     }
    ],
@@ -2470,11 +2546,11 @@
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
-    998
+    1046
    ],
    "size": [
     400,
-    334
+    358
    ],
    "flags": {},
    "order": 34,
@@ -2485,7 +2561,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 40
+     "link": 42
     },
     {
      "localized_name": "multi_shot",
@@ -2497,29 +2573,38 @@
      "link": null
     },
     {
-     "localized_name": "prompt",
-     "name": "multi_shot.prompt",
+     "localized_name": "storyboard_1_prompt",
+     "name": "multi_shot.storyboard_1_prompt",
      "type": "STRING",
      "widget": {
-      "name": "multi_shot.prompt"
+      "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 41
+     "link": 43
     },
     {
-     "localized_name": "negative_prompt",
-     "name": "multi_shot.negative_prompt",
-     "type": "STRING",
+     "localized_name": "storyboard_1_duration",
+     "name": "multi_shot.storyboard_1_duration",
+     "type": "INT",
      "widget": {
-      "name": "multi_shot.negative_prompt"
+      "name": "multi_shot.storyboard_1_duration"
      },
      "link": null
     },
     {
-     "localized_name": "duration",
-     "name": "multi_shot.duration",
+     "localized_name": "storyboard_2_prompt",
+     "name": "multi_shot.storyboard_2_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.storyboard_2_prompt"
+     },
+     "link": 44
+    },
+    {
+     "localized_name": "storyboard_2_duration",
+     "name": "multi_shot.storyboard_2_duration",
      "type": "INT",
      "widget": {
-      "name": "multi_shot.duration"
+      "name": "multi_shot.storyboard_2_duration"
      },
      "link": null
     },
@@ -2575,19 +2660,20 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      77
+      82
      ]
     }
    ],
-   "title": "Motion 3 (Kling 3.0)",
+   "title": "Angles 3 (Kling 3.0)",
    "properties": {
     "Node name for S&R": "KlingVideoNode"
    },
    "widgets_values": [
-    "disabled",
+    "2 storyboards",
     "",
-    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
     3,
+    "",
+    2,
     false,
     "kling-v3",
     "720p",
@@ -2596,10 +2682,11 @@
     "fixed"
    ],
    "widgets_values_named": {
-    "multi_shot": "disabled",
-    "multi_shot.prompt": "",
-    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-    "multi_shot.duration": 3,
+    "multi_shot": "2 storyboards",
+    "multi_shot.storyboard_1_prompt": "",
+    "multi_shot.storyboard_1_duration": 3,
+    "multi_shot.storyboard_2_prompt": "",
+    "multi_shot.storyboard_2_duration": 2,
     "generate_audio": false,
     "model": "kling-v3",
     "model.resolution": "720p",
@@ -2615,11 +2702,11 @@
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1854
+    1974
    ],
    "size": [
     274.2642578125,
-    78
+    118
    ],
    "flags": {},
    "order": 17,
@@ -2629,7 +2716,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 42
+     "link": 45
     },
     {
      "localized_name": "look",
@@ -2647,15 +2734,29 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      45
+      48
      ]
     },
     {
      "localized_name": "motion_prompt",
      "name": "motion_prompt",
      "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "turnaround_prompt",
+     "name": "turnaround_prompt",
+     "type": "STRING",
      "links": [
-      52
+      55
+     ]
+    },
+    {
+     "localized_name": "closeup_prompt",
+     "name": "closeup_prompt",
+     "type": "STRING",
+     "links": [
+      56
      ]
     }
    ],
@@ -2689,13 +2790,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 43
+     "link": 46
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 44
+     "link": 47
     },
     {
      "localized_name": "keep_pose",
@@ -2722,7 +2823,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      49
+      52
      ]
     }
    ],
@@ -2765,7 +2866,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 45
+     "link": 48
     },
     {
      "localized_name": "model",
@@ -2808,14 +2909,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 46
+     "link": 49
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 47
+     "link": 50
     },
     {
      "localized_name": "image_3",
@@ -2886,7 +2987,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      50
+      53
      ]
     },
     {
@@ -2954,21 +3055,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 48
+     "link": 51
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 49
+     "link": 52
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 50
+     "link": 53
     }
    ],
    "outputs": [
@@ -2977,8 +3078,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      51,
-      79
+      54,
+      84
      ]
     }
    ],
@@ -2992,11 +3093,11 @@
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
-    1442
+    1514
    ],
    "size": [
     400,
-    334
+    358
    ],
    "flags": {},
    "order": 35,
@@ -3007,7 +3108,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 51
+     "link": 54
     },
     {
      "localized_name": "multi_shot",
@@ -3019,29 +3120,38 @@
      "link": null
     },
     {
-     "localized_name": "prompt",
-     "name": "multi_shot.prompt",
+     "localized_name": "storyboard_1_prompt",
+     "name": "multi_shot.storyboard_1_prompt",
      "type": "STRING",
      "widget": {
-      "name": "multi_shot.prompt"
+      "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 52
+     "link": 55
     },
     {
-     "localized_name": "negative_prompt",
-     "name": "multi_shot.negative_prompt",
-     "type": "STRING",
+     "localized_name": "storyboard_1_duration",
+     "name": "multi_shot.storyboard_1_duration",
+     "type": "INT",
      "widget": {
-      "name": "multi_shot.negative_prompt"
+      "name": "multi_shot.storyboard_1_duration"
      },
      "link": null
     },
     {
-     "localized_name": "duration",
-     "name": "multi_shot.duration",
+     "localized_name": "storyboard_2_prompt",
+     "name": "multi_shot.storyboard_2_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.storyboard_2_prompt"
+     },
+     "link": 56
+    },
+    {
+     "localized_name": "storyboard_2_duration",
+     "name": "multi_shot.storyboard_2_duration",
      "type": "INT",
      "widget": {
-      "name": "multi_shot.duration"
+      "name": "multi_shot.storyboard_2_duration"
      },
      "link": null
     },
@@ -3097,19 +3207,20 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      80
+      85
      ]
     }
    ],
-   "title": "Motion 4 (Kling 3.0)",
+   "title": "Angles 4 (Kling 3.0)",
    "properties": {
     "Node name for S&R": "KlingVideoNode"
    },
    "widgets_values": [
-    "disabled",
+    "2 storyboards",
     "",
-    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
     3,
+    "",
+    2,
     false,
     "kling-v3",
     "720p",
@@ -3118,10 +3229,11 @@
     "fixed"
    ],
    "widgets_values_named": {
-    "multi_shot": "disabled",
-    "multi_shot.prompt": "",
-    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-    "multi_shot.duration": 3,
+    "multi_shot": "2 storyboards",
+    "multi_shot.storyboard_1_prompt": "",
+    "multi_shot.storyboard_1_duration": 3,
+    "multi_shot.storyboard_2_prompt": "",
+    "multi_shot.storyboard_2_duration": 2,
     "generate_audio": false,
     "model": "kling-v3",
     "model.resolution": "720p",
@@ -3137,11 +3249,11 @@
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    2042
+    2202
    ],
    "size": [
     274.2642578125,
-    78
+    118
    ],
    "flags": {},
    "order": 18,
@@ -3151,7 +3263,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 53
+     "link": 57
     },
     {
      "localized_name": "look",
@@ -3169,15 +3281,29 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      56
+      60
      ]
     },
     {
      "localized_name": "motion_prompt",
      "name": "motion_prompt",
      "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "turnaround_prompt",
+     "name": "turnaround_prompt",
+     "type": "STRING",
      "links": [
-      63
+      67
+     ]
+    },
+    {
+     "localized_name": "closeup_prompt",
+     "name": "closeup_prompt",
+     "type": "STRING",
+     "links": [
+      68
      ]
     }
    ],
@@ -3211,13 +3337,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 54
+     "link": 58
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 55
+     "link": 59
     },
     {
      "localized_name": "keep_pose",
@@ -3244,7 +3370,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      60
+      64
      ]
     }
    ],
@@ -3287,7 +3413,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 56
+     "link": 60
     },
     {
      "localized_name": "model",
@@ -3330,14 +3456,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 57
+     "link": 61
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 58
+     "link": 62
     },
     {
      "localized_name": "image_3",
@@ -3408,7 +3534,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      61
+      65
      ]
     },
     {
@@ -3476,21 +3602,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 59
+     "link": 63
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 60
+     "link": 64
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 61
+     "link": 65
     }
    ],
    "outputs": [
@@ -3499,8 +3625,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      62,
-      82
+      66,
+      87
      ]
     }
    ],
@@ -3514,11 +3640,11 @@
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
-    1886
+    1982
    ],
    "size": [
     400,
-    334
+    358
    ],
    "flags": {},
    "order": 36,
@@ -3529,7 +3655,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 62
+     "link": 66
     },
     {
      "localized_name": "multi_shot",
@@ -3541,29 +3667,38 @@
      "link": null
     },
     {
-     "localized_name": "prompt",
-     "name": "multi_shot.prompt",
+     "localized_name": "storyboard_1_prompt",
+     "name": "multi_shot.storyboard_1_prompt",
      "type": "STRING",
      "widget": {
-      "name": "multi_shot.prompt"
+      "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 63
+     "link": 67
     },
     {
-     "localized_name": "negative_prompt",
-     "name": "multi_shot.negative_prompt",
-     "type": "STRING",
+     "localized_name": "storyboard_1_duration",
+     "name": "multi_shot.storyboard_1_duration",
+     "type": "INT",
      "widget": {
-      "name": "multi_shot.negative_prompt"
+      "name": "multi_shot.storyboard_1_duration"
      },
      "link": null
     },
     {
-     "localized_name": "duration",
-     "name": "multi_shot.duration",
+     "localized_name": "storyboard_2_prompt",
+     "name": "multi_shot.storyboard_2_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.storyboard_2_prompt"
+     },
+     "link": 68
+    },
+    {
+     "localized_name": "storyboard_2_duration",
+     "name": "multi_shot.storyboard_2_duration",
      "type": "INT",
      "widget": {
-      "name": "multi_shot.duration"
+      "name": "multi_shot.storyboard_2_duration"
      },
      "link": null
     },
@@ -3619,19 +3754,20 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      83
+      88
      ]
     }
    ],
-   "title": "Motion 5 (Kling 3.0)",
+   "title": "Angles 5 (Kling 3.0)",
    "properties": {
     "Node name for S&R": "KlingVideoNode"
    },
    "widgets_values": [
-    "disabled",
+    "2 storyboards",
     "",
-    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
     3,
+    "",
+    2,
     false,
     "kling-v3",
     "720p",
@@ -3640,10 +3776,11 @@
     "fixed"
    ],
    "widgets_values_named": {
-    "multi_shot": "disabled",
-    "multi_shot.prompt": "",
-    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-    "multi_shot.duration": 3,
+    "multi_shot": "2 storyboards",
+    "multi_shot.storyboard_1_prompt": "",
+    "multi_shot.storyboard_1_duration": 3,
+    "multi_shot.storyboard_2_prompt": "",
+    "multi_shot.storyboard_2_duration": 2,
     "generate_audio": false,
     "model": "kling-v3",
     "model.resolution": "720p",
@@ -3673,138 +3810,138 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 64
+     "link": 69
     },
     {
      "localized_name": "music",
      "name": "music",
      "type": "AUDIO",
-     "link": 65
+     "link": 70
     },
     {
      "localized_name": "beats",
      "name": "beats",
      "type": "STRING",
-     "link": 66
+     "link": 71
     },
     {
      "localized_name": "item_1",
      "name": "item_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 69
+     "link": 74
     },
     {
      "localized_name": "look_1",
      "name": "look_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 70
+     "link": 75
     },
     {
      "localized_name": "clip_1",
      "name": "clip_1",
      "shape": 7,
      "type": "VIDEO",
-     "link": 71
+     "link": 76
     },
     {
      "localized_name": "item_2",
      "name": "item_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 72
+     "link": 77
     },
     {
      "localized_name": "look_2",
      "name": "look_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 73
+     "link": 78
     },
     {
      "localized_name": "clip_2",
      "name": "clip_2",
      "shape": 7,
      "type": "VIDEO",
-     "link": 74
+     "link": 79
     },
     {
      "localized_name": "item_3",
      "name": "item_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 75
+     "link": 80
     },
     {
      "localized_name": "look_3",
      "name": "look_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 76
+     "link": 81
     },
     {
      "localized_name": "clip_3",
      "name": "clip_3",
      "shape": 7,
      "type": "VIDEO",
-     "link": 77
+     "link": 82
     },
     {
      "localized_name": "item_4",
      "name": "item_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 78
+     "link": 83
     },
     {
      "localized_name": "look_4",
      "name": "look_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 79
+     "link": 84
     },
     {
      "localized_name": "clip_4",
      "name": "clip_4",
      "shape": 7,
      "type": "VIDEO",
-     "link": 80
+     "link": 85
     },
     {
      "localized_name": "item_5",
      "name": "item_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 81
+     "link": 86
     },
     {
      "localized_name": "look_5",
      "name": "look_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 82
+     "link": 87
     },
     {
      "localized_name": "clip_5",
      "name": "clip_5",
      "shape": 7,
      "type": "VIDEO",
-     "link": 83
+     "link": 88
     },
     {
      "localized_name": "before",
      "name": "before",
      "shape": 7,
      "type": "IMAGE",
-     "link": 67
+     "link": 72
     },
     {
      "localized_name": "logo",
      "name": "logo",
      "shape": 7,
      "type": "IMAGE",
-     "link": 68
+     "link": 73
     }
    ],
    "outputs": [
@@ -3813,7 +3950,7 @@
      "name": "reel",
      "type": "VIDEO",
      "links": [
-      84
+      89
      ]
     },
     {
@@ -3821,7 +3958,7 @@
      "name": "contact_sheet",
      "type": "IMAGE",
      "links": [
-      85
+      90
      ]
     },
     {
@@ -3829,7 +3966,7 @@
      "name": "receipt",
      "type": "STRING",
      "links": [
-      86
+      91
      ]
     }
    ],
@@ -3857,7 +3994,7 @@
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 84
+     "link": 89
     },
     {
      "localized_name": "filename_prefix",
@@ -3939,7 +4076,7 @@
      "localized_name": "images",
      "name": "images",
      "type": "IMAGE",
-     "link": 85
+     "link": 90
     }
    ],
    "outputs": [
@@ -3974,7 +4111,7 @@
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 86
+     "link": 91
     }
    ],
    "outputs": [
@@ -4141,13 +4278,21 @@
   [
    19,
    14,
-   1,
+   2,
    18,
    2,
    "STRING"
   ],
   [
    20,
+   14,
+   3,
+   18,
+   4,
+   "STRING"
+  ],
+  [
+   21,
    2,
    1,
    19,
@@ -4155,23 +4300,23 @@
    "STRING"
   ],
   [
-   21,
+   22,
    2,
    0,
    20,
    0,
-   "IMAGE"
-  ],
-  [
-   22,
-   5,
-   0,
-   20,
-   1,
    "IMAGE"
   ],
   [
    23,
+   5,
+   0,
+   20,
+   1,
+   "IMAGE"
+  ],
+  [
+   24,
    19,
    0,
    21,
@@ -4179,7 +4324,7 @@
    "STRING"
   ],
   [
-   24,
+   25,
    2,
    0,
    21,
@@ -4187,7 +4332,7 @@
    "IMAGE"
   ],
   [
-   25,
+   26,
    5,
    0,
    21,
@@ -4195,7 +4340,7 @@
    "IMAGE"
   ],
   [
-   26,
+   27,
    2,
    2,
    22,
@@ -4203,7 +4348,7 @@
    "STRING"
   ],
   [
-   27,
+   28,
    20,
    0,
    22,
@@ -4211,7 +4356,7 @@
    "IMAGE"
   ],
   [
-   28,
+   29,
    21,
    0,
    22,
@@ -4219,7 +4364,7 @@
    "IMAGE"
   ],
   [
-   29,
+   30,
    22,
    0,
    23,
@@ -4227,23 +4372,31 @@
    "IMAGE"
   ],
   [
-   30,
+   31,
    19,
-   1,
+   2,
    23,
    2,
-   "STRING"
-  ],
-  [
-   31,
-   2,
-   1,
-   24,
-   0,
    "STRING"
   ],
   [
    32,
+   19,
+   3,
+   23,
+   4,
+   "STRING"
+  ],
+  [
+   33,
+   2,
+   1,
+   24,
+   0,
+   "STRING"
+  ],
+  [
+   34,
    2,
    0,
    25,
@@ -4251,7 +4404,7 @@
    "IMAGE"
   ],
   [
-   33,
+   35,
    6,
    0,
    25,
@@ -4259,7 +4412,7 @@
    "IMAGE"
   ],
   [
-   34,
+   36,
    24,
    0,
    26,
@@ -4267,7 +4420,7 @@
    "STRING"
   ],
   [
-   35,
+   37,
    2,
    0,
    26,
@@ -4275,7 +4428,7 @@
    "IMAGE"
   ],
   [
-   36,
+   38,
    6,
    0,
    26,
@@ -4283,7 +4436,7 @@
    "IMAGE"
   ],
   [
-   37,
+   39,
    2,
    2,
    27,
@@ -4291,7 +4444,7 @@
    "STRING"
   ],
   [
-   38,
+   40,
    25,
    0,
    27,
@@ -4299,7 +4452,7 @@
    "IMAGE"
   ],
   [
-   39,
+   41,
    26,
    0,
    27,
@@ -4307,7 +4460,7 @@
    "IMAGE"
   ],
   [
-   40,
+   42,
    27,
    0,
    28,
@@ -4315,42 +4468,26 @@
    "IMAGE"
   ],
   [
-   41,
+   43,
    24,
-   1,
+   2,
    28,
    2,
    "STRING"
   ],
   [
-   42,
-   2,
-   1,
-   29,
-   0,
+   44,
+   24,
+   3,
+   28,
+   4,
    "STRING"
   ],
   [
-   43,
-   2,
-   0,
-   30,
-   0,
-   "IMAGE"
-  ],
-  [
-   44,
-   7,
-   0,
-   30,
-   1,
-   "IMAGE"
-  ],
-  [
    45,
+   2,
+   1,
    29,
-   0,
-   31,
    0,
    "STRING"
   ],
@@ -4358,12 +4495,36 @@
    46,
    2,
    0,
+   30,
+   0,
+   "IMAGE"
+  ],
+  [
+   47,
+   7,
+   0,
+   30,
+   1,
+   "IMAGE"
+  ],
+  [
+   48,
+   29,
+   0,
+   31,
+   0,
+   "STRING"
+  ],
+  [
+   49,
+   2,
+   0,
    31,
    5,
    "IMAGE"
   ],
   [
-   47,
+   50,
    7,
    0,
    31,
@@ -4371,7 +4532,7 @@
    "IMAGE"
   ],
   [
-   48,
+   51,
    2,
    2,
    32,
@@ -4379,7 +4540,7 @@
    "STRING"
   ],
   [
-   49,
+   52,
    30,
    0,
    32,
@@ -4387,7 +4548,7 @@
    "IMAGE"
   ],
   [
-   50,
+   53,
    31,
    0,
    32,
@@ -4395,7 +4556,7 @@
    "IMAGE"
   ],
   [
-   51,
+   54,
    32,
    0,
    33,
@@ -4403,15 +4564,23 @@
    "IMAGE"
   ],
   [
-   52,
+   55,
    29,
-   1,
+   2,
    33,
    2,
    "STRING"
   ],
   [
-   53,
+   56,
+   29,
+   3,
+   33,
+   4,
+   "STRING"
+  ],
+  [
+   57,
    2,
    1,
    34,
@@ -4419,7 +4588,7 @@
    "STRING"
   ],
   [
-   54,
+   58,
    2,
    0,
    35,
@@ -4427,7 +4596,7 @@
    "IMAGE"
   ],
   [
-   55,
+   59,
    8,
    0,
    35,
@@ -4435,7 +4604,7 @@
    "IMAGE"
   ],
   [
-   56,
+   60,
    34,
    0,
    36,
@@ -4443,7 +4612,7 @@
    "STRING"
   ],
   [
-   57,
+   61,
    2,
    0,
    36,
@@ -4451,7 +4620,7 @@
    "IMAGE"
   ],
   [
-   58,
+   62,
    8,
    0,
    36,
@@ -4459,7 +4628,7 @@
    "IMAGE"
   ],
   [
-   59,
+   63,
    2,
    2,
    37,
@@ -4467,7 +4636,7 @@
    "STRING"
   ],
   [
-   60,
+   64,
    35,
    0,
    37,
@@ -4475,7 +4644,7 @@
    "IMAGE"
   ],
   [
-   61,
+   65,
    36,
    0,
    37,
@@ -4483,7 +4652,7 @@
    "IMAGE"
   ],
   [
-   62,
+   66,
    37,
    0,
    38,
@@ -4491,15 +4660,23 @@
    "IMAGE"
   ],
   [
-   63,
+   67,
    34,
-   1,
+   2,
    38,
    2,
    "STRING"
   ],
   [
-   64,
+   68,
+   34,
+   3,
+   38,
+   4,
+   "STRING"
+  ],
+  [
+   69,
    2,
    1,
    39,
@@ -4507,7 +4684,7 @@
    "STRING"
   ],
   [
-   65,
+   70,
    11,
    0,
    39,
@@ -4515,7 +4692,7 @@
    "AUDIO"
   ],
   [
-   66,
+   71,
    12,
    0,
    39,
@@ -4523,7 +4700,7 @@
    "STRING"
   ],
   [
-   67,
+   72,
    2,
    0,
    39,
@@ -4531,7 +4708,7 @@
    "IMAGE"
   ],
   [
-   68,
+   73,
    3,
    0,
    39,
@@ -4539,7 +4716,7 @@
    "IMAGE"
   ],
   [
-   69,
+   74,
    4,
    0,
    39,
@@ -4547,7 +4724,7 @@
    "IMAGE"
   ],
   [
-   70,
+   75,
    17,
    0,
    39,
@@ -4555,7 +4732,7 @@
    "IMAGE"
   ],
   [
-   71,
+   76,
    18,
    0,
    39,
@@ -4563,7 +4740,7 @@
    "VIDEO"
   ],
   [
-   72,
+   77,
    5,
    0,
    39,
@@ -4571,7 +4748,7 @@
    "IMAGE"
   ],
   [
-   73,
+   78,
    22,
    0,
    39,
@@ -4579,7 +4756,7 @@
    "IMAGE"
   ],
   [
-   74,
+   79,
    23,
    0,
    39,
@@ -4587,7 +4764,7 @@
    "VIDEO"
   ],
   [
-   75,
+   80,
    6,
    0,
    39,
@@ -4595,7 +4772,7 @@
    "IMAGE"
   ],
   [
-   76,
+   81,
    27,
    0,
    39,
@@ -4603,7 +4780,7 @@
    "IMAGE"
   ],
   [
-   77,
+   82,
    28,
    0,
    39,
@@ -4611,7 +4788,7 @@
    "VIDEO"
   ],
   [
-   78,
+   83,
    7,
    0,
    39,
@@ -4619,7 +4796,7 @@
    "IMAGE"
   ],
   [
-   79,
+   84,
    32,
    0,
    39,
@@ -4627,7 +4804,7 @@
    "IMAGE"
   ],
   [
-   80,
+   85,
    33,
    0,
    39,
@@ -4635,7 +4812,7 @@
    "VIDEO"
   ],
   [
-   81,
+   86,
    8,
    0,
    39,
@@ -4643,7 +4820,7 @@
    "IMAGE"
   ],
   [
-   82,
+   87,
    37,
    0,
    39,
@@ -4651,7 +4828,7 @@
    "IMAGE"
   ],
   [
-   83,
+   88,
    38,
    0,
    39,
@@ -4659,7 +4836,7 @@
    "VIDEO"
   ],
   [
-   84,
+   89,
    39,
    0,
    40,
@@ -4667,7 +4844,7 @@
    "VIDEO"
   ],
   [
-   85,
+   90,
    39,
    1,
    41,
@@ -4675,7 +4852,7 @@
    "IMAGE"
   ],
   [
-   86,
+   91,
    39,
    2,
    42,
@@ -4775,6 +4952,10 @@
     [
      2,
      "aspect"
+    ],
+    [
+     2,
+     "angles"
     ],
     [
      2,

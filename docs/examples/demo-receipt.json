@@ -1,46 +1,58 @@
 {
- "length": 10.0,
+ "length": 15.0,
  "fps": 30,
  "size": [
   720,
   1280
  ],
- "bpm": 119.8,
+ "bpm": 120.19,
  "beat_method": "numpy onset envelope + DP tracker",
- "music_start": 1.0866,
+ "music_start": 0.111,
  "beat_times_in_reel": [
   0.0,
-  0.4993,
-  1.0031,
-  1.5006,
-  2.0015,
-  2.4942,
-  3.0008,
-  3.4888,
-  3.9995,
-  4.4927,
-  5.0023,
-  5.4907,
-  6.0014,
-  6.4914,
-  7.0011,
-  7.4887,
-  7.9996,
-  8.2542,
-  8.7538,
-  9.3109
+  0.3819,
+  0.7527,
+  1.3867,
+  1.8806,
+  2.5019,
+  3.0047,
+  3.5013,
+  4.0056,
+  4.504,
+  5.004,
+  5.5024,
+  6.0023,
+  6.5015,
+  7.0027,
+  7.5005,
+  8.0044,
+  8.5035,
+  9.0036,
+  9.5027,
+  10.0033,
+  10.5017,
+  11.0052,
+  11.5001,
+  12.0043,
+  12.5039,
+  13.0032,
+  13.5015,
+  14.0035,
+  14.5024
  ],
  "cut_times": [
-  1.0031,
-  2.0015,
-  3.0008,
-  3.9995,
-  5.0023,
-  6.0014,
-  7.0011,
-  7.9996
+  0.9984,
+  3.0047,
+  4.0056,
+  6.0023,
+  7.0027,
+  9.0036,
+  10.0033,
+  12.0043,
+  13.0032
  ],
  "cut_snapped_to": [
+  "grid",
   "beat",
   "beat",
   "beat",
@@ -55,90 +67,97 @@
    "kind": "before",
    "look": null,
    "start": 0.0,
-   "end": 1.0031,
+   "end": 0.9984,
    "fx": null
   },
   {
    "kind": "look",
    "look": 1,
-   "start": 1.0031,
-   "end": 2.0015,
+   "start": 0.9984,
+   "end": 3.0047,
    "fx": "glow-up"
   },
   {
    "kind": "look",
+   "look": 1,
+   "start": 3.0047,
+   "end": 4.0056,
+   "fx": "punch"
+  },
+  {
+   "kind": "look",
    "look": 2,
-   "start": 2.0015,
-   "end": 3.0008,
+   "start": 4.0056,
+   "end": 6.0023,
+   "fx": "flash"
+  },
+  {
+   "kind": "look",
+   "look": 2,
+   "start": 6.0023,
+   "end": 7.0027,
    "fx": "punch"
   },
   {
    "kind": "look",
    "look": 3,
-   "start": 3.0008,
-   "end": 3.9995,
+   "start": 7.0027,
+   "end": 9.0036,
+   "fx": "whip"
+  },
+  {
+   "kind": "look",
+   "look": 3,
+   "start": 9.0036,
+   "end": 10.0033,
+   "fx": "punch"
+  },
+  {
+   "kind": "look",
+   "look": 4,
+   "start": 10.0033,
+   "end": 12.0043,
    "fx": "flash"
   },
   {
    "kind": "look",
    "look": 4,
-   "start": 3.9995,
-   "end": 5.0023,
+   "start": 12.0043,
+   "end": 13.0032,
    "fx": "punch"
-  },
-  {
-   "kind": "look",
-   "look": 1,
-   "start": 5.0023,
-   "end": 6.0014,
-   "fx": "whip"
-  },
-  {
-   "kind": "look",
-   "look": 2,
-   "start": 6.0014,
-   "end": 7.0011,
-   "fx": "punch"
-  },
-  {
-   "kind": "look",
-   "look": 3,
-   "start": 7.0011,
-   "end": 7.9996,
-   "fx": "flash"
   },
   {
    "kind": "lineup",
    "look": null,
-   "start": 7.9996,
-   "end": 10.0,
+   "start": 13.0032,
+   "end": 15.0,
    "fx": "pop",
    "pops": [
-    7.9996,
-    8.5004,
-    9.0013,
-    9.5021
+    13.0032,
+    13.5015,
+    14.0035,
+    14.5024
    ]
   }
  ],
- "loop_blend_frames": 8,
+ "loop_blend_frames": 7,
  "loudness": {
   "target_I": -14,
   "target_TP": -1,
-  "music_I": -13.9,
+  "music_I": -14.4,
   "out_I": -14.1,
   "out_TP": -2.2,
-  "gain_db": -0.1
+  "gain_db": 0.4
  },
  "label": "AI-generated",
  "headline": null,
  "hook": true,
  "lineup": true,
  "look_labels": [
-  "Rust bomber \u00b7 $89",
-  "Cable knit + linen \u00b7 $124",
-  "Navy suit \u00b7 $210",
-  "Mustard tee + pleat skirt \u00b7 $76"
+  "Rust bomber \u00b7 \\$89",
+  "Cable knit + linen \u00b7 \\$124",
+  "Navy suit \u00b7 \\$210",
+  "Mustard tee + pleat skirt \u00b7 \\$76"
  ],
  "brand": {
   "name": "YOUR SHOP",
@@ -150,41 +169,32 @@
  "glowup": true,
  "skipped": [],
  "drift_trimmed": {
-  "1": "kept 78 of 91 frames",
-  "2": "kept 55 of 91 frames"
+  "2.2": "kept 30 of 60 frames"
  },
  "partner_calls": [
-  "look 1: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
-  "look 2: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
-  "look 3: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
-  "look 4: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
-  "music: Sonilo text to music (12 s)",
-  "look 3 motion regenerated: Kling 3.0 (3 s, 720p), background-locked prompt"
+  "KlingTryOnNode x4",
+  "KlingVideoNode x4 (kling-v3 720p, multi_shot 2 storyboards: 360 turnaround 3 s + fabric close-up 2 s)",
+  "SoniloTextToMusic x1 (20 s)"
  ],
  "cost_estimate": {
-  "total_usd": 1.9306,
+  "total_usd": 2.3706,
   "rows": [
    [
-    "Kling Virtual Try-On",
+    "Kling virtual try-on (person + 4 outfits)",
     4,
     0.6406
    ],
    [
-    "Kling 3.0 image-to-video, 720p, 3 s, no audio",
+    "Kling 3.0, 2 storyboards (3 s turnaround + 2 s close-up), 720p",
     4,
-    1.008
+    1.68
    ],
    [
-    "Sonilo text to music, 12 s",
+    "Sonilo text to music, 20 s",
     1,
-    0.03
-   ],
-   [
-    "Kling 3.0 redo of look 3",
-    1,
-    0.252
+    0.05
    ]
   ]
  },
- "note": "re-cut for $0 from the paid run's saved clips (look 3 regenerated) with the before->after hook, glow-up, beat pulse, shop tags and branded lineup"
+ "note": "cut for \\$0 from the paid demo assets: the 4 try-on stills, one 2-storyboard Kling clip per look, and a 20 s Sonilo track"
 }

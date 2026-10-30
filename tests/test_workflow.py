@@ -45,7 +45,8 @@ def test_partner_graph_shape():
         if n["class_type"] == "KlingVideoNode":
             i = n["inputs"]
             assert i["model"] == "kling-v3" and i["model.resolution"] == "720p" and i["generate_audio"] is False
-            assert i["multi_shot.duration"] == 3
+            assert i["multi_shot"] == "2 storyboards"
+            assert i["multi_shot.storyboard_1_duration"] == 3 and i["multi_shot.storyboard_2_duration"] == 2
         if n["class_type"] == "UrbanBrief":
             assert n["inputs"]["consent"] is False, "the user must tick consent themselves"
     # no paid node is an output (only lazy inputs of Beat Cut pull them)

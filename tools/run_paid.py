@@ -46,20 +46,25 @@ types = [n["class_type"] for n in g.values()]
 if brief_node:
     bi = brief_node["inputs"]
     b = core.make_brief(bi["mode"], bi["vibe"], bi["length"], bi["aspect"], bi["look_engine"], bi["music_source"],
-                        bi["music_prompt"], bi["headline"], True, bi["ai_label"], bi.get("hook", True), bi.get("lineup", True))
+                        bi["music_prompt"], bi["headline"], True, bi["ai_label"], bi.get("hook", True), bi.get("lineup", True),
+                        bi.get("look_labels", ""), bi.get("brand_name", ""), bi.get("handle", ""), bi.get("cta", ""),
+                        bi.get("pulse", True), bi.get("glowup", True), bi.get("angles", False))
     used = sum(1 for n in g.values() if n.get("_meta", {}).get("title", "").startswith("Outfit or product")
                and n["inputs"]["image"] != "urban_blank.png")
     est = core.cost_estimate(b, used)["total_usd"]
 else:
-    unknown = {t for t in types if t not in ("GeminiNanoBanana2V2", "KlingVideoNode", "SaveImage", "SaveVideo", "PreviewImage",
-                                             "LoadImage")}
+    unknown = {t for t in types if t not in ("GeminiNanoBanana2V2", "KlingVideoNode", "SoniloTextToMusic", "SaveImage", "SaveVideo",
+                                             "SaveAudio", "PreviewImage", "LoadImage")}
     if unknown:
         sys.exit(f"refusing: no price rule for {unknown}")
     kling = [n["inputs"] for n in g.values() if n["class_type"] == "KlingVideoNode"]
     if any(i.get("model") != "kling-v3" or i.get("model.resolution") != "720p" or i.get("generate_audio") for i in kling):
         sys.exit("refusing: only kling-v3 720p without audio has a price rule here")
     est = round(types.count("GeminiNanoBanana2V2") * core.PRICES["GeminiNanoBanana2V2_1K_minimal"]
-                + sum(core.PRICES["KlingVideoNode_720p_per_s"] * i["multi_shot.duration"] for i in kling), 4)
+                + sum(core.PRICES["KlingVideoNode_720p_per_s"] * (i.get("multi_shot.duration") or sum(
+                    v for kk, v in i.items() if kk.startswith("multi_shot.storyboard_") and kk.endswith("_duration"))) for i in kling)
+                + sum(core.PRICES["SoniloTextToMusic_per_s"] * n["inputs"]["duration"] for n in g.values()
+                      if n["class_type"] == "SoniloTextToMusic"), 4)
 ledger = Path(a.ledger); ledger.parent.mkdir(parents=True, exist_ok=True)
 spent = sum(json.loads(l)["estimate_usd"] for l in ledger.read_text().splitlines() if l.strip()) if ledger.exists() else 0.0
 print(f"estimate ${est:.4f}; ledger so far ${spent:.4f}; cap ${a.cap:.2f}", flush=True)

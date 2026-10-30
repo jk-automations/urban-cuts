@@ -40,7 +40,8 @@ def audio_of(wav):
 
 def brief_json(nodes, **kw):
     args = dict(person=textured(0), consent=True, mode="outfits", vibe="street", length=10.0, aspect="9:16",
-                look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1], music_prompt="", headline="", ai_label=True)
+                look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1], music_prompt="", headline="", ai_label=True,
+                angles=False)
     args.update(kw)
     return nodes.UrbanBrief().run(**args)
 

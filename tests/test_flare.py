@@ -66,10 +66,17 @@ def test_kling_motion_prompt_locks_the_background():
 def test_colour_match_pulls_toward_reference():
     rng = np.random.default_rng(0)
     ref = rng.integers(60, 120, (4, 32, 18, 3)).astype(np.uint8)
-    off = np.clip(ref.astype(int) + [70, 20, -30], 0, 255).astype(np.uint8)
+    off = np.clip(ref.astype(int) + 50, 0, 255).astype(np.uint8)            # an over-exposed look
     m = core.match_colour(off, ref, strength=0.6)
-    for c in range(3):
-        assert abs(m[..., c].mean() - ref[..., c].mean()) < abs(off[..., c].mean() - ref[..., c].mean())
+    assert abs(m.mean() - ref.mean()) < abs(off.mean() - ref.mean())
+
+
+def test_colour_match_keeps_navy_navy_under_a_cool_cast():
+    ref = np.full((2, 640, 360, 3), (186, 180, 172), np.uint8)              # look 1: warm grey studio
+    look = np.full((2, 640, 360, 3), (160, 168, 180), np.uint8)             # this look: cool grey studio
+    look[:, 200:500, 120:240] = (30, 40, 80)                                # a navy suit
+    m = core.match_colour(look, ref).astype(float)[0, 300, 180]
+    assert m[2] / m[0] == pytest.approx(80 / 30, rel=0.02) and m[2] > m[1] > m[0]
 
 
 def test_drift_guard_cuts_a_clip_where_the_background_changes():

@@ -2,7 +2,7 @@
  "1": {
   "class_type": "LoadImage",
   "inputs": {
-   "image": "urban_demo_look_3.png"
+   "image": "urban_demo_look_4.png"
   },
   "_meta": {
    "title": "Look still"
@@ -11,35 +11,36 @@
  "2": {
   "class_type": "KlingVideoNode",
   "_meta": {
-   "title": "Motion 3 (Kling 3.0)"
+   "title": "Motion 4 (Kling 3.0)"
   },
   "inputs": {
-   "multi_shot": "disabled",
    "generate_audio": false,
    "model": "kling-v3",
-   "seed": 303,
+   "seed": 304,
    "start_frame": [
     "1",
     0
    ],
-   "multi_shot.prompt": "The person puts one hand on the hip and turns the shoulders toward the camera with a small smile, the outfit stays exactly the same. Same background, same light and same framing as the first frame; the person stays in place. Locked-off steady camera, cool, confident attitude, one continuous shot, no cuts, face and outfit unchanged.",
-   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera, background change, new location, scene change, walking out of frame",
-   "multi_shot.duration": 3,
    "model.resolution": "720p",
-   "model.aspect_ratio": "9:16"
+   "model.aspect_ratio": "9:16",
+   "multi_shot": "2 storyboards",
+   "multi_shot.storyboard_1_prompt": "The person turns slowly on the spot through one full 360-degree turn, showing the front, the side and the back of the outfit, and ends facing the camera, cool, confident attitude. Full body in frame from head to shoes. Same background and light as the first frame. Locked-off camera. The outfit stays exactly the same: colours, fabric and fit.",
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": "Close-up: the camera slowly pushes in on the outfit from the chest to the waist, showing the fabric, stitching and details, while the person stands still. Same background and light as the first frame. Same outfit, same colours.",
+   "multi_shot.storyboard_2_duration": 2
   }
  },
  "3": {
   "class_type": "SaveVideo",
   "_meta": {
-   "title": "clip 3"
+   "title": "clip 4"
   },
   "inputs": {
    "video": [
     "2",
     0
    ],
-   "filename_prefix": "urban-demo/clip_3_redo",
+   "filename_prefix": "urban-demo/clip_4_redo",
    "format": "mp4",
    "format.codec": "auto"
   }

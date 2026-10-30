@@ -22,13 +22,13 @@ const INPUTS = [
   ...items.map((n) => [n, "image"]), ...lookPhotos.map((n) => [n, "image"]),
   ...(draft ? [] : [[brief, "look_engine"], [brief, "music_source"], [brief, "music_prompt"]]), [upload, "audio"],
   [brief, "look_labels"], [brief, "brand_name"], [brief, "handle"], [brief, "cta"], [logo, "image"],
-  [brief, "length"], [brief, "aspect"], [brief, "hook"], [brief, "glowup"], [brief, "pulse"], [brief, "lineup"], [brief, "headline"], [brief, "ai_label"],
+  [brief, "length"], [brief, "aspect"], [brief, "angles"], [brief, "hook"], [brief, "glowup"], [brief, "pulse"], [brief, "lineup"], [brief, "headline"], [brief, "ai_label"],
 ];
 const OUTPUTS = [titled("Your reel"), titled("Contact sheet"), titled("Receipt"), titled("Beats")];
 const LABELS = { consent: "I have this person's consent to use their photo", mode: "Outfits or products", vibe: "Vibe",
   look_engine: "Try-on engine", music_source: "Music", music_prompt: "Music prompt (Sonilo; empty = vibe default)",
   length: "Length (seconds)", aspect: "Aspect", headline: "Headline on the first look (optional)", ai_label: "AI label (keep on)",
-  hook: "Before→after hook", lineup: "Lineup finale", glowup: "Glow-up hit on the first look", pulse: "Beat pulse",
+  hook: "Before→after hook", lineup: "Lineup finale", glowup: "Glow-up hit on the first look", angles: "Camera angles: 360 turnaround + close-up per look", pulse: "Beat pulse",
   look_labels: "Look names + prices (one line per look: Name | $89)", brand_name: "Shop name (lineup)",
   handle: "@handle or website (lineup)", cta: "Call to action (empty = 'Comment a number to shop')" };
 const NAMED = { [person]: "Person photo (full body, 9:16)", [upload]: "Your music (a track you own)", [logo]: "Logo (optional; blank = none)" };

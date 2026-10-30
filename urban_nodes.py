@@ -82,20 +82,22 @@ class UrbanBrief:
                     "Empty with labels = 'Comment a number to shop'."}),
             "pulse": ("BOOLEAN", {"default": True, "tooltip": "A small zoom breath on every beat inside a shot."}),
             "glowup": ("BOOLEAN", {"default": True, "tooltip": "The before->look 1 cut stutters, flashes and splits colour."}),
+            "angles": ("BOOLEAN", {"default": True, "tooltip": "Camera angles per look: a full 360 turnaround, then a close-up "
+                       "on the fabric (one Kling storyboard, 5 s, so face and outfit stay the same). Off = one 3 s move."}),
         }}
 
     def run(self, person, consent, mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, ai_label,
-            hook=True, lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True):
+            hook=True, lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True, angles=True):
         b = core.make_brief(mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, consent, ai_label,
-                            hook, lineup, look_labels, brand_name, handle, cta, pulse, glowup)
+                            hook, lineup, look_labels, brand_name, handle, cta, pulse, glowup, angles)
         return (person, json.dumps(b), b["engine"], b["music_prompt"], b["music_seconds"])
 
 
 class UrbanShot:
     """Look k: the Nano Banana 2 edit prompt and the Kling motion prompt."""
     CATEGORY = CAT
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("look_prompt", "motion_prompt")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("look_prompt", "motion_prompt", "turnaround_prompt", "closeup_prompt")
     FUNCTION = "run"
 
     @classmethod
@@ -104,7 +106,7 @@ class UrbanShot:
 
     def run(self, brief, look):
         b = json.loads(brief)
-        return (core.look_prompt(b, look), core.motion_prompt(b, look))
+        return (core.look_prompt(b, look), core.motion_prompt(b, look), *core.angle_prompts(b, look))
 
 
 class UrbanPickLook:
@@ -231,8 +233,8 @@ class UrbanBeatCut:
                 looks.append({"still": still})
         motion = any("clip" in lk for lk in looks)
         if motion:
-            calls += [f"look {k}: {'Kling Virtual Try-On' if b['engine'] == 'kling' else 'Nano Banana 2.1 edit'} + "
-                      f"Kling 3.0 video ({core.CLIP_SECONDS} s, 720p)" for k in used]
+            vid = "Kling 3.0 storyboard (3 s turnaround + 2 s close-up, 720p)" if b.get("angles") else f"Kling 3.0 video ({core.CLIP_SECONDS} s, 720p)"
+            calls += [f"look {k}: {'Kling Virtual Try-On' if b['engine'] == 'kling' else 'Nano Banana 2.1 edit'} + {vid}" for k in used]
         y, sr = audio_to_numpy(music)
         wav = core.write_wav(tmp / "music.wav", y, sr)
         if b["music"] == "sonilo" and motion:
