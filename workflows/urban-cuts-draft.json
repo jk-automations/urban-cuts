@@ -1,0 +1,1689 @@
+{
+ "id": "27c577fb-dca9-4635-950a-e60aed5aa6e3",
+ "revision": 0,
+ "last_node_id": 20,
+ "last_link_id": 21,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    110
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Person photo (full body, 9:16)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      1
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Person photo",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_person.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_person.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 2,
+   "type": "UrbanBrief",
+   "pos": [
+    442.798828125,
+    110
+   ],
+   "size": [
+    400,
+    384
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person",
+     "name": "person",
+     "type": "IMAGE",
+     "link": 1
+    },
+    {
+     "label": "I have this person's consent to use their photo",
+     "localized_name": "consent",
+     "name": "consent",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "consent"
+     },
+     "link": null
+    },
+    {
+     "label": "Outfits or products",
+     "localized_name": "mode",
+     "name": "mode",
+     "type": "COMBO",
+     "widget": {
+      "name": "mode"
+     },
+     "link": null
+    },
+    {
+     "label": "Vibe",
+     "localized_name": "vibe",
+     "name": "vibe",
+     "type": "COMBO",
+     "widget": {
+      "name": "vibe"
+     },
+     "link": null
+    },
+    {
+     "label": "Length (seconds)",
+     "localized_name": "length",
+     "name": "length",
+     "type": "FLOAT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "label": "Aspect",
+     "localized_name": "aspect",
+     "name": "aspect",
+     "type": "COMBO",
+     "widget": {
+      "name": "aspect"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "look_engine",
+     "name": "look_engine",
+     "type": "COMBO",
+     "widget": {
+      "name": "look_engine"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "music_source",
+     "name": "music_source",
+     "type": "COMBO",
+     "widget": {
+      "name": "music_source"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "music_prompt",
+     "name": "music_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "music_prompt"
+     },
+     "link": null
+    },
+    {
+     "label": "Headline on the first look (optional)",
+     "localized_name": "headline",
+     "name": "headline",
+     "type": "STRING",
+     "widget": {
+      "name": "headline"
+     },
+     "link": null
+    },
+    {
+     "label": "AI label (keep on)",
+     "localized_name": "ai_label",
+     "name": "ai_label",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "ai_label"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "person",
+     "name": "person",
+     "type": "IMAGE",
+     "links": null
+    },
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "links": [
+      2,
+      6
+     ]
+    },
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "music_prompt",
+     "name": "music_prompt",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "music_seconds",
+     "name": "music_seconds",
+     "type": "INT",
+     "links": null
+    }
+   ],
+   "title": "Your choices",
+   "properties": {
+    "Node name for S&R": "UrbanBrief"
+   },
+   "widgets_values": [
+    false,
+    "outfits",
+    "street",
+    10,
+    "9:16",
+    "Kling try-on",
+    "my own track (upload)",
+    "",
+    "",
+    true
+   ],
+   "widgets_values_named": {
+    "consent": false,
+    "mode": "outfits",
+    "vibe": "street",
+    "length": 10,
+    "aspect": "9:16",
+    "look_engine": "Kling try-on",
+    "music_source": "my own track (upload)",
+    "music_prompt": "",
+    "headline": "",
+    "ai_label": true
+   }
+  },
+  {
+   "id": 3,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    322
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 1",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      9
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 1",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_1.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_1.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    534
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 2",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 2",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_2.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_2.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 5,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    746
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 3",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      13
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 3",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_3.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_3.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 6,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    958
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 4 (optional: leave blank)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      15
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 4",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_4.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_4.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 7,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1170
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 5 (optional: leave blank)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      17
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 5",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 8,
+   "type": "LoadAudio",
+   "pos": [
+    80,
+    1382
+   ],
+   "size": [
+    282.798828125,
+    136
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Your music (a track you own)",
+     "localized_name": "audio",
+     "name": "audio",
+     "type": "COMBO",
+     "widget": {
+      "name": "audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "audioUI",
+     "name": "audioUI",
+     "type": "AUDIO_UI",
+     "widget": {
+      "name": "audioUI"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "AUDIOUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "AUDIO",
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      3
+     ]
+    }
+   ],
+   "title": "Your music",
+   "properties": {
+    "Node name for S&R": "LoadAudio"
+   },
+   "widgets_values": [
+    "urban_sample_beat.wav",
+    ""
+   ],
+   "widgets_values_named": {
+    "audio": "urban_sample_beat.wav",
+    "upload": ""
+   }
+  },
+  {
+   "id": 9,
+   "type": "UrbanMusic",
+   "pos": [
+    922.798828125,
+    110
+   ],
+   "size": [
+    194.5494140625,
+    66
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 2
+    },
+    {
+     "localized_name": "uploaded",
+     "name": "uploaded",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": 3
+    },
+    {
+     "localized_name": "sonilo",
+     "name": "sonilo",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "links": [
+      4,
+      7
+     ]
+    }
+   ],
+   "title": "Music",
+   "properties": {
+    "Node name for S&R": "UrbanMusic"
+   }
+  },
+  {
+   "id": 10,
+   "type": "UrbanBeatDetect",
+   "pos": [
+    1197.3482421875,
+    110
+   ],
+   "size": [
+    200.1822265625,
+    46
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "link": 4
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "beats",
+     "name": "beats",
+     "type": "STRING",
+     "links": [
+      8
+     ]
+    },
+    {
+     "localized_name": "beats_text",
+     "name": "beats_text",
+     "type": "STRING",
+     "links": [
+      5
+     ]
+    }
+   ],
+   "title": "Beat detect",
+   "properties": {
+    "Node name for S&R": "UrbanBeatDetect"
+   }
+  },
+  {
+   "id": 11,
+   "type": "PreviewAny",
+   "pos": [
+    1477.5304687500002,
+    586
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 5
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Beats",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  },
+  {
+   "id": 12,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1628
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Look 1 photo (draft: person in outfit 1)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      10
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Look photo 1",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_look_1.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_look_1.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 13,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1840
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Look 2 photo (draft: person in outfit 2)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      12
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Look photo 2",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_look_2.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_look_2.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 14,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2052
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Look 3 photo (draft: person in outfit 3)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      14
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Look photo 3",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_look_3.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_look_3.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 15,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2264
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Look 4 photo (draft: person in outfit 4)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      16
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Look photo 4",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_look_4.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_look_4.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 16,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2476
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Look 5 photo (draft: person in outfit 5)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      18
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Look photo 5",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 17,
+   "type": "UrbanBeatCut",
+   "pos": [
+    1477.5304687500002,
+    110
+   ],
+   "size": [
+    248.7447265625,
+    366
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 6
+    },
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "link": 7
+    },
+    {
+     "localized_name": "beats",
+     "name": "beats",
+     "type": "STRING",
+     "link": 8
+    },
+    {
+     "localized_name": "item_1",
+     "name": "item_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 9
+    },
+    {
+     "localized_name": "look_1",
+     "name": "look_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "localized_name": "clip_1",
+     "name": "clip_1",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": null
+    },
+    {
+     "localized_name": "item_2",
+     "name": "item_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 11
+    },
+    {
+     "localized_name": "look_2",
+     "name": "look_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 12
+    },
+    {
+     "localized_name": "clip_2",
+     "name": "clip_2",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": null
+    },
+    {
+     "localized_name": "item_3",
+     "name": "item_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 13
+    },
+    {
+     "localized_name": "look_3",
+     "name": "look_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 14
+    },
+    {
+     "localized_name": "clip_3",
+     "name": "clip_3",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": null
+    },
+    {
+     "localized_name": "item_4",
+     "name": "item_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 15
+    },
+    {
+     "localized_name": "look_4",
+     "name": "look_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 16
+    },
+    {
+     "localized_name": "clip_4",
+     "name": "clip_4",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": null
+    },
+    {
+     "localized_name": "item_5",
+     "name": "item_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 17
+    },
+    {
+     "localized_name": "look_5",
+     "name": "look_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 18
+    },
+    {
+     "localized_name": "clip_5",
+     "name": "clip_5",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "reel",
+     "name": "reel",
+     "type": "VIDEO",
+     "links": [
+      19
+     ]
+    },
+    {
+     "localized_name": "contact_sheet",
+     "name": "contact_sheet",
+     "type": "IMAGE",
+     "links": [
+      20
+     ]
+    },
+    {
+     "localized_name": "receipt",
+     "name": "receipt",
+     "type": "STRING",
+     "links": [
+      21
+     ]
+    }
+   ],
+   "title": "Beat cut",
+   "properties": {
+    "Node name for S&R": "UrbanBeatCut"
+   }
+  },
+  {
+   "id": 18,
+   "type": "SaveVideo",
+   "pos": [
+    1806.2751953125003,
+    110
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "link": 19
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "format",
+     "name": "format",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "format.codec",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format.codec"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "codec",
+     "shape": 7,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "links": null
+    }
+   ],
+   "title": "Your reel",
+   "properties": {},
+   "widgets_values": [
+    "urban-cuts/reel",
+    "mp4",
+    "auto",
+    "auto"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "urban-cuts/reel",
+    "format": "mp4",
+    "format.codec": "auto",
+    "codec": "auto"
+   }
+  },
+  {
+   "id": 19,
+   "type": "PreviewImage",
+   "pos": [
+    1806.2751953125003,
+    326
+   ],
+   "size": [
+    140,
+    26
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "link": 20
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Contact sheet",
+   "properties": {
+    "Node name for S&R": "PreviewImage"
+   }
+  },
+  {
+   "id": 20,
+   "type": "PreviewAny",
+   "pos": [
+    1806.2751953125003,
+    462
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 21
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Receipt",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   2,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   2,
+   1,
+   9,
+   0,
+   "STRING"
+  ],
+  [
+   3,
+   8,
+   0,
+   9,
+   1,
+   "AUDIO"
+  ],
+  [
+   4,
+   9,
+   0,
+   10,
+   0,
+   "AUDIO"
+  ],
+  [
+   5,
+   10,
+   1,
+   11,
+   0,
+   "STRING"
+  ],
+  [
+   6,
+   2,
+   1,
+   17,
+   0,
+   "STRING"
+  ],
+  [
+   7,
+   9,
+   0,
+   17,
+   1,
+   "AUDIO"
+  ],
+  [
+   8,
+   10,
+   0,
+   17,
+   2,
+   "STRING"
+  ],
+  [
+   9,
+   3,
+   0,
+   17,
+   3,
+   "IMAGE"
+  ],
+  [
+   10,
+   12,
+   0,
+   17,
+   4,
+   "IMAGE"
+  ],
+  [
+   11,
+   4,
+   0,
+   17,
+   6,
+   "IMAGE"
+  ],
+  [
+   12,
+   13,
+   0,
+   17,
+   7,
+   "IMAGE"
+  ],
+  [
+   13,
+   5,
+   0,
+   17,
+   9,
+   "IMAGE"
+  ],
+  [
+   14,
+   14,
+   0,
+   17,
+   10,
+   "IMAGE"
+  ],
+  [
+   15,
+   6,
+   0,
+   17,
+   12,
+   "IMAGE"
+  ],
+  [
+   16,
+   15,
+   0,
+   17,
+   13,
+   "IMAGE"
+  ],
+  [
+   17,
+   7,
+   0,
+   17,
+   15,
+   "IMAGE"
+  ],
+  [
+   18,
+   16,
+   0,
+   17,
+   16,
+   "IMAGE"
+  ],
+  [
+   19,
+   17,
+   0,
+   18,
+   0,
+   "VIDEO"
+  ],
+  [
+   20,
+   17,
+   1,
+   19,
+   0,
+   "IMAGE"
+  ],
+  [
+   21,
+   17,
+   2,
+   20,
+   0,
+   "STRING"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.9,
+   "offset": [
+    416,
+    110
+   ]
+  },
+  "linearMode": true,
+  "linearData": {
+   "inputs": [
+    [
+     1,
+     "image"
+    ],
+    [
+     2,
+     "consent"
+    ],
+    [
+     2,
+     "mode"
+    ],
+    [
+     2,
+     "vibe"
+    ],
+    [
+     3,
+     "image"
+    ],
+    [
+     4,
+     "image"
+    ],
+    [
+     5,
+     "image"
+    ],
+    [
+     6,
+     "image"
+    ],
+    [
+     7,
+     "image"
+    ],
+    [
+     12,
+     "image"
+    ],
+    [
+     13,
+     "image"
+    ],
+    [
+     14,
+     "image"
+    ],
+    [
+     15,
+     "image"
+    ],
+    [
+     16,
+     "image"
+    ],
+    [
+     8,
+     "audio"
+    ],
+    [
+     2,
+     "length"
+    ],
+    [
+     2,
+     "aspect"
+    ],
+    [
+     2,
+     "headline"
+    ],
+    [
+     2,
+     "ai_label"
+    ]
+   ],
+   "outputs": [
+    18,
+    19,
+    20,
+    11
+   ]
+  }
+ },
+ "version": 0.4
+}

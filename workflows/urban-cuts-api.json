@@ -1,0 +1,772 @@
+{
+ "1": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_sample_person.png"
+  },
+  "_meta": {
+   "title": "Person photo"
+  }
+ },
+ "2": {
+  "class_type": "UrbanBrief",
+  "inputs": {
+   "person": [
+    "1",
+    0
+   ],
+   "consent": false,
+   "mode": "outfits",
+   "vibe": "street",
+   "length": 10.0,
+   "aspect": "9:16",
+   "look_engine": "Kling try-on",
+   "music_source": "Sonilo (text to music)",
+   "music_prompt": "",
+   "headline": "",
+   "ai_label": true
+  },
+  "_meta": {
+   "title": "Your choices"
+  }
+ },
+ "3": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_sample_outfit_1.png"
+  },
+  "_meta": {
+   "title": "Outfit or product 1"
+  }
+ },
+ "4": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_sample_outfit_2.png"
+  },
+  "_meta": {
+   "title": "Outfit or product 2"
+  }
+ },
+ "5": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_sample_outfit_3.png"
+  },
+  "_meta": {
+   "title": "Outfit or product 3"
+  }
+ },
+ "6": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_sample_outfit_4.png"
+  },
+  "_meta": {
+   "title": "Outfit or product 4"
+  }
+ },
+ "7": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_blank.png"
+  },
+  "_meta": {
+   "title": "Outfit or product 5"
+  }
+ },
+ "8": {
+  "class_type": "LoadAudio",
+  "inputs": {
+   "audio": "urban_sample_beat.wav"
+  },
+  "_meta": {
+   "title": "Your music"
+  }
+ },
+ "9": {
+  "class_type": "SoniloTextToMusic",
+  "inputs": {
+   "prompt": [
+    "2",
+    3
+   ],
+   "duration": [
+    "2",
+    4
+   ],
+   "seed": 7
+  },
+  "_meta": {
+   "title": "Music (Sonilo)"
+  }
+ },
+ "10": {
+  "class_type": "UrbanMusic",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "uploaded": [
+    "8",
+    0
+   ],
+   "sonilo": [
+    "9",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Music"
+  }
+ },
+ "11": {
+  "class_type": "UrbanBeatDetect",
+  "inputs": {
+   "music": [
+    "10",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Beat detect"
+  }
+ },
+ "12": {
+  "class_type": "PreviewAny",
+  "inputs": {
+   "source": [
+    "11",
+    1
+   ]
+  },
+  "_meta": {
+   "title": "Beats"
+  }
+ },
+ "13": {
+  "class_type": "UrbanShot",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": 1
+  },
+  "_meta": {
+   "title": "Look 1 prompts"
+  }
+ },
+ "14": {
+  "class_type": "KlingTryOnNode",
+  "inputs": {
+   "person_image": [
+    "2",
+    0
+   ],
+   "garment_image": [
+    "3",
+    0
+   ],
+   "keep_pose": true,
+   "seed": 101
+  },
+  "_meta": {
+   "title": "Try-on 1 (Kling)"
+  }
+ },
+ "15": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "13",
+    0
+   ],
+   "seed": 201,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "2",
+    0
+   ],
+   "model.images.image_2": [
+    "3",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Edit 1 (Nano Banana 2.1)"
+  }
+ },
+ "16": {
+  "class_type": "UrbanPickLook",
+  "inputs": {
+   "engine": [
+    "2",
+    2
+   ],
+   "kling": [
+    "14",
+    0
+   ],
+   "banana": [
+    "15",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Look 1"
+  }
+ },
+ "17": {
+  "class_type": "KlingVideoNode",
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 301,
+   "start_frame": [
+    "16",
+    0
+   ],
+   "multi_shot.prompt": [
+    "13",
+    1
+   ],
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  },
+  "_meta": {
+   "title": "Motion 1 (Kling 3.0)"
+  }
+ },
+ "18": {
+  "class_type": "UrbanShot",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": 2
+  },
+  "_meta": {
+   "title": "Look 2 prompts"
+  }
+ },
+ "19": {
+  "class_type": "KlingTryOnNode",
+  "inputs": {
+   "person_image": [
+    "2",
+    0
+   ],
+   "garment_image": [
+    "4",
+    0
+   ],
+   "keep_pose": true,
+   "seed": 102
+  },
+  "_meta": {
+   "title": "Try-on 2 (Kling)"
+  }
+ },
+ "20": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "18",
+    0
+   ],
+   "seed": 202,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "2",
+    0
+   ],
+   "model.images.image_2": [
+    "4",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Edit 2 (Nano Banana 2.1)"
+  }
+ },
+ "21": {
+  "class_type": "UrbanPickLook",
+  "inputs": {
+   "engine": [
+    "2",
+    2
+   ],
+   "kling": [
+    "19",
+    0
+   ],
+   "banana": [
+    "20",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Look 2"
+  }
+ },
+ "22": {
+  "class_type": "KlingVideoNode",
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 302,
+   "start_frame": [
+    "21",
+    0
+   ],
+   "multi_shot.prompt": [
+    "18",
+    1
+   ],
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  },
+  "_meta": {
+   "title": "Motion 2 (Kling 3.0)"
+  }
+ },
+ "23": {
+  "class_type": "UrbanShot",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": 3
+  },
+  "_meta": {
+   "title": "Look 3 prompts"
+  }
+ },
+ "24": {
+  "class_type": "KlingTryOnNode",
+  "inputs": {
+   "person_image": [
+    "2",
+    0
+   ],
+   "garment_image": [
+    "5",
+    0
+   ],
+   "keep_pose": true,
+   "seed": 103
+  },
+  "_meta": {
+   "title": "Try-on 3 (Kling)"
+  }
+ },
+ "25": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "23",
+    0
+   ],
+   "seed": 203,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "2",
+    0
+   ],
+   "model.images.image_2": [
+    "5",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Edit 3 (Nano Banana 2.1)"
+  }
+ },
+ "26": {
+  "class_type": "UrbanPickLook",
+  "inputs": {
+   "engine": [
+    "2",
+    2
+   ],
+   "kling": [
+    "24",
+    0
+   ],
+   "banana": [
+    "25",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Look 3"
+  }
+ },
+ "27": {
+  "class_type": "KlingVideoNode",
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 303,
+   "start_frame": [
+    "26",
+    0
+   ],
+   "multi_shot.prompt": [
+    "23",
+    1
+   ],
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  },
+  "_meta": {
+   "title": "Motion 3 (Kling 3.0)"
+  }
+ },
+ "28": {
+  "class_type": "UrbanShot",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": 4
+  },
+  "_meta": {
+   "title": "Look 4 prompts"
+  }
+ },
+ "29": {
+  "class_type": "KlingTryOnNode",
+  "inputs": {
+   "person_image": [
+    "2",
+    0
+   ],
+   "garment_image": [
+    "6",
+    0
+   ],
+   "keep_pose": true,
+   "seed": 104
+  },
+  "_meta": {
+   "title": "Try-on 4 (Kling)"
+  }
+ },
+ "30": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "28",
+    0
+   ],
+   "seed": 204,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "2",
+    0
+   ],
+   "model.images.image_2": [
+    "6",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Edit 4 (Nano Banana 2.1)"
+  }
+ },
+ "31": {
+  "class_type": "UrbanPickLook",
+  "inputs": {
+   "engine": [
+    "2",
+    2
+   ],
+   "kling": [
+    "29",
+    0
+   ],
+   "banana": [
+    "30",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Look 4"
+  }
+ },
+ "32": {
+  "class_type": "KlingVideoNode",
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 304,
+   "start_frame": [
+    "31",
+    0
+   ],
+   "multi_shot.prompt": [
+    "28",
+    1
+   ],
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  },
+  "_meta": {
+   "title": "Motion 4 (Kling 3.0)"
+  }
+ },
+ "33": {
+  "class_type": "UrbanShot",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": 5
+  },
+  "_meta": {
+   "title": "Look 5 prompts"
+  }
+ },
+ "34": {
+  "class_type": "KlingTryOnNode",
+  "inputs": {
+   "person_image": [
+    "2",
+    0
+   ],
+   "garment_image": [
+    "7",
+    0
+   ],
+   "keep_pose": true,
+   "seed": 105
+  },
+  "_meta": {
+   "title": "Try-on 5 (Kling)"
+  }
+ },
+ "35": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "33",
+    0
+   ],
+   "seed": 205,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "2",
+    0
+   ],
+   "model.images.image_2": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Edit 5 (Nano Banana 2.1)"
+  }
+ },
+ "36": {
+  "class_type": "UrbanPickLook",
+  "inputs": {
+   "engine": [
+    "2",
+    2
+   ],
+   "kling": [
+    "34",
+    0
+   ],
+   "banana": [
+    "35",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Look 5"
+  }
+ },
+ "37": {
+  "class_type": "KlingVideoNode",
+  "inputs": {
+   "multi_shot": "disabled",
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 305,
+   "start_frame": [
+    "36",
+    0
+   ],
+   "multi_shot.prompt": [
+    "33",
+    1
+   ],
+   "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+   "multi_shot.duration": 3,
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16"
+  },
+  "_meta": {
+   "title": "Motion 5 (Kling 3.0)"
+  }
+ },
+ "38": {
+  "class_type": "UrbanBeatCut",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "music": [
+    "10",
+    0
+   ],
+   "beats": [
+    "11",
+    0
+   ],
+   "item_1": [
+    "3",
+    0
+   ],
+   "look_1": [
+    "16",
+    0
+   ],
+   "clip_1": [
+    "17",
+    0
+   ],
+   "item_2": [
+    "4",
+    0
+   ],
+   "look_2": [
+    "21",
+    0
+   ],
+   "clip_2": [
+    "22",
+    0
+   ],
+   "item_3": [
+    "5",
+    0
+   ],
+   "look_3": [
+    "26",
+    0
+   ],
+   "clip_3": [
+    "27",
+    0
+   ],
+   "item_4": [
+    "6",
+    0
+   ],
+   "look_4": [
+    "31",
+    0
+   ],
+   "clip_4": [
+    "32",
+    0
+   ],
+   "item_5": [
+    "7",
+    0
+   ],
+   "look_5": [
+    "36",
+    0
+   ],
+   "clip_5": [
+    "37",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Beat cut"
+  }
+ },
+ "39": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "38",
+    0
+   ],
+   "filename_prefix": "urban-cuts/reel",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Your reel"
+  }
+ },
+ "40": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "38",
+    1
+   ]
+  },
+  "_meta": {
+   "title": "Contact sheet"
+  }
+ },
+ "41": {
+  "class_type": "PreviewAny",
+  "inputs": {
+   "source": [
+    "38",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Receipt"
+  }
+ }
+}

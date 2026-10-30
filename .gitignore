@@ -1,0 +1,8 @@
+.comfy-base/
+.testdeps/
+runs/
+__pycache__/
+.pytest_cache/
+.env*
+node_modules/
+presets/sample/*.wav

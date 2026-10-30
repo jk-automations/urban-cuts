@@ -1,0 +1,4586 @@
+{
+ "id": "1317d3ac-8e94-485d-8760-1983b0ce1e4d",
+ "revision": 0,
+ "last_node_id": 41,
+ "last_link_id": 84,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    110
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Person photo (full body, 9:16)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      1
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Person photo",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_person.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_person.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 2,
+   "type": "UrbanBrief",
+   "pos": [
+    442.798828125,
+    110
+   ],
+   "size": [
+    400,
+    384
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person",
+     "name": "person",
+     "type": "IMAGE",
+     "link": 1
+    },
+    {
+     "label": "I have this person's consent to use their photo",
+     "localized_name": "consent",
+     "name": "consent",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "consent"
+     },
+     "link": null
+    },
+    {
+     "label": "Outfits or products",
+     "localized_name": "mode",
+     "name": "mode",
+     "type": "COMBO",
+     "widget": {
+      "name": "mode"
+     },
+     "link": null
+    },
+    {
+     "label": "Vibe",
+     "localized_name": "vibe",
+     "name": "vibe",
+     "type": "COMBO",
+     "widget": {
+      "name": "vibe"
+     },
+     "link": null
+    },
+    {
+     "label": "Length (seconds)",
+     "localized_name": "length",
+     "name": "length",
+     "type": "FLOAT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "label": "Aspect",
+     "localized_name": "aspect",
+     "name": "aspect",
+     "type": "COMBO",
+     "widget": {
+      "name": "aspect"
+     },
+     "link": null
+    },
+    {
+     "label": "Try-on engine",
+     "localized_name": "look_engine",
+     "name": "look_engine",
+     "type": "COMBO",
+     "widget": {
+      "name": "look_engine"
+     },
+     "link": null
+    },
+    {
+     "label": "Music",
+     "localized_name": "music_source",
+     "name": "music_source",
+     "type": "COMBO",
+     "widget": {
+      "name": "music_source"
+     },
+     "link": null
+    },
+    {
+     "label": "Music prompt (Sonilo; empty = vibe default)",
+     "localized_name": "music_prompt",
+     "name": "music_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "music_prompt"
+     },
+     "link": null
+    },
+    {
+     "label": "Headline on the first look (optional)",
+     "localized_name": "headline",
+     "name": "headline",
+     "type": "STRING",
+     "widget": {
+      "name": "headline"
+     },
+     "link": null
+    },
+    {
+     "label": "AI label (keep on)",
+     "localized_name": "ai_label",
+     "name": "ai_label",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "ai_label"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "person",
+     "name": "person",
+     "type": "IMAGE",
+     "links": [
+      10,
+      13,
+      21,
+      24,
+      32,
+      35,
+      43,
+      46,
+      54,
+      57
+     ]
+    },
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "links": [
+      4,
+      9,
+      20,
+      31,
+      42,
+      53,
+      64
+     ]
+    },
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "links": [
+      15,
+      26,
+      37,
+      48,
+      59
+     ]
+    },
+    {
+     "localized_name": "music_prompt",
+     "name": "music_prompt",
+     "type": "STRING",
+     "links": [
+      2
+     ]
+    },
+    {
+     "localized_name": "music_seconds",
+     "name": "music_seconds",
+     "type": "INT",
+     "links": [
+      3
+     ]
+    }
+   ],
+   "title": "Your choices",
+   "properties": {
+    "Node name for S&R": "UrbanBrief"
+   },
+   "widgets_values": [
+    false,
+    "outfits",
+    "street",
+    10,
+    "9:16",
+    "Kling try-on",
+    "Sonilo (text to music)",
+    "",
+    "",
+    true
+   ],
+   "widgets_values_named": {
+    "consent": false,
+    "mode": "outfits",
+    "vibe": "street",
+    "length": 10,
+    "aspect": "9:16",
+    "look_engine": "Kling try-on",
+    "music_source": "Sonilo (text to music)",
+    "music_prompt": "",
+    "headline": "",
+    "ai_label": true
+   }
+  },
+  {
+   "id": 3,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    322
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 1",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11,
+      14,
+      67
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 1",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_1.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_1.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    534
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 2",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      22,
+      25,
+      70
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 2",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_2.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_2.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 5,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    746
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 3",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      33,
+      36,
+      73
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 3",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_3.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_3.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 6,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    958
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 4 (optional: leave blank)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      44,
+      47,
+      76
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 4",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_4.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_4.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 7,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1170
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 5 (optional: leave blank)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      55,
+      58,
+      79
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 5",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 8,
+   "type": "LoadAudio",
+   "pos": [
+    80,
+    1382
+   ],
+   "size": [
+    282.798828125,
+    136
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Your music (a track you own)",
+     "localized_name": "audio",
+     "name": "audio",
+     "type": "COMBO",
+     "widget": {
+      "name": "audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "audioUI",
+     "name": "audioUI",
+     "type": "AUDIO_UI",
+     "widget": {
+      "name": "audioUI"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "AUDIOUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "AUDIO",
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      5
+     ]
+    }
+   ],
+   "title": "Your music",
+   "properties": {
+    "Node name for S&R": "LoadAudio"
+   },
+   "widgets_values": [
+    "urban_sample_beat.wav",
+    ""
+   ],
+   "widgets_values_named": {
+    "audio": "urban_sample_beat.wav",
+    "upload": ""
+   }
+  },
+  {
+   "id": 9,
+   "type": "SoniloTextToMusic",
+   "pos": [
+    922.798828125,
+    2230
+   ],
+   "size": [
+    400,
+    200
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 2
+    },
+    {
+     "localized_name": "duration",
+     "name": "duration",
+     "type": "INT",
+     "widget": {
+      "name": "duration"
+     },
+     "link": 3
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "AUDIO",
+     "name": "AUDIO",
+     "type": "AUDIO",
+     "links": [
+      6
+     ]
+    }
+   ],
+   "title": "Music (Sonilo)",
+   "properties": {
+    "Node name for S&R": "SoniloTextToMusic"
+   },
+   "widgets_values": [
+    "",
+    30,
+    7,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "duration": 30,
+    "seed": 7,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 10,
+   "type": "UrbanMusic",
+   "pos": [
+    1402.798828125,
+    2750
+   ],
+   "size": [
+    194.5494140625,
+    66
+   ],
+   "flags": {},
+   "order": 24,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 4
+    },
+    {
+     "localized_name": "uploaded",
+     "name": "uploaded",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": 5
+    },
+    {
+     "localized_name": "sonilo",
+     "name": "sonilo",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "links": [
+      7,
+      65
+     ]
+    }
+   ],
+   "title": "Music",
+   "properties": {
+    "Node name for S&R": "UrbanMusic"
+   }
+  },
+  {
+   "id": 11,
+   "type": "UrbanBeatDetect",
+   "pos": [
+    1882.798828125,
+    990
+   ],
+   "size": [
+    200.1822265625,
+    46
+   ],
+   "flags": {},
+   "order": 30,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "beats",
+     "name": "beats",
+     "type": "STRING",
+     "links": [
+      66
+     ]
+    },
+    {
+     "localized_name": "beats_text",
+     "name": "beats_text",
+     "type": "STRING",
+     "links": [
+      8
+     ]
+    }
+   ],
+   "title": "Beat detect",
+   "properties": {
+    "Node name for S&R": "UrbanBeatDetect"
+   }
+  },
+  {
+   "id": 12,
+   "type": "PreviewAny",
+   "pos": [
+    2201.9869140625,
+    2330
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 36,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Beats",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  },
+  {
+   "id": 13,
+   "type": "UrbanShot",
+   "pos": [
+    922.798828125,
+    1290
+   ],
+   "size": [
+    274.2642578125,
+    78
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 9
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "INT",
+     "widget": {
+      "name": "look"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look_prompt",
+     "name": "look_prompt",
+     "type": "STRING",
+     "links": [
+      12
+     ]
+    },
+    {
+     "localized_name": "motion_prompt",
+     "name": "motion_prompt",
+     "type": "STRING",
+     "links": [
+      19
+     ]
+    }
+   ],
+   "title": "Look 1 prompts",
+   "properties": {
+    "Node name for S&R": "UrbanShot"
+   },
+   "widgets_values": [
+    1
+   ],
+   "widgets_values_named": {
+    "look": 1
+   }
+  },
+  {
+   "id": 14,
+   "type": "KlingTryOnNode",
+   "pos": [
+    922.798828125,
+    110
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person_image",
+     "name": "person_image",
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "localized_name": "garment_image",
+     "name": "garment_image",
+     "type": "IMAGE",
+     "link": 11
+    },
+    {
+     "localized_name": "keep_pose",
+     "name": "keep_pose",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "keep_pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      16
+     ]
+    }
+   ],
+   "title": "Try-on 1 (Kling)",
+   "properties": {
+    "Node name for S&R": "KlingTryOnNode"
+   },
+   "widgets_values": [
+    true,
+    101,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "keep_pose": true,
+    "seed": 101,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 15,
+   "type": "GeminiNanoBanana2V2",
+   "pos": [
+    1402.798828125,
+    110
+   ],
+   "size": [
+    400,
+    418
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 12
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 13
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 14
+    },
+    {
+     "localized_name": "image_3",
+     "name": "model.images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      17
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Edit 1 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    201,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 201,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 16,
+   "type": "UrbanPickLook",
+   "pos": [
+    1882.798828125,
+    110
+   ],
+   "size": [
+    239.1880859375,
+    66
+   ],
+   "flags": {},
+   "order": 25,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "link": 15
+    },
+    {
+     "localized_name": "kling",
+     "name": "kling",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 16
+    },
+    {
+     "localized_name": "banana",
+     "name": "banana",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 17
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      18,
+      68
+     ]
+    }
+   ],
+   "title": "Look 1",
+   "properties": {
+    "Node name for S&R": "UrbanPickLook"
+   }
+  },
+  {
+   "id": 17,
+   "type": "KlingVideoNode",
+   "pos": [
+    2201.9869140625,
+    110
+   ],
+   "size": [
+    400,
+    334
+   ],
+   "flags": {},
+   "order": 31,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "start_frame",
+     "name": "start_frame",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 18
+    },
+    {
+     "localized_name": "multi_shot",
+     "name": "multi_shot",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "multi_shot"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "multi_shot.prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.prompt"
+     },
+     "link": 19
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "multi_shot.negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "duration",
+     "name": "multi_shot.duration",
+     "type": "INT",
+     "widget": {
+      "name": "multi_shot.duration"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "generate_audio",
+     "name": "generate_audio",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "generate_audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      69
+     ]
+    }
+   ],
+   "title": "Motion 1 (Kling 3.0)",
+   "properties": {
+    "Node name for S&R": "KlingVideoNode"
+   },
+   "widgets_values": [
+    "disabled",
+    "",
+    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    3,
+    false,
+    "kling-v3",
+    "720p",
+    "9:16",
+    301,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "multi_shot": "disabled",
+    "multi_shot.prompt": "",
+    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    "multi_shot.duration": 3,
+    "generate_audio": false,
+    "model": "kling-v3",
+    "model.resolution": "720p",
+    "model.aspect_ratio": "9:16",
+    "seed": 301,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 18,
+   "type": "UrbanShot",
+   "pos": [
+    922.798828125,
+    1478
+   ],
+   "size": [
+    274.2642578125,
+    78
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 20
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "INT",
+     "widget": {
+      "name": "look"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look_prompt",
+     "name": "look_prompt",
+     "type": "STRING",
+     "links": [
+      23
+     ]
+    },
+    {
+     "localized_name": "motion_prompt",
+     "name": "motion_prompt",
+     "type": "STRING",
+     "links": [
+      30
+     ]
+    }
+   ],
+   "title": "Look 2 prompts",
+   "properties": {
+    "Node name for S&R": "UrbanShot"
+   },
+   "widgets_values": [
+    2
+   ],
+   "widgets_values_named": {
+    "look": 2
+   }
+  },
+  {
+   "id": 19,
+   "type": "KlingTryOnNode",
+   "pos": [
+    922.798828125,
+    346
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person_image",
+     "name": "person_image",
+     "type": "IMAGE",
+     "link": 21
+    },
+    {
+     "localized_name": "garment_image",
+     "name": "garment_image",
+     "type": "IMAGE",
+     "link": 22
+    },
+    {
+     "localized_name": "keep_pose",
+     "name": "keep_pose",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "keep_pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      27
+     ]
+    }
+   ],
+   "title": "Try-on 2 (Kling)",
+   "properties": {
+    "Node name for S&R": "KlingTryOnNode"
+   },
+   "widgets_values": [
+    true,
+    102,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "keep_pose": true,
+    "seed": 102,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 20,
+   "type": "GeminiNanoBanana2V2",
+   "pos": [
+    1402.798828125,
+    638
+   ],
+   "size": [
+    400,
+    418
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 23
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 24
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 25
+    },
+    {
+     "localized_name": "image_3",
+     "name": "model.images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      28
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Edit 2 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    202,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 202,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 21,
+   "type": "UrbanPickLook",
+   "pos": [
+    1882.798828125,
+    286
+   ],
+   "size": [
+    239.1880859375,
+    66
+   ],
+   "flags": {},
+   "order": 26,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "link": 26
+    },
+    {
+     "localized_name": "kling",
+     "name": "kling",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 27
+    },
+    {
+     "localized_name": "banana",
+     "name": "banana",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 28
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      29,
+      71
+     ]
+    }
+   ],
+   "title": "Look 2",
+   "properties": {
+    "Node name for S&R": "UrbanPickLook"
+   }
+  },
+  {
+   "id": 22,
+   "type": "KlingVideoNode",
+   "pos": [
+    2201.9869140625,
+    554
+   ],
+   "size": [
+    400,
+    334
+   ],
+   "flags": {},
+   "order": 32,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "start_frame",
+     "name": "start_frame",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 29
+    },
+    {
+     "localized_name": "multi_shot",
+     "name": "multi_shot",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "multi_shot"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "multi_shot.prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.prompt"
+     },
+     "link": 30
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "multi_shot.negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "duration",
+     "name": "multi_shot.duration",
+     "type": "INT",
+     "widget": {
+      "name": "multi_shot.duration"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "generate_audio",
+     "name": "generate_audio",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "generate_audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      72
+     ]
+    }
+   ],
+   "title": "Motion 2 (Kling 3.0)",
+   "properties": {
+    "Node name for S&R": "KlingVideoNode"
+   },
+   "widgets_values": [
+    "disabled",
+    "",
+    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    3,
+    false,
+    "kling-v3",
+    "720p",
+    "9:16",
+    302,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "multi_shot": "disabled",
+    "multi_shot.prompt": "",
+    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    "multi_shot.duration": 3,
+    "generate_audio": false,
+    "model": "kling-v3",
+    "model.resolution": "720p",
+    "model.aspect_ratio": "9:16",
+    "seed": 302,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 23,
+   "type": "UrbanShot",
+   "pos": [
+    922.798828125,
+    1666
+   ],
+   "size": [
+    274.2642578125,
+    78
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 31
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "INT",
+     "widget": {
+      "name": "look"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look_prompt",
+     "name": "look_prompt",
+     "type": "STRING",
+     "links": [
+      34
+     ]
+    },
+    {
+     "localized_name": "motion_prompt",
+     "name": "motion_prompt",
+     "type": "STRING",
+     "links": [
+      41
+     ]
+    }
+   ],
+   "title": "Look 3 prompts",
+   "properties": {
+    "Node name for S&R": "UrbanShot"
+   },
+   "widgets_values": [
+    3
+   ],
+   "widgets_values_named": {
+    "look": 3
+   }
+  },
+  {
+   "id": 24,
+   "type": "KlingTryOnNode",
+   "pos": [
+    922.798828125,
+    582
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person_image",
+     "name": "person_image",
+     "type": "IMAGE",
+     "link": 32
+    },
+    {
+     "localized_name": "garment_image",
+     "name": "garment_image",
+     "type": "IMAGE",
+     "link": 33
+    },
+    {
+     "localized_name": "keep_pose",
+     "name": "keep_pose",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "keep_pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      38
+     ]
+    }
+   ],
+   "title": "Try-on 3 (Kling)",
+   "properties": {
+    "Node name for S&R": "KlingTryOnNode"
+   },
+   "widgets_values": [
+    true,
+    103,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "keep_pose": true,
+    "seed": 103,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 25,
+   "type": "GeminiNanoBanana2V2",
+   "pos": [
+    1402.798828125,
+    1166
+   ],
+   "size": [
+    400,
+    418
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 34
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 35
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 36
+    },
+    {
+     "localized_name": "image_3",
+     "name": "model.images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      39
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Edit 3 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    203,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 203,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 26,
+   "type": "UrbanPickLook",
+   "pos": [
+    1882.798828125,
+    462
+   ],
+   "size": [
+    239.1880859375,
+    66
+   ],
+   "flags": {},
+   "order": 27,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "link": 37
+    },
+    {
+     "localized_name": "kling",
+     "name": "kling",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 38
+    },
+    {
+     "localized_name": "banana",
+     "name": "banana",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 39
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      40,
+      74
+     ]
+    }
+   ],
+   "title": "Look 3",
+   "properties": {
+    "Node name for S&R": "UrbanPickLook"
+   }
+  },
+  {
+   "id": 27,
+   "type": "KlingVideoNode",
+   "pos": [
+    2201.9869140625,
+    998
+   ],
+   "size": [
+    400,
+    334
+   ],
+   "flags": {},
+   "order": 33,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "start_frame",
+     "name": "start_frame",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 40
+    },
+    {
+     "localized_name": "multi_shot",
+     "name": "multi_shot",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "multi_shot"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "multi_shot.prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.prompt"
+     },
+     "link": 41
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "multi_shot.negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "duration",
+     "name": "multi_shot.duration",
+     "type": "INT",
+     "widget": {
+      "name": "multi_shot.duration"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "generate_audio",
+     "name": "generate_audio",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "generate_audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      75
+     ]
+    }
+   ],
+   "title": "Motion 3 (Kling 3.0)",
+   "properties": {
+    "Node name for S&R": "KlingVideoNode"
+   },
+   "widgets_values": [
+    "disabled",
+    "",
+    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    3,
+    false,
+    "kling-v3",
+    "720p",
+    "9:16",
+    303,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "multi_shot": "disabled",
+    "multi_shot.prompt": "",
+    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    "multi_shot.duration": 3,
+    "generate_audio": false,
+    "model": "kling-v3",
+    "model.resolution": "720p",
+    "model.aspect_ratio": "9:16",
+    "seed": 303,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 28,
+   "type": "UrbanShot",
+   "pos": [
+    922.798828125,
+    1854
+   ],
+   "size": [
+    274.2642578125,
+    78
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 42
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "INT",
+     "widget": {
+      "name": "look"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look_prompt",
+     "name": "look_prompt",
+     "type": "STRING",
+     "links": [
+      45
+     ]
+    },
+    {
+     "localized_name": "motion_prompt",
+     "name": "motion_prompt",
+     "type": "STRING",
+     "links": [
+      52
+     ]
+    }
+   ],
+   "title": "Look 4 prompts",
+   "properties": {
+    "Node name for S&R": "UrbanShot"
+   },
+   "widgets_values": [
+    4
+   ],
+   "widgets_values_named": {
+    "look": 4
+   }
+  },
+  {
+   "id": 29,
+   "type": "KlingTryOnNode",
+   "pos": [
+    922.798828125,
+    818
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person_image",
+     "name": "person_image",
+     "type": "IMAGE",
+     "link": 43
+    },
+    {
+     "localized_name": "garment_image",
+     "name": "garment_image",
+     "type": "IMAGE",
+     "link": 44
+    },
+    {
+     "localized_name": "keep_pose",
+     "name": "keep_pose",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "keep_pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      49
+     ]
+    }
+   ],
+   "title": "Try-on 4 (Kling)",
+   "properties": {
+    "Node name for S&R": "KlingTryOnNode"
+   },
+   "widgets_values": [
+    true,
+    104,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "keep_pose": true,
+    "seed": 104,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 30,
+   "type": "GeminiNanoBanana2V2",
+   "pos": [
+    1402.798828125,
+    1694
+   ],
+   "size": [
+    400,
+    418
+   ],
+   "flags": {},
+   "order": 22,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 45
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 46
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 47
+    },
+    {
+     "localized_name": "image_3",
+     "name": "model.images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      50
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Edit 4 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    204,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 204,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 31,
+   "type": "UrbanPickLook",
+   "pos": [
+    1882.798828125,
+    638
+   ],
+   "size": [
+    239.1880859375,
+    66
+   ],
+   "flags": {},
+   "order": 28,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "link": 48
+    },
+    {
+     "localized_name": "kling",
+     "name": "kling",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 49
+    },
+    {
+     "localized_name": "banana",
+     "name": "banana",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 50
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      51,
+      77
+     ]
+    }
+   ],
+   "title": "Look 4",
+   "properties": {
+    "Node name for S&R": "UrbanPickLook"
+   }
+  },
+  {
+   "id": 32,
+   "type": "KlingVideoNode",
+   "pos": [
+    2201.9869140625,
+    1442
+   ],
+   "size": [
+    400,
+    334
+   ],
+   "flags": {},
+   "order": 34,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "start_frame",
+     "name": "start_frame",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 51
+    },
+    {
+     "localized_name": "multi_shot",
+     "name": "multi_shot",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "multi_shot"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "multi_shot.prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.prompt"
+     },
+     "link": 52
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "multi_shot.negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "duration",
+     "name": "multi_shot.duration",
+     "type": "INT",
+     "widget": {
+      "name": "multi_shot.duration"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "generate_audio",
+     "name": "generate_audio",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "generate_audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      78
+     ]
+    }
+   ],
+   "title": "Motion 4 (Kling 3.0)",
+   "properties": {
+    "Node name for S&R": "KlingVideoNode"
+   },
+   "widgets_values": [
+    "disabled",
+    "",
+    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    3,
+    false,
+    "kling-v3",
+    "720p",
+    "9:16",
+    304,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "multi_shot": "disabled",
+    "multi_shot.prompt": "",
+    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    "multi_shot.duration": 3,
+    "generate_audio": false,
+    "model": "kling-v3",
+    "model.resolution": "720p",
+    "model.aspect_ratio": "9:16",
+    "seed": 304,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 33,
+   "type": "UrbanShot",
+   "pos": [
+    922.798828125,
+    2042
+   ],
+   "size": [
+    274.2642578125,
+    78
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 53
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "INT",
+     "widget": {
+      "name": "look"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look_prompt",
+     "name": "look_prompt",
+     "type": "STRING",
+     "links": [
+      56
+     ]
+    },
+    {
+     "localized_name": "motion_prompt",
+     "name": "motion_prompt",
+     "type": "STRING",
+     "links": [
+      63
+     ]
+    }
+   ],
+   "title": "Look 5 prompts",
+   "properties": {
+    "Node name for S&R": "UrbanShot"
+   },
+   "widgets_values": [
+    5
+   ],
+   "widgets_values_named": {
+    "look": 5
+   }
+  },
+  {
+   "id": 34,
+   "type": "KlingTryOnNode",
+   "pos": [
+    922.798828125,
+    1054
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "person_image",
+     "name": "person_image",
+     "type": "IMAGE",
+     "link": 54
+    },
+    {
+     "localized_name": "garment_image",
+     "name": "garment_image",
+     "type": "IMAGE",
+     "link": 55
+    },
+    {
+     "localized_name": "keep_pose",
+     "name": "keep_pose",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "keep_pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      60
+     ]
+    }
+   ],
+   "title": "Try-on 5 (Kling)",
+   "properties": {
+    "Node name for S&R": "KlingTryOnNode"
+   },
+   "widgets_values": [
+    true,
+    105,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "keep_pose": true,
+    "seed": 105,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 35,
+   "type": "GeminiNanoBanana2V2",
+   "pos": [
+    1402.798828125,
+    2222
+   ],
+   "size": [
+    400,
+    418
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 56
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 57
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 58
+    },
+    {
+     "localized_name": "image_3",
+     "name": "model.images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      61
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Edit 5 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    205,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 205,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 36,
+   "type": "UrbanPickLook",
+   "pos": [
+    1882.798828125,
+    814
+   ],
+   "size": [
+    239.1880859375,
+    66
+   ],
+   "flags": {},
+   "order": 29,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "engine",
+     "name": "engine",
+     "type": "STRING",
+     "link": 59
+    },
+    {
+     "localized_name": "kling",
+     "name": "kling",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 60
+    },
+    {
+     "localized_name": "banana",
+     "name": "banana",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 61
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      62,
+      80
+     ]
+    }
+   ],
+   "title": "Look 5",
+   "properties": {
+    "Node name for S&R": "UrbanPickLook"
+   }
+  },
+  {
+   "id": 37,
+   "type": "KlingVideoNode",
+   "pos": [
+    2201.9869140625,
+    1886
+   ],
+   "size": [
+    400,
+    334
+   ],
+   "flags": {},
+   "order": 35,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "start_frame",
+     "name": "start_frame",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 62
+    },
+    {
+     "localized_name": "multi_shot",
+     "name": "multi_shot",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "multi_shot"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "multi_shot.prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.prompt"
+     },
+     "link": 63
+    },
+    {
+     "localized_name": "negative_prompt",
+     "name": "multi_shot.negative_prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "multi_shot.negative_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "duration",
+     "name": "multi_shot.duration",
+     "type": "INT",
+     "widget": {
+      "name": "multi_shot.duration"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "generate_audio",
+     "name": "generate_audio",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "generate_audio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      81
+     ]
+    }
+   ],
+   "title": "Motion 5 (Kling 3.0)",
+   "properties": {
+    "Node name for S&R": "KlingVideoNode"
+   },
+   "widgets_values": [
+    "disabled",
+    "",
+    "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    3,
+    false,
+    "kling-v3",
+    "720p",
+    "9:16",
+    305,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "multi_shot": "disabled",
+    "multi_shot.prompt": "",
+    "multi_shot.negative_prompt": "logos, brand names, text, watermark, extra people, distorted hands, distorted face, blurry, cuts, shaky camera",
+    "multi_shot.duration": 3,
+    "generate_audio": false,
+    "model": "kling-v3",
+    "model.resolution": "720p",
+    "model.aspect_ratio": "9:16",
+    "seed": 305,
+    "control_after_generate": "fixed"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 38,
+   "type": "UrbanBeatCut",
+   "pos": [
+    2681.9869140625,
+    110
+   ],
+   "size": [
+    248.7447265625,
+    366
+   ],
+   "flags": {},
+   "order": 37,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 64
+    },
+    {
+     "localized_name": "music",
+     "name": "music",
+     "type": "AUDIO",
+     "link": 65
+    },
+    {
+     "localized_name": "beats",
+     "name": "beats",
+     "type": "STRING",
+     "link": 66
+    },
+    {
+     "localized_name": "item_1",
+     "name": "item_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 67
+    },
+    {
+     "localized_name": "look_1",
+     "name": "look_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 68
+    },
+    {
+     "localized_name": "clip_1",
+     "name": "clip_1",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 69
+    },
+    {
+     "localized_name": "item_2",
+     "name": "item_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 70
+    },
+    {
+     "localized_name": "look_2",
+     "name": "look_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 71
+    },
+    {
+     "localized_name": "clip_2",
+     "name": "clip_2",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 72
+    },
+    {
+     "localized_name": "item_3",
+     "name": "item_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 73
+    },
+    {
+     "localized_name": "look_3",
+     "name": "look_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 74
+    },
+    {
+     "localized_name": "clip_3",
+     "name": "clip_3",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 75
+    },
+    {
+     "localized_name": "item_4",
+     "name": "item_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 76
+    },
+    {
+     "localized_name": "look_4",
+     "name": "look_4",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 77
+    },
+    {
+     "localized_name": "clip_4",
+     "name": "clip_4",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 78
+    },
+    {
+     "localized_name": "item_5",
+     "name": "item_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 79
+    },
+    {
+     "localized_name": "look_5",
+     "name": "look_5",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 80
+    },
+    {
+     "localized_name": "clip_5",
+     "name": "clip_5",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 81
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "reel",
+     "name": "reel",
+     "type": "VIDEO",
+     "links": [
+      82
+     ]
+    },
+    {
+     "localized_name": "contact_sheet",
+     "name": "contact_sheet",
+     "type": "IMAGE",
+     "links": [
+      83
+     ]
+    },
+    {
+     "localized_name": "receipt",
+     "name": "receipt",
+     "type": "STRING",
+     "links": [
+      84
+     ]
+    }
+   ],
+   "title": "Beat cut",
+   "properties": {
+    "Node name for S&R": "UrbanBeatCut"
+   }
+  },
+  {
+   "id": 39,
+   "type": "SaveVideo",
+   "pos": [
+    3010.731640625,
+    110
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 38,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "link": 82
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "format",
+     "name": "format",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "format.codec",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format.codec"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "codec",
+     "shape": 7,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "links": null
+    }
+   ],
+   "title": "Your reel",
+   "properties": {},
+   "widgets_values": [
+    "urban-cuts/reel",
+    "mp4",
+    "auto",
+    "auto"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "urban-cuts/reel",
+    "format": "mp4",
+    "format.codec": "auto",
+    "codec": "auto"
+   }
+  },
+  {
+   "id": 40,
+   "type": "PreviewImage",
+   "pos": [
+    3010.731640625,
+    326
+   ],
+   "size": [
+    140,
+    26
+   ],
+   "flags": {},
+   "order": 39,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "link": 83
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Contact sheet",
+   "properties": {
+    "Node name for S&R": "PreviewImage"
+   }
+  },
+  {
+   "id": 41,
+   "type": "PreviewAny",
+   "pos": [
+    3010.731640625,
+    462
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 40,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 84
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Receipt",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   2,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   2,
+   3,
+   9,
+   0,
+   "STRING"
+  ],
+  [
+   3,
+   2,
+   4,
+   9,
+   1,
+   "INT"
+  ],
+  [
+   4,
+   2,
+   1,
+   10,
+   0,
+   "STRING"
+  ],
+  [
+   5,
+   8,
+   0,
+   10,
+   1,
+   "AUDIO"
+  ],
+  [
+   6,
+   9,
+   0,
+   10,
+   2,
+   "AUDIO"
+  ],
+  [
+   7,
+   10,
+   0,
+   11,
+   0,
+   "AUDIO"
+  ],
+  [
+   8,
+   11,
+   1,
+   12,
+   0,
+   "STRING"
+  ],
+  [
+   9,
+   2,
+   1,
+   13,
+   0,
+   "STRING"
+  ],
+  [
+   10,
+   2,
+   0,
+   14,
+   0,
+   "IMAGE"
+  ],
+  [
+   11,
+   3,
+   0,
+   14,
+   1,
+   "IMAGE"
+  ],
+  [
+   12,
+   13,
+   0,
+   15,
+   0,
+   "STRING"
+  ],
+  [
+   13,
+   2,
+   0,
+   15,
+   5,
+   "IMAGE"
+  ],
+  [
+   14,
+   3,
+   0,
+   15,
+   6,
+   "IMAGE"
+  ],
+  [
+   15,
+   2,
+   2,
+   16,
+   0,
+   "STRING"
+  ],
+  [
+   16,
+   14,
+   0,
+   16,
+   1,
+   "IMAGE"
+  ],
+  [
+   17,
+   15,
+   0,
+   16,
+   2,
+   "IMAGE"
+  ],
+  [
+   18,
+   16,
+   0,
+   17,
+   0,
+   "IMAGE"
+  ],
+  [
+   19,
+   13,
+   1,
+   17,
+   2,
+   "STRING"
+  ],
+  [
+   20,
+   2,
+   1,
+   18,
+   0,
+   "STRING"
+  ],
+  [
+   21,
+   2,
+   0,
+   19,
+   0,
+   "IMAGE"
+  ],
+  [
+   22,
+   4,
+   0,
+   19,
+   1,
+   "IMAGE"
+  ],
+  [
+   23,
+   18,
+   0,
+   20,
+   0,
+   "STRING"
+  ],
+  [
+   24,
+   2,
+   0,
+   20,
+   5,
+   "IMAGE"
+  ],
+  [
+   25,
+   4,
+   0,
+   20,
+   6,
+   "IMAGE"
+  ],
+  [
+   26,
+   2,
+   2,
+   21,
+   0,
+   "STRING"
+  ],
+  [
+   27,
+   19,
+   0,
+   21,
+   1,
+   "IMAGE"
+  ],
+  [
+   28,
+   20,
+   0,
+   21,
+   2,
+   "IMAGE"
+  ],
+  [
+   29,
+   21,
+   0,
+   22,
+   0,
+   "IMAGE"
+  ],
+  [
+   30,
+   18,
+   1,
+   22,
+   2,
+   "STRING"
+  ],
+  [
+   31,
+   2,
+   1,
+   23,
+   0,
+   "STRING"
+  ],
+  [
+   32,
+   2,
+   0,
+   24,
+   0,
+   "IMAGE"
+  ],
+  [
+   33,
+   5,
+   0,
+   24,
+   1,
+   "IMAGE"
+  ],
+  [
+   34,
+   23,
+   0,
+   25,
+   0,
+   "STRING"
+  ],
+  [
+   35,
+   2,
+   0,
+   25,
+   5,
+   "IMAGE"
+  ],
+  [
+   36,
+   5,
+   0,
+   25,
+   6,
+   "IMAGE"
+  ],
+  [
+   37,
+   2,
+   2,
+   26,
+   0,
+   "STRING"
+  ],
+  [
+   38,
+   24,
+   0,
+   26,
+   1,
+   "IMAGE"
+  ],
+  [
+   39,
+   25,
+   0,
+   26,
+   2,
+   "IMAGE"
+  ],
+  [
+   40,
+   26,
+   0,
+   27,
+   0,
+   "IMAGE"
+  ],
+  [
+   41,
+   23,
+   1,
+   27,
+   2,
+   "STRING"
+  ],
+  [
+   42,
+   2,
+   1,
+   28,
+   0,
+   "STRING"
+  ],
+  [
+   43,
+   2,
+   0,
+   29,
+   0,
+   "IMAGE"
+  ],
+  [
+   44,
+   6,
+   0,
+   29,
+   1,
+   "IMAGE"
+  ],
+  [
+   45,
+   28,
+   0,
+   30,
+   0,
+   "STRING"
+  ],
+  [
+   46,
+   2,
+   0,
+   30,
+   5,
+   "IMAGE"
+  ],
+  [
+   47,
+   6,
+   0,
+   30,
+   6,
+   "IMAGE"
+  ],
+  [
+   48,
+   2,
+   2,
+   31,
+   0,
+   "STRING"
+  ],
+  [
+   49,
+   29,
+   0,
+   31,
+   1,
+   "IMAGE"
+  ],
+  [
+   50,
+   30,
+   0,
+   31,
+   2,
+   "IMAGE"
+  ],
+  [
+   51,
+   31,
+   0,
+   32,
+   0,
+   "IMAGE"
+  ],
+  [
+   52,
+   28,
+   1,
+   32,
+   2,
+   "STRING"
+  ],
+  [
+   53,
+   2,
+   1,
+   33,
+   0,
+   "STRING"
+  ],
+  [
+   54,
+   2,
+   0,
+   34,
+   0,
+   "IMAGE"
+  ],
+  [
+   55,
+   7,
+   0,
+   34,
+   1,
+   "IMAGE"
+  ],
+  [
+   56,
+   33,
+   0,
+   35,
+   0,
+   "STRING"
+  ],
+  [
+   57,
+   2,
+   0,
+   35,
+   5,
+   "IMAGE"
+  ],
+  [
+   58,
+   7,
+   0,
+   35,
+   6,
+   "IMAGE"
+  ],
+  [
+   59,
+   2,
+   2,
+   36,
+   0,
+   "STRING"
+  ],
+  [
+   60,
+   34,
+   0,
+   36,
+   1,
+   "IMAGE"
+  ],
+  [
+   61,
+   35,
+   0,
+   36,
+   2,
+   "IMAGE"
+  ],
+  [
+   62,
+   36,
+   0,
+   37,
+   0,
+   "IMAGE"
+  ],
+  [
+   63,
+   33,
+   1,
+   37,
+   2,
+   "STRING"
+  ],
+  [
+   64,
+   2,
+   1,
+   38,
+   0,
+   "STRING"
+  ],
+  [
+   65,
+   10,
+   0,
+   38,
+   1,
+   "AUDIO"
+  ],
+  [
+   66,
+   11,
+   0,
+   38,
+   2,
+   "STRING"
+  ],
+  [
+   67,
+   3,
+   0,
+   38,
+   3,
+   "IMAGE"
+  ],
+  [
+   68,
+   16,
+   0,
+   38,
+   4,
+   "IMAGE"
+  ],
+  [
+   69,
+   17,
+   0,
+   38,
+   5,
+   "VIDEO"
+  ],
+  [
+   70,
+   4,
+   0,
+   38,
+   6,
+   "IMAGE"
+  ],
+  [
+   71,
+   21,
+   0,
+   38,
+   7,
+   "IMAGE"
+  ],
+  [
+   72,
+   22,
+   0,
+   38,
+   8,
+   "VIDEO"
+  ],
+  [
+   73,
+   5,
+   0,
+   38,
+   9,
+   "IMAGE"
+  ],
+  [
+   74,
+   26,
+   0,
+   38,
+   10,
+   "IMAGE"
+  ],
+  [
+   75,
+   27,
+   0,
+   38,
+   11,
+   "VIDEO"
+  ],
+  [
+   76,
+   6,
+   0,
+   38,
+   12,
+   "IMAGE"
+  ],
+  [
+   77,
+   31,
+   0,
+   38,
+   13,
+   "IMAGE"
+  ],
+  [
+   78,
+   32,
+   0,
+   38,
+   14,
+   "VIDEO"
+  ],
+  [
+   79,
+   7,
+   0,
+   38,
+   15,
+   "IMAGE"
+  ],
+  [
+   80,
+   36,
+   0,
+   38,
+   16,
+   "IMAGE"
+  ],
+  [
+   81,
+   37,
+   0,
+   38,
+   17,
+   "VIDEO"
+  ],
+  [
+   82,
+   38,
+   0,
+   39,
+   0,
+   "VIDEO"
+  ],
+  [
+   83,
+   38,
+   1,
+   40,
+   0,
+   "IMAGE"
+  ],
+  [
+   84,
+   38,
+   2,
+   41,
+   0,
+   "STRING"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 1,
+   "offset": [
+    0,
+    0
+   ]
+  },
+  "linearMode": true,
+  "linearData": {
+   "inputs": [
+    [
+     1,
+     "image"
+    ],
+    [
+     2,
+     "consent"
+    ],
+    [
+     2,
+     "mode"
+    ],
+    [
+     2,
+     "vibe"
+    ],
+    [
+     3,
+     "image"
+    ],
+    [
+     4,
+     "image"
+    ],
+    [
+     5,
+     "image"
+    ],
+    [
+     6,
+     "image"
+    ],
+    [
+     7,
+     "image"
+    ],
+    [
+     2,
+     "look_engine"
+    ],
+    [
+     2,
+     "music_source"
+    ],
+    [
+     2,
+     "music_prompt"
+    ],
+    [
+     8,
+     "audio"
+    ],
+    [
+     2,
+     "length"
+    ],
+    [
+     2,
+     "aspect"
+    ],
+    [
+     2,
+     "headline"
+    ],
+    [
+     2,
+     "ai_label"
+    ]
+   ],
+   "outputs": [
+    39,
+    40,
+    41,
+    12
+   ]
+  }
+ },
+ "version": 0.4
+}
