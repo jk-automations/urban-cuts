@@ -26,7 +26,13 @@
    "headline": "",
    "ai_label": true,
    "hook": true,
-   "lineup": true
+   "lineup": true,
+   "look_labels": "",
+   "brand_name": "",
+   "handle": "",
+   "cta": "",
+   "pulse": true,
+   "glowup": true
   },
   "_meta": {
    "title": "Your choices"
@@ -35,13 +41,22 @@
  "3": {
   "class_type": "LoadImage",
   "inputs": {
+   "image": "urban_blank.png"
+  },
+  "_meta": {
+   "title": "Logo (optional)"
+  }
+ },
+ "4": {
+  "class_type": "LoadImage",
+  "inputs": {
    "image": "urban_sample_outfit_1.png"
   },
   "_meta": {
    "title": "Outfit or product 1"
   }
  },
- "4": {
+ "5": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_outfit_2.png"
@@ -50,7 +65,7 @@
    "title": "Outfit or product 2"
   }
  },
- "5": {
+ "6": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_outfit_3.png"
@@ -59,7 +74,7 @@
    "title": "Outfit or product 3"
   }
  },
- "6": {
+ "7": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_outfit_4.png"
@@ -68,7 +83,7 @@
    "title": "Outfit or product 4"
   }
  },
- "7": {
+ "8": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_blank.png"
@@ -77,7 +92,7 @@
    "title": "Outfit or product 5"
   }
  },
- "8": {
+ "9": {
   "class_type": "LoadAudio",
   "inputs": {
    "audio": "urban_sample_beat.wav"
@@ -86,7 +101,7 @@
    "title": "Your music"
   }
  },
- "9": {
+ "10": {
   "class_type": "UrbanMusic",
   "inputs": {
    "brief": [
@@ -94,7 +109,7 @@
     1
    ],
    "uploaded": [
-    "8",
+    "9",
     0
    ]
   },
@@ -102,11 +117,11 @@
    "title": "Music"
   }
  },
- "10": {
+ "11": {
   "class_type": "UrbanBeatDetect",
   "inputs": {
    "music": [
-    "9",
+    "10",
     0
    ]
   },
@@ -114,11 +129,11 @@
    "title": "Beat detect"
   }
  },
- "11": {
+ "12": {
   "class_type": "PreviewAny",
   "inputs": {
    "source": [
-    "10",
+    "11",
     1
    ]
   },
@@ -126,7 +141,7 @@
    "title": "Beats"
   }
  },
- "12": {
+ "13": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_look_1.png"
@@ -135,7 +150,7 @@
    "title": "Look photo 1"
   }
  },
- "13": {
+ "14": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_look_2.png"
@@ -144,7 +159,7 @@
    "title": "Look photo 2"
   }
  },
- "14": {
+ "15": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_look_3.png"
@@ -153,7 +168,7 @@
    "title": "Look photo 3"
   }
  },
- "15": {
+ "16": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_sample_look_4.png"
@@ -162,7 +177,7 @@
    "title": "Look photo 4"
   }
  },
- "16": {
+ "17": {
   "class_type": "LoadImage",
   "inputs": {
    "image": "urban_blank.png"
@@ -171,7 +186,7 @@
    "title": "Look photo 5"
   }
  },
- "17": {
+ "18": {
   "class_type": "UrbanBeatCut",
   "inputs": {
    "brief": [
@@ -179,55 +194,59 @@
     1
    ],
    "music": [
-    "9",
+    "10",
     0
    ],
    "beats": [
-    "10",
+    "11",
     0
    ],
    "before": [
     "2",
     0
    ],
-   "item_1": [
+   "logo": [
     "3",
     0
    ],
-   "look_1": [
-    "12",
-    0
-   ],
-   "item_2": [
+   "item_1": [
     "4",
     0
    ],
-   "look_2": [
+   "look_1": [
     "13",
     0
    ],
-   "item_3": [
+   "item_2": [
     "5",
     0
    ],
-   "look_3": [
+   "look_2": [
     "14",
     0
    ],
-   "item_4": [
+   "item_3": [
     "6",
     0
    ],
-   "look_4": [
+   "look_3": [
     "15",
     0
    ],
-   "item_5": [
+   "item_4": [
     "7",
     0
    ],
-   "look_5": [
+   "look_4": [
     "16",
+    0
+   ],
+   "item_5": [
+    "8",
+    0
+   ],
+   "look_5": [
+    "17",
     0
    ]
   },
@@ -235,11 +254,11 @@
    "title": "Beat cut"
   }
  },
- "18": {
+ "19": {
   "class_type": "SaveVideo",
   "inputs": {
    "video": [
-    "17",
+    "18",
     0
    ],
    "filename_prefix": "urban-cuts/reel",
@@ -250,11 +269,11 @@
    "title": "Your reel"
   }
  },
- "19": {
+ "20": {
   "class_type": "PreviewImage",
   "inputs": {
    "images": [
-    "17",
+    "18",
     1
    ]
   },
@@ -262,11 +281,11 @@
    "title": "Contact sheet"
   }
  },
- "20": {
+ "21": {
   "class_type": "PreviewAny",
   "inputs": {
    "source": [
-    "17",
+    "18",
     2
    ]
   },

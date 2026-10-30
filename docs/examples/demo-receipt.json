@@ -63,7 +63,7 @@
    "look": 1,
    "start": 1.0031,
    "end": 2.0015,
-   "fx": "whip"
+   "fx": "glow-up"
   },
   {
    "kind": "look",
@@ -134,6 +134,20 @@
  "headline": null,
  "hook": true,
  "lineup": true,
+ "look_labels": [
+  "Rust bomber \u00b7 $89",
+  "Cable knit + linen \u00b7 $124",
+  "Navy suit \u00b7 $210",
+  "Mustard tee + pleat skirt \u00b7 $76"
+ ],
+ "brand": {
+  "name": "YOUR SHOP",
+  "handle": "@yourshop",
+  "cta": ""
+ },
+ "logo": false,
+ "pulse": true,
+ "glowup": true,
  "skipped": [],
  "drift_trimmed": {
   "1": "kept 78 of 91 frames",
@@ -172,5 +186,5 @@
    ]
   ]
  },
- "note": "re-cut for $0 from the paid run's saved clips (look 3 regenerated) with the before->after hook and lineup finale"
+ "note": "re-cut for $0 from the paid run's saved clips (look 3 regenerated) with the before->after hook, glow-up, beat pulse, shop tags and branded lineup"
 }

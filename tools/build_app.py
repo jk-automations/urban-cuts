@@ -33,7 +33,9 @@ N = core.MAX_LOOKS
 person = node("LoadImage", "Person photo", image=a.person)
 brief = node("UrbanBrief", "Your choices", person=o(person), consent=False, mode="outfits", vibe="street", length=10.0,
              aspect="9:16", look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1 if not a.draft else 0],
-             music_prompt="", headline="", ai_label=True, hook=True, lineup=True)
+             music_prompt="", headline="", ai_label=True, hook=True, lineup=True, look_labels="", brand_name="", handle="",
+             cta="", pulse=True, glowup=True)
+logo = node("LoadImage", "Logo (optional)", image="urban_blank.png")
 items = [node("LoadImage", f"Outfit or product {k}", image=a.items.split(",")[k - 1]) for k in range(1, N + 1)]
 upload = node("LoadAudio", "Your music", audio=a.music)
 # ---------- 1. music: your track, or Sonilo (wired like Comfy's api_sonilo template; only the picked one runs) ----------
@@ -66,7 +68,7 @@ for k in range(1, N + 1):
     cut_in[f"look_{k}"] = o(pick)
     cut_in[f"clip_{k}"] = o(clip)
 # ---------- 4. the edit ----------
-cut = node("UrbanBeatCut", "Beat cut", brief=o(brief, 1), music=o(music), beats=o(beats), before=o(brief, 0), **cut_in)
+cut = node("UrbanBeatCut", "Beat cut", brief=o(brief, 1), music=o(music), beats=o(beats), before=o(brief, 0), logo=o(logo), **cut_in)
 node("SaveVideo", "Your reel", video=o(cut, 0), filename_prefix="urban-cuts/reel", format="mp4", **{"format.codec": "auto"})
 node("PreviewImage", "Contact sheet", images=o(cut, 1))
 node("PreviewAny", "Receipt", source=o(cut, 2))

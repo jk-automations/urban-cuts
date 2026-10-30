@@ -15,19 +15,23 @@ const person = titled("Person photo");
 const items = [1, 2, 3, 4, 5].map((k) => titled(`Outfit or product ${k}`));
 const lookPhotos = draft ? [1, 2, 3, 4, 5].map((k) => titled(`Look photo ${k}`)) : [];
 const upload = titled("Your music");
+const logo = titled("Logo (optional)");
 // What a user sees in App Mode. Everything else stays locked in the graph.
 const INPUTS = [
   [person, "image"], [brief, "consent"], [brief, "mode"], [brief, "vibe"],
   ...items.map((n) => [n, "image"]), ...lookPhotos.map((n) => [n, "image"]),
   ...(draft ? [] : [[brief, "look_engine"], [brief, "music_source"], [brief, "music_prompt"]]), [upload, "audio"],
-  [brief, "length"], [brief, "aspect"], [brief, "hook"], [brief, "lineup"], [brief, "headline"], [brief, "ai_label"],
+  [brief, "look_labels"], [brief, "brand_name"], [brief, "handle"], [brief, "cta"], [logo, "image"],
+  [brief, "length"], [brief, "aspect"], [brief, "hook"], [brief, "glowup"], [brief, "pulse"], [brief, "lineup"], [brief, "headline"], [brief, "ai_label"],
 ];
 const OUTPUTS = [titled("Your reel"), titled("Contact sheet"), titled("Receipt"), titled("Beats")];
 const LABELS = { consent: "I have this person's consent to use their photo", mode: "Outfits or products", vibe: "Vibe",
   look_engine: "Try-on engine", music_source: "Music", music_prompt: "Music prompt (Sonilo; empty = vibe default)",
   length: "Length (seconds)", aspect: "Aspect", headline: "Headline on the first look (optional)", ai_label: "AI label (keep on)",
-  hook: "Before→after hook", lineup: "Lineup finale" };
-const NAMED = { [person]: "Person photo (full body, 9:16)", [upload]: "Your music (a track you own)" };
+  hook: "Before→after hook", lineup: "Lineup finale", glowup: "Glow-up hit on the first look", pulse: "Beat pulse",
+  look_labels: "Look names + prices (one line per look: Name | $89)", brand_name: "Shop name (lineup)",
+  handle: "@handle or website (lineup)", cta: "Call to action (empty = 'Comment a number to shop')" };
+const NAMED = { [person]: "Person photo (full body, 9:16)", [upload]: "Your music (a track you own)", [logo]: "Logo (optional; blank = none)" };
 items.forEach((n, k) => (NAMED[n] = `Outfit or product ${k + 1}${k >= 3 ? " (optional: leave blank)" : ""}`));
 lookPhotos.forEach((n, k) => (NAMED[n] = `Look ${k + 1} photo (draft: person in outfit ${k + 1})`));
 

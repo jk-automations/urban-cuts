@@ -60,7 +60,7 @@ NEGATIVE = ("logos, brand names, text, watermark, extra people, distorted hands,
 # ---------------------------------------------------------------- the brief and the prompts
 def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_engine=LOOK_ENGINES[0],
                music_source=MUSIC_SOURCES[0], music_prompt="", headline="", consent=False, ai_label=True, hook=True,
-               lineup=True):
+               lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True):
     if not consent:
         raise ValueError("Urban Cuts needs the person's consent: tick 'I have this person's consent to use their photo' "
                          "(you, or someone who agreed). Nothing was generated.")
@@ -77,7 +77,20 @@ def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_e
     mp = music_prompt.strip() or default_music_prompt(vibe)
     return {"mode": mode, "vibe": vibe, "length": float(length), "aspect": aspect, "engine": engine, "music": music,
             "music_prompt": mp, "music_seconds": int(np.ceil(float(length))) + 5, "headline": headline.strip(),
-            "ai_label": bool(ai_label), "hook": bool(hook), "lineup": bool(lineup)}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
+            "ai_label": bool(ai_label), "hook": bool(hook), "lineup": bool(lineup), "labels": parse_labels(look_labels),
+            "brand": {"name": brand_name.strip(), "handle": handle.strip(), "cta": cta.strip()},
+            "pulse": bool(pulse), "glowup": bool(glowup)}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
+
+
+def parse_labels(text):
+    """One line per look: 'Rust bomber jacket | $89' (or just a name). Returns ['Rust bomber jacket · $89', ...]."""
+    out = []
+    for line in (text or "").splitlines():
+        parts = [p.strip() for p in line.split("|") if p.strip()]
+        out.append(" · ".join(parts[:2]))
+    while out and not out[-1]:
+        out.pop()
+    return out
 
 
 def default_music_prompt(vibe):
@@ -357,6 +370,28 @@ def text_png(txt, size, w, pad=48):
     return img
 
 
+ACCENT = (226, 140, 92)
+
+
+def look_tag_png(num, txt, W):
+    """The shoppable tag on a look: '01' in the accent colour, then the name and price, on a dark rounded card."""
+    size = max(18, W // 24)
+    fb, f = _font(int(size * 1.15)), _font(size)
+    d = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    num_s = f"{num:02d}"
+    nw, tw = d.textlength(num_s, font=fb), d.textlength(txt, font=f)
+    pad = size // 2
+    w = int(np.ceil(min(W * 0.78, nw + tw + 4 * pad))) + 2
+    while d.textlength(txt, font=f) > w - nw - 4 * pad + 2 and len(txt) > 4:   # only very long names are shortened
+        txt = txt[:-2].rstrip() + "…"
+    card = Image.new("RGBA", (w, int(size * 1.9)), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(card)
+    cd.rounded_rectangle([0, 0, w - 1, card.height - 1], radius=size // 2, fill=(18, 16, 14, 190))
+    cd.text((pad, (card.height - size * 1.15) / 2 - 2), num_s, font=fb, fill=ACCENT)
+    cd.text((pad * 2 + nw, (card.height - size) / 2 - 2), txt, font=f, fill="white")
+    return card
+
+
 def read_frames(path, W, H, fps, max_secs=8.0):
     """Decode a clip to uint8 frames (n, H, W, 3), scaled to cover W x H at `fps`."""
     ffmpeg, _ = _ff()
@@ -485,13 +520,15 @@ def match_colour(frames, ref, strength=0.6):
     return np.clip(out, 0, 255).astype(np.uint8)
 
 
-def lineup_boxes(n, W, H, gap=12):
-    """Grid boxes (x, y, w, h) for n tiles of the reel's own aspect: 2 in a row, 3 in a row, 2x2, 3+2."""
+def lineup_boxes(n, W, H, gap=12, top=0, bottom=0):
+    """Grid boxes (x, y, w, h) for n tiles of the reel's own aspect: 2 in a row, 3 in a row, 2x2, 3+2. top/bottom:
+    pixels kept free for the brand bands."""
     cols = {1: 1, 2: 2, 3: 3, 4: 2, 5: 3}.get(n, 3)
     rows = -(-n // cols)
-    w = min((W - (cols + 1) * gap) / cols, (H - (rows + 1) * gap) / rows * W / H)
+    avail = H - top - bottom
+    w = min((W - (cols + 1) * gap) / cols, (avail - (rows + 1) * gap) / rows * W / H)
     h = w * H / W
-    y0 = (H - rows * h - (rows - 1) * gap) / 2
+    y0 = top + (avail - rows * h - (rows - 1) * gap) / 2
     boxes = []
     for k in range(n):
         r, c = divmod(k, cols)
@@ -501,10 +538,49 @@ def lineup_boxes(n, W, H, gap=12):
     return boxes
 
 
-def lineup_frames(stills, n, W, H, pop_frames, bg=(24, 21, 18)):
-    """The finale: every look in a grid, each tile popping in on its beat (scale-in plus a short flash)."""
-    boxes = lineup_boxes(len(stills), W, H)
+def brand_bands(W, H, brand, logo=None, numbered=False):
+    """Top band: logo and shop name. Bottom band: the call to action and the handle. Returns (top_img, bottom_img)
+    as RGBA, or (None, None) when there is nothing to show."""
+    name, handle, cta = brand.get("name", ""), brand.get("handle", ""), brand.get("cta", "")
+    if numbered and not cta:
+        cta = "Comment a number to shop"
+    if not (name or handle or cta or logo is not None):
+        return None, None
+    th, bh = int(H * 0.15), int(H * 0.17)
+    top = Image.new("RGBA", (W, th), (0, 0, 0, 0)); d = ImageDraw.Draw(top)
+    y = th * 0.18
+    if logo is not None:
+        lg = logo.convert("RGBA"); lg.thumbnail((int(W * 0.5), int(th * 0.42)), Image.LANCZOS)
+        top.paste(lg, ((W - lg.width) // 2, int(y)), lg); y += lg.height + th * 0.06
+    if name:
+        f = _font(max(28, W // 15))
+        while d.textlength(name, font=f) > W * 0.9 and f.size > 16:
+            f = _font(f.size - 2)
+        d.text(((W - d.textlength(name, font=f)) / 2, y), name, font=f, fill=(245, 236, 222))
+    bot = Image.new("RGBA", (W, bh), (0, 0, 0, 0)); d = ImageDraw.Draw(bot)
+    y = bh * 0.12
+    if cta:
+        f = _font(max(26, W // 18))
+        while d.textlength(cta, font=f) > W * 0.9 and f.size > 14:
+            f = _font(f.size - 2)
+        d.text(((W - d.textlength(cta, font=f)) / 2, y), cta, font=f, fill=ACCENT); y += f.size * 1.45
+    if handle:
+        f = _font(max(20, W // 26))
+        d.text(((W - d.textlength(handle, font=f)) / 2, y), handle, font=f, fill=(245, 236, 222))
+    return top, bot
+
+
+def lineup_frames(stills, n, W, H, pop_frames, bg=(24, 21, 18), brand=None, logo=None, numbered=False):
+    """The finale: every look in a grid, each tile popping in on its beat (scale-in plus a short flash). With a brand,
+    numbered tiles sit between the shop name (top) and the call to action and handle (bottom)."""
+    top_b, bot_b = brand_bands(W, H, brand or {}, logo, numbered)
+    boxes = lineup_boxes(len(stills), W, H, top=top_b.height if top_b else 0, bottom=bot_b.height if bot_b else 0)
     tiles = [Image.fromarray(st).resize((b[2], b[3]), Image.LANCZOS) for st, b in zip(stills, boxes)]
+    if numbered:
+        for k, t in enumerate(tiles):
+            badge = look_tag_png(k + 1, "", t.width * 3)
+            badge = badge.crop((0, 0, int(badge.height * 1.5), badge.height))
+            t.paste(badge, (10, 10), badge)
     out = np.zeros((n, H, W, 3), np.uint8)
     for i in range(n):
         im = Image.new("RGB", (W, H), bg)
@@ -515,14 +591,30 @@ def lineup_frames(stills, n, W, H, pop_frames, bg=(24, 21, 18)):
             a = max(0.0, 1 - (i - pf) / 5)
             sc = 1 + 0.22 * a
             tw, th = int(b[2] * sc), int(b[3] * sc)
-            im.paste(t.resize((tw, th), Image.BILINEAR) if a > 0 else t, (b[0] - (tw - b[2]) // 2, b[1] - (th - b[3]) // 2))
-            flash = max(flash, 0.3 * a * a)
+            tt = t.resize((tw, th), Image.BILINEAR) if a > 0 else t
+            if a > 0:   # the tile itself flashes as it lands; the rest of the frame stays put
+                tt = Image.fromarray(_flash(np.asarray(tt), 0.45 * a * a))
+            im.paste(tt, (b[0] - (tw - b[2]) // 2, b[1] - (th - b[3]) // 2))
+        if top_b is not None and i >= pop_frames[0]:
+            fade = min(1.0, (i - pop_frames[0] + 1) / 6)
+            for band, y in ((top_b, 0), (bot_b, H - bot_b.height)):
+                b2 = band.copy(); b2.putalpha(b2.getchannel("A").point(lambda v: int(v * fade)))
+                im.paste(b2, (0, y), b2)
         out[i] = _flash(np.asarray(im), flash)
     return out
 
 
+def _rgb_split(fr, px):
+    if px < 1:
+        return fr
+    out = fr.copy()
+    out[..., 0] = np.roll(fr[..., 0], px, axis=1)
+    out[..., 2] = np.roll(fr[..., 2], -px, axis=1)
+    return out
+
+
 # ---------------------------------------------------------------- the edit
-def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, labels=None, before=None):
+def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, labels=None, before=None, logo=None):
     """Cut the looks to the beat. looks: list of dicts {"clip": path} (generated motion) or {"still": PIL/ndarray}
     (free draft: Ken Burns), each optionally with "tile" (the still used in the lineup finale). before: the plain
     person photo for the before->after hook. beats: detect_beats() output for the music in music_path."""
@@ -564,7 +656,8 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
             seg_src[si] = kenburns(before, n + 10, W, H, 0, punch)
         elif s["kind"] == "lineup":
             f0 = int(round(s["t0"] * fps))
-            seg_src[si] = lineup_frames(tiles, n, W, H, [int(round(p * fps)) - f0 for p in s["pops"]])
+            seg_src[si] = lineup_frames(tiles, n, W, H, [int(round(p * fps)) - f0 for p in s["pops"]],
+                                        brand=brief.get("brand"), logo=logo, numbered=bool(brief.get("labels")))
     cursor = [0] * len(looks)
     frames = np.zeros((n_total, H, W, 3), np.uint8)
     cut_frames = []
@@ -594,9 +687,27 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         if ck is not None:
             cursor[ck] += need
         fx = fx_cycle[si % len(fx_cycle)] if s["kind"] == "look" else None
+        glow = (brief.get("glowup", False) and s["kind"] == "look" and si > 0 and plan["segments"][si - 1]["kind"] == "before")
+        if glow:
+            fx = "glow-up"
         fx_used.append(fx)
+        # beat pulse: a small zoom breath on every beat that falls inside the shot (cuts already have their hit)
+        pulse_at = ([int(round((b - s["t0"]) * fps)) for b in plan["beat_times"] if s["t0"] + 0.1 < b < s["t1"] - 0.1]
+                    if brief.get("pulse", False) and s["kind"] == "look" else [])
+        prev = frames[f0 - 1].copy() if f0 > 0 else None
         for i in range(n):
             fr = S[src_idx[i]]
+            if glow and prev is not None:   # the glow-up: stutter between before and after, then flash + RGB split
+                if i < 4:
+                    frames[f0 + i] = prev if i % 2 else _flash(fr, 0.5)
+                    continue
+                a = max(0.0, 1 - (i - 4) / 7)
+                fr = _rgb_split(_flash(_zoom(fr, 1 + punch * a), 0.45 * a * a), int(16 * a))
+                frames[f0 + i] = fr
+                continue
+            for pf in pulse_at:
+                if 0 <= i - pf < 5:
+                    fr = _zoom(fr, 1 + 0.035 * (1 - (i - pf) / 5))
             if i < 5:   # the hit, on the beat
                 a = 1 - i / 5
                 if fx == "punch":
@@ -606,7 +717,8 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                 elif fx == "whip":
                     fr = _whip(fr, a, direction=-1)
             nxt = plan["segments"][si + 1] if si + 1 < len(plan["segments"]) else None
-            if ramp and i >= n - 3 and nxt and nxt["kind"] == "look" and fx_cycle[(si + 1) % len(fx_cycle)] == "whip":   # whip out
+            glow_next = brief.get("glowup", False) and s["kind"] == "before"
+            if ramp and i >= n - 3 and nxt and nxt["kind"] == "look" and not glow_next and fx_cycle[(si + 1) % len(fx_cycle)] == "whip":
                 fr = _whip(fr, (i - (n - 4)) / 3, direction=1)
             frames[f0 + i] = fr
     # loop: blend the last frames into the first so frame[-1] == frame[0]
@@ -624,6 +736,13 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         a0 = cut_frames[first_look]
         a1 = cut_frames[first_look + 1] if first_look + 1 < len(cut_frames) else n_total
         over.append((cap, ((W - cap.width) // 2, int(H * 0.12)), a0, a1))
+    tags = brief.get("labels") or []
+    for k, s in enumerate(plan["segments"]):
+        if s["kind"] == "look" and s["look"] < len(tags) and tags[s["look"]]:
+            tag = look_tag_png(s["look"] + 1, tags[s["look"]], W)
+            a0 = cut_frames[k] + (5 if fx_used[k] == "glow-up" else 2)   # after the glow-up stutter
+            a1 = cut_frames[k + 1] if k + 1 < len(cut_frames) else n_total - nb
+            over.append((tag, (int(W * 0.05), int(H * 0.72)), a0, a1))   # clear of the Reels/TikTok caption and buttons
     lab_txt = (labels or {}).get("label", "AI-generated" if brief.get("ai_label", True) else "")
     if lab_txt:
         over.append((label_png(lab_txt, W), (24, 24), 0, n_total))
@@ -678,6 +797,8 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                             "gain_db": round(gain, 2)},
                "label": lab_txt or None, "headline": brief.get("headline") or None,
                "hook": plan["segments"][0]["kind"] == "before", "lineup": plan["segments"][-1]["kind"] == "lineup",
+               "look_labels": brief.get("labels") or [], "brand": brief.get("brand") or {}, "logo": logo is not None,
+               "pulse": bool(brief.get("pulse")), "glowup": any(f == "glow-up" for f in fx_used),
                "skipped": plan["skipped"], "drift_trimmed": {k: f"kept {a} of {b} frames" for k, (a, b) in trimmed.items()}}
     (work / "receipt.json").write_text(json.dumps(receipt, indent=1))
     np.save(work / "first_last.npy", np.stack([frames[0], frames[-1]]))

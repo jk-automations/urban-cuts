@@ -26,6 +26,15 @@ Two modes:
 
 Three vibes (`street`, `runway`, `boutique`) set the moves and the cut effects. The hook and the lineup are switches in the form, and both are on by default.
 
+**For a shop:**
+- **Look tags:** type one line per look (`Rust bomber | $89`) and each look gets a numbered name-and-price tag, placed
+  clear of the Reels/TikTok caption and buttons.
+- **Branded lineup:** the lineup shows the tile numbers, your shop name and optional logo, and your call to action and
+  handle. With tags and no call to action, it reads "Comment a number to shop".
+- **Glow-up hit:** the before photo stutters into look 1 with a flash and a colour split.
+- **Beat pulse:** a small zoom breath on every beat inside a shot.
+- Every one of these has a switch or a field in the form.
+
 **Consistency:**
 - **Background lock:** with Kling try-on the motion prompt locks the background, so the person stays in their own photo's setting.
 - **Colour match:** every look is matched to look 1, so cuts don't flicker.

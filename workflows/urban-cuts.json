@@ -1,8 +1,8 @@
 {
- "id": "185fa5e1-b2f4-40ee-b820-d76016e80fbd",
+ "id": "6a92e203-cdf6-40a5-9f9c-996083726dd5",
  "revision": 0,
- "last_node_id": 41,
- "last_link_id": 85,
+ "last_node_id": 42,
+ "last_link_id": 86,
  "nodes": [
   {
    "id": 1,
@@ -77,10 +77,10 @@
    ],
    "size": [
     400,
-    432
+    606
    ],
    "flags": {},
-   "order": 7,
+   "order": 8,
    "mode": 0,
    "inputs": [
     {
@@ -208,6 +208,66 @@
       "name": "lineup"
      },
      "link": null
+    },
+    {
+     "label": "Look names + prices (one line per look: Name | $89)",
+     "localized_name": "look_labels",
+     "name": "look_labels",
+     "type": "STRING",
+     "widget": {
+      "name": "look_labels"
+     },
+     "link": null
+    },
+    {
+     "label": "Shop name (lineup)",
+     "localized_name": "brand_name",
+     "name": "brand_name",
+     "type": "STRING",
+     "widget": {
+      "name": "brand_name"
+     },
+     "link": null
+    },
+    {
+     "label": "@handle or website (lineup)",
+     "localized_name": "handle",
+     "name": "handle",
+     "type": "STRING",
+     "widget": {
+      "name": "handle"
+     },
+     "link": null
+    },
+    {
+     "label": "Call to action (empty = 'Comment a number to shop')",
+     "localized_name": "cta",
+     "name": "cta",
+     "type": "STRING",
+     "widget": {
+      "name": "cta"
+     },
+     "link": null
+    },
+    {
+     "label": "Beat pulse",
+     "localized_name": "pulse",
+     "name": "pulse",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "pulse"
+     },
+     "link": null
+    },
+    {
+     "label": "Glow-up hit on the first look",
+     "localized_name": "glowup",
+     "name": "glowup",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "glowup"
+     },
+     "link": null
     }
    ],
    "outputs": [
@@ -288,6 +348,12 @@
     "",
     true,
     true,
+    true,
+    "",
+    "",
+    "",
+    "",
+    true,
     true
    ],
    "widgets_values_named": {
@@ -302,7 +368,13 @@
     "headline": "",
     "ai_label": true,
     "hook": true,
-    "lineup": true
+    "lineup": true,
+    "look_labels": "",
+    "brand_name": "",
+    "handle": "",
+    "cta": "",
+    "pulse": true,
+    "glowup": true
    }
   },
   {
@@ -318,6 +390,70 @@
    ],
    "flags": {},
    "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Logo (optional; blank = none)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      68
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Logo (optional)",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    534
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 2,
    "mode": 0,
    "inputs": [
     {
@@ -348,7 +484,7 @@
      "links": [
       11,
       14,
-      68
+      69
      ]
     },
     {
@@ -372,18 +508,18 @@
    }
   },
   {
-   "id": 4,
+   "id": 5,
    "type": "LoadImage",
    "pos": [
     80,
-    534
+    746
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 2,
+   "order": 3,
    "mode": 0,
    "inputs": [
     {
@@ -414,7 +550,7 @@
      "links": [
       22,
       25,
-      71
+      72
      ]
     },
     {
@@ -438,18 +574,18 @@
    }
   },
   {
-   "id": 5,
+   "id": 6,
    "type": "LoadImage",
    "pos": [
     80,
-    746
+    958
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 3,
+   "order": 4,
    "mode": 0,
    "inputs": [
     {
@@ -480,7 +616,7 @@
      "links": [
       33,
       36,
-      74
+      75
      ]
     },
     {
@@ -504,18 +640,18 @@
    }
   },
   {
-   "id": 6,
+   "id": 7,
    "type": "LoadImage",
    "pos": [
     80,
-    958
+    1170
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 4,
+   "order": 5,
    "mode": 0,
    "inputs": [
     {
@@ -546,7 +682,7 @@
      "links": [
       44,
       47,
-      77
+      78
      ]
     },
     {
@@ -570,18 +706,18 @@
    }
   },
   {
-   "id": 7,
+   "id": 8,
    "type": "LoadImage",
    "pos": [
     80,
-    1170
+    1382
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 5,
+   "order": 6,
    "mode": 0,
    "inputs": [
     {
@@ -612,7 +748,7 @@
      "links": [
       55,
       58,
-      80
+      81
      ]
     },
     {
@@ -636,18 +772,18 @@
    }
   },
   {
-   "id": 8,
+   "id": 9,
    "type": "LoadAudio",
    "pos": [
     80,
-    1382
+    1594
    ],
    "size": [
     282.798828125,
     136
    ],
    "flags": {},
-   "order": 6,
+   "order": 7,
    "mode": 0,
    "inputs": [
     {
@@ -703,7 +839,7 @@
    }
   },
   {
-   "id": 9,
+   "id": 10,
    "type": "SoniloTextToMusic",
    "pos": [
     922.798828125,
@@ -714,7 +850,7 @@
     200
    ],
    "flags": {},
-   "order": 18,
+   "order": 19,
    "mode": 0,
    "inputs": [
     {
@@ -775,7 +911,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 10,
+   "id": 11,
    "type": "UrbanMusic",
    "pos": [
     1402.798828125,
@@ -786,7 +922,7 @@
     66
    ],
    "flags": {},
-   "order": 24,
+   "order": 25,
    "mode": 0,
    "inputs": [
     {
@@ -827,7 +963,7 @@
    }
   },
   {
-   "id": 11,
+   "id": 12,
    "type": "UrbanBeatDetect",
    "pos": [
     1882.798828125,
@@ -838,7 +974,7 @@
     46
    ],
    "flags": {},
-   "order": 30,
+   "order": 31,
    "mode": 0,
    "inputs": [
     {
@@ -872,7 +1008,7 @@
    }
   },
   {
-   "id": 12,
+   "id": 13,
    "type": "PreviewAny",
    "pos": [
     2201.9869140625,
@@ -883,7 +1019,7 @@
     122
    ],
    "flags": {},
-   "order": 36,
+   "order": 37,
    "mode": 0,
    "inputs": [
     {
@@ -909,7 +1045,7 @@
    "widgets_values_named": {}
   },
   {
-   "id": 13,
+   "id": 14,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
@@ -920,7 +1056,7 @@
     78
    ],
    "flags": {},
-   "order": 13,
+   "order": 14,
    "mode": 0,
    "inputs": [
     {
@@ -969,7 +1105,7 @@
    }
   },
   {
-   "id": 14,
+   "id": 15,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -980,7 +1116,7 @@
     126
    ],
    "flags": {},
-   "order": 8,
+   "order": 9,
    "mode": 0,
    "inputs": [
     {
@@ -1042,7 +1178,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 15,
+   "id": 16,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -1053,7 +1189,7 @@
     418
    ],
    "flags": {},
-   "order": 19,
+   "order": 20,
    "mode": 0,
    "inputs": [
     {
@@ -1234,7 +1370,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 16,
+   "id": 17,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -1245,7 +1381,7 @@
     66
    ],
    "flags": {},
-   "order": 25,
+   "order": 26,
    "mode": 0,
    "inputs": [
     {
@@ -1276,7 +1412,7 @@
      "type": "IMAGE",
      "links": [
       18,
-      69
+      70
      ]
     }
    ],
@@ -1286,7 +1422,7 @@
    }
   },
   {
-   "id": 17,
+   "id": 18,
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
@@ -1297,7 +1433,7 @@
     334
    ],
    "flags": {},
-   "order": 31,
+   "order": 32,
    "mode": 0,
    "inputs": [
     {
@@ -1395,7 +1531,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      70
+      71
      ]
     }
    ],
@@ -1431,7 +1567,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 18,
+   "id": 19,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
@@ -1442,7 +1578,7 @@
     78
    ],
    "flags": {},
-   "order": 14,
+   "order": 15,
    "mode": 0,
    "inputs": [
     {
@@ -1491,7 +1627,7 @@
    }
   },
   {
-   "id": 19,
+   "id": 20,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -1502,7 +1638,7 @@
     126
    ],
    "flags": {},
-   "order": 9,
+   "order": 10,
    "mode": 0,
    "inputs": [
     {
@@ -1564,7 +1700,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 20,
+   "id": 21,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -1575,7 +1711,7 @@
     418
    ],
    "flags": {},
-   "order": 20,
+   "order": 21,
    "mode": 0,
    "inputs": [
     {
@@ -1756,7 +1892,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 21,
+   "id": 22,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -1767,7 +1903,7 @@
     66
    ],
    "flags": {},
-   "order": 26,
+   "order": 27,
    "mode": 0,
    "inputs": [
     {
@@ -1798,7 +1934,7 @@
      "type": "IMAGE",
      "links": [
       29,
-      72
+      73
      ]
     }
    ],
@@ -1808,7 +1944,7 @@
    }
   },
   {
-   "id": 22,
+   "id": 23,
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
@@ -1819,7 +1955,7 @@
     334
    ],
    "flags": {},
-   "order": 32,
+   "order": 33,
    "mode": 0,
    "inputs": [
     {
@@ -1917,7 +2053,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      73
+      74
      ]
     }
    ],
@@ -1953,7 +2089,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 23,
+   "id": 24,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
@@ -1964,7 +2100,7 @@
     78
    ],
    "flags": {},
-   "order": 15,
+   "order": 16,
    "mode": 0,
    "inputs": [
     {
@@ -2013,7 +2149,7 @@
    }
   },
   {
-   "id": 24,
+   "id": 25,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -2024,7 +2160,7 @@
     126
    ],
    "flags": {},
-   "order": 10,
+   "order": 11,
    "mode": 0,
    "inputs": [
     {
@@ -2086,7 +2222,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 25,
+   "id": 26,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -2097,7 +2233,7 @@
     418
    ],
    "flags": {},
-   "order": 21,
+   "order": 22,
    "mode": 0,
    "inputs": [
     {
@@ -2278,7 +2414,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 26,
+   "id": 27,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -2289,7 +2425,7 @@
     66
    ],
    "flags": {},
-   "order": 27,
+   "order": 28,
    "mode": 0,
    "inputs": [
     {
@@ -2320,7 +2456,7 @@
      "type": "IMAGE",
      "links": [
       40,
-      75
+      76
      ]
     }
    ],
@@ -2330,7 +2466,7 @@
    }
   },
   {
-   "id": 27,
+   "id": 28,
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
@@ -2341,7 +2477,7 @@
     334
    ],
    "flags": {},
-   "order": 33,
+   "order": 34,
    "mode": 0,
    "inputs": [
     {
@@ -2439,7 +2575,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      76
+      77
      ]
     }
    ],
@@ -2475,7 +2611,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 28,
+   "id": 29,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
@@ -2486,7 +2622,7 @@
     78
    ],
    "flags": {},
-   "order": 16,
+   "order": 17,
    "mode": 0,
    "inputs": [
     {
@@ -2535,7 +2671,7 @@
    }
   },
   {
-   "id": 29,
+   "id": 30,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -2546,7 +2682,7 @@
     126
    ],
    "flags": {},
-   "order": 11,
+   "order": 12,
    "mode": 0,
    "inputs": [
     {
@@ -2608,7 +2744,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 30,
+   "id": 31,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -2619,7 +2755,7 @@
     418
    ],
    "flags": {},
-   "order": 22,
+   "order": 23,
    "mode": 0,
    "inputs": [
     {
@@ -2800,7 +2936,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 31,
+   "id": 32,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -2811,7 +2947,7 @@
     66
    ],
    "flags": {},
-   "order": 28,
+   "order": 29,
    "mode": 0,
    "inputs": [
     {
@@ -2842,7 +2978,7 @@
      "type": "IMAGE",
      "links": [
       51,
-      78
+      79
      ]
     }
    ],
@@ -2852,7 +2988,7 @@
    }
   },
   {
-   "id": 32,
+   "id": 33,
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
@@ -2863,7 +2999,7 @@
     334
    ],
    "flags": {},
-   "order": 34,
+   "order": 35,
    "mode": 0,
    "inputs": [
     {
@@ -2961,7 +3097,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      79
+      80
      ]
     }
    ],
@@ -2997,7 +3133,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 33,
+   "id": 34,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
@@ -3008,7 +3144,7 @@
     78
    ],
    "flags": {},
-   "order": 17,
+   "order": 18,
    "mode": 0,
    "inputs": [
     {
@@ -3057,7 +3193,7 @@
    }
   },
   {
-   "id": 34,
+   "id": 35,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -3068,7 +3204,7 @@
     126
    ],
    "flags": {},
-   "order": 12,
+   "order": 13,
    "mode": 0,
    "inputs": [
     {
@@ -3130,7 +3266,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 35,
+   "id": 36,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -3141,7 +3277,7 @@
     418
    ],
    "flags": {},
-   "order": 23,
+   "order": 24,
    "mode": 0,
    "inputs": [
     {
@@ -3322,7 +3458,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 36,
+   "id": 37,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -3333,7 +3469,7 @@
     66
    ],
    "flags": {},
-   "order": 29,
+   "order": 30,
    "mode": 0,
    "inputs": [
     {
@@ -3364,7 +3500,7 @@
      "type": "IMAGE",
      "links": [
       62,
-      81
+      82
      ]
     }
    ],
@@ -3374,7 +3510,7 @@
    }
   },
   {
-   "id": 37,
+   "id": 38,
    "type": "KlingVideoNode",
    "pos": [
     2201.9869140625,
@@ -3385,7 +3521,7 @@
     334
    ],
    "flags": {},
-   "order": 35,
+   "order": 36,
    "mode": 0,
    "inputs": [
     {
@@ -3483,7 +3619,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      82
+      83
      ]
     }
    ],
@@ -3519,7 +3655,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 38,
+   "id": 39,
    "type": "UrbanBeatCut",
    "pos": [
     2681.9869140625,
@@ -3527,10 +3663,10 @@
    ],
    "size": [
     248.7447265625,
-    386
+    406
    ],
    "flags": {},
-   "order": 37,
+   "order": 38,
    "mode": 0,
    "inputs": [
     {
@@ -3556,105 +3692,105 @@
      "name": "item_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 68
+     "link": 69
     },
     {
      "localized_name": "look_1",
      "name": "look_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 69
+     "link": 70
     },
     {
      "localized_name": "clip_1",
      "name": "clip_1",
      "shape": 7,
      "type": "VIDEO",
-     "link": 70
+     "link": 71
     },
     {
      "localized_name": "item_2",
      "name": "item_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 71
+     "link": 72
     },
     {
      "localized_name": "look_2",
      "name": "look_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 72
+     "link": 73
     },
     {
      "localized_name": "clip_2",
      "name": "clip_2",
      "shape": 7,
      "type": "VIDEO",
-     "link": 73
+     "link": 74
     },
     {
      "localized_name": "item_3",
      "name": "item_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 74
+     "link": 75
     },
     {
      "localized_name": "look_3",
      "name": "look_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 75
+     "link": 76
     },
     {
      "localized_name": "clip_3",
      "name": "clip_3",
      "shape": 7,
      "type": "VIDEO",
-     "link": 76
+     "link": 77
     },
     {
      "localized_name": "item_4",
      "name": "item_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 77
+     "link": 78
     },
     {
      "localized_name": "look_4",
      "name": "look_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 78
+     "link": 79
     },
     {
      "localized_name": "clip_4",
      "name": "clip_4",
      "shape": 7,
      "type": "VIDEO",
-     "link": 79
+     "link": 80
     },
     {
      "localized_name": "item_5",
      "name": "item_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 80
+     "link": 81
     },
     {
      "localized_name": "look_5",
      "name": "look_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 81
+     "link": 82
     },
     {
      "localized_name": "clip_5",
      "name": "clip_5",
      "shape": 7,
      "type": "VIDEO",
-     "link": 82
+     "link": 83
     },
     {
      "localized_name": "before",
@@ -3662,6 +3798,13 @@
      "shape": 7,
      "type": "IMAGE",
      "link": 67
+    },
+    {
+     "localized_name": "logo",
+     "name": "logo",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 68
     }
    ],
    "outputs": [
@@ -3670,7 +3813,7 @@
      "name": "reel",
      "type": "VIDEO",
      "links": [
-      83
+      84
      ]
     },
     {
@@ -3678,7 +3821,7 @@
      "name": "contact_sheet",
      "type": "IMAGE",
      "links": [
-      84
+      85
      ]
     },
     {
@@ -3686,7 +3829,7 @@
      "name": "receipt",
      "type": "STRING",
      "links": [
-      85
+      86
      ]
     }
    ],
@@ -3696,7 +3839,7 @@
    }
   },
   {
-   "id": 39,
+   "id": 40,
    "type": "SaveVideo",
    "pos": [
     3010.731640625,
@@ -3707,14 +3850,14 @@
     106
    ],
    "flags": {},
-   "order": 38,
+   "order": 39,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 83
+     "link": 84
     },
     {
      "localized_name": "filename_prefix",
@@ -3778,7 +3921,7 @@
    }
   },
   {
-   "id": 40,
+   "id": 41,
    "type": "PreviewImage",
    "pos": [
     3010.731640625,
@@ -3789,14 +3932,14 @@
     26
    ],
    "flags": {},
-   "order": 39,
+   "order": 40,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "images",
      "name": "images",
      "type": "IMAGE",
-     "link": 84
+     "link": 85
     }
    ],
    "outputs": [
@@ -3813,7 +3956,7 @@
    }
   },
   {
-   "id": 41,
+   "id": 42,
    "type": "PreviewAny",
    "pos": [
     3010.731640625,
@@ -3824,14 +3967,14 @@
     122
    ],
    "flags": {},
-   "order": 40,
+   "order": 41,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 85
+     "link": 86
     }
    ],
    "outputs": [
@@ -3863,7 +4006,7 @@
    2,
    2,
    3,
-   9,
+   10,
    0,
    "STRING"
   ],
@@ -3871,7 +4014,7 @@
    3,
    2,
    4,
-   9,
+   10,
    1,
    "INT"
   ],
@@ -3879,39 +4022,39 @@
    4,
    2,
    1,
-   10,
+   11,
    0,
    "STRING"
   ],
   [
    5,
-   8,
+   9,
    0,
-   10,
+   11,
    1,
    "AUDIO"
   ],
   [
    6,
-   9,
-   0,
    10,
+   0,
+   11,
    2,
    "AUDIO"
   ],
   [
    7,
-   10,
-   0,
    11,
+   0,
+   12,
    0,
    "AUDIO"
   ],
   [
    8,
-   11,
-   1,
    12,
+   1,
+   13,
    0,
    "STRING"
   ],
@@ -3919,7 +4062,7 @@
    9,
    2,
    1,
-   13,
+   14,
    0,
    "STRING"
   ],
@@ -3927,23 +4070,23 @@
    10,
    2,
    0,
-   14,
+   15,
    0,
    "IMAGE"
   ],
   [
    11,
-   3,
+   4,
    0,
-   14,
+   15,
    1,
    "IMAGE"
   ],
   [
    12,
-   13,
+   14,
    0,
-   15,
+   16,
    0,
    "STRING"
   ],
@@ -3951,15 +4094,15 @@
    13,
    2,
    0,
-   15,
+   16,
    5,
    "IMAGE"
   ],
   [
    14,
-   3,
+   4,
    0,
-   15,
+   16,
    6,
    "IMAGE"
   ],
@@ -3967,39 +4110,39 @@
    15,
    2,
    2,
-   16,
+   17,
    0,
    "STRING"
   ],
   [
    16,
-   14,
+   15,
    0,
-   16,
+   17,
    1,
    "IMAGE"
   ],
   [
    17,
-   15,
-   0,
    16,
+   0,
+   17,
    2,
    "IMAGE"
   ],
   [
    18,
-   16,
-   0,
    17,
+   0,
+   18,
    0,
    "IMAGE"
   ],
   [
    19,
-   13,
+   14,
    1,
-   17,
+   18,
    2,
    "STRING"
   ],
@@ -4007,7 +4150,7 @@
    20,
    2,
    1,
-   18,
+   19,
    0,
    "STRING"
   ],
@@ -4015,23 +4158,23 @@
    21,
    2,
    0,
-   19,
+   20,
    0,
    "IMAGE"
   ],
   [
    22,
-   4,
+   5,
    0,
-   19,
+   20,
    1,
    "IMAGE"
   ],
   [
    23,
-   18,
+   19,
    0,
-   20,
+   21,
    0,
    "STRING"
   ],
@@ -4039,15 +4182,15 @@
    24,
    2,
    0,
-   20,
+   21,
    5,
    "IMAGE"
   ],
   [
    25,
-   4,
+   5,
    0,
-   20,
+   21,
    6,
    "IMAGE"
   ],
@@ -4055,39 +4198,39 @@
    26,
    2,
    2,
-   21,
+   22,
    0,
    "STRING"
   ],
   [
    27,
-   19,
+   20,
    0,
-   21,
+   22,
    1,
    "IMAGE"
   ],
   [
    28,
-   20,
-   0,
    21,
+   0,
+   22,
    2,
    "IMAGE"
   ],
   [
    29,
-   21,
-   0,
    22,
+   0,
+   23,
    0,
    "IMAGE"
   ],
   [
    30,
-   18,
+   19,
    1,
-   22,
+   23,
    2,
    "STRING"
   ],
@@ -4095,7 +4238,7 @@
    31,
    2,
    1,
-   23,
+   24,
    0,
    "STRING"
   ],
@@ -4103,23 +4246,23 @@
    32,
    2,
    0,
-   24,
+   25,
    0,
    "IMAGE"
   ],
   [
    33,
-   5,
+   6,
    0,
-   24,
+   25,
    1,
    "IMAGE"
   ],
   [
    34,
-   23,
+   24,
    0,
-   25,
+   26,
    0,
    "STRING"
   ],
@@ -4127,15 +4270,15 @@
    35,
    2,
    0,
-   25,
+   26,
    5,
    "IMAGE"
   ],
   [
    36,
-   5,
+   6,
    0,
-   25,
+   26,
    6,
    "IMAGE"
   ],
@@ -4143,39 +4286,39 @@
    37,
    2,
    2,
-   26,
+   27,
    0,
    "STRING"
   ],
   [
    38,
-   24,
+   25,
    0,
-   26,
+   27,
    1,
    "IMAGE"
   ],
   [
    39,
-   25,
-   0,
    26,
+   0,
+   27,
    2,
    "IMAGE"
   ],
   [
    40,
-   26,
-   0,
    27,
+   0,
+   28,
    0,
    "IMAGE"
   ],
   [
    41,
-   23,
+   24,
    1,
-   27,
+   28,
    2,
    "STRING"
   ],
@@ -4183,7 +4326,7 @@
    42,
    2,
    1,
-   28,
+   29,
    0,
    "STRING"
   ],
@@ -4191,23 +4334,23 @@
    43,
    2,
    0,
-   29,
+   30,
    0,
    "IMAGE"
   ],
   [
    44,
-   6,
+   7,
    0,
-   29,
+   30,
    1,
    "IMAGE"
   ],
   [
    45,
-   28,
+   29,
    0,
-   30,
+   31,
    0,
    "STRING"
   ],
@@ -4215,15 +4358,15 @@
    46,
    2,
    0,
-   30,
+   31,
    5,
    "IMAGE"
   ],
   [
    47,
-   6,
+   7,
    0,
-   30,
+   31,
    6,
    "IMAGE"
   ],
@@ -4231,39 +4374,39 @@
    48,
    2,
    2,
-   31,
+   32,
    0,
    "STRING"
   ],
   [
    49,
-   29,
+   30,
    0,
-   31,
+   32,
    1,
    "IMAGE"
   ],
   [
    50,
-   30,
-   0,
    31,
+   0,
+   32,
    2,
    "IMAGE"
   ],
   [
    51,
-   31,
-   0,
    32,
+   0,
+   33,
    0,
    "IMAGE"
   ],
   [
    52,
-   28,
+   29,
    1,
-   32,
+   33,
    2,
    "STRING"
   ],
@@ -4271,7 +4414,7 @@
    53,
    2,
    1,
-   33,
+   34,
    0,
    "STRING"
   ],
@@ -4279,23 +4422,23 @@
    54,
    2,
    0,
-   34,
+   35,
    0,
    "IMAGE"
   ],
   [
    55,
-   7,
+   8,
    0,
-   34,
+   35,
    1,
    "IMAGE"
   ],
   [
    56,
-   33,
+   34,
    0,
-   35,
+   36,
    0,
    "STRING"
   ],
@@ -4303,15 +4446,15 @@
    57,
    2,
    0,
-   35,
+   36,
    5,
    "IMAGE"
   ],
   [
    58,
-   7,
+   8,
    0,
-   35,
+   36,
    6,
    "IMAGE"
   ],
@@ -4319,39 +4462,39 @@
    59,
    2,
    2,
-   36,
+   37,
    0,
    "STRING"
   ],
   [
    60,
-   34,
+   35,
    0,
-   36,
+   37,
    1,
    "IMAGE"
   ],
   [
    61,
-   35,
-   0,
    36,
+   0,
+   37,
    2,
    "IMAGE"
   ],
   [
    62,
-   36,
-   0,
    37,
+   0,
+   38,
    0,
    "IMAGE"
   ],
   [
    63,
-   33,
+   34,
    1,
-   37,
+   38,
    2,
    "STRING"
   ],
@@ -4359,23 +4502,23 @@
    64,
    2,
    1,
-   38,
+   39,
    0,
    "STRING"
   ],
   [
    65,
-   10,
+   11,
    0,
-   38,
+   39,
    1,
    "AUDIO"
   ],
   [
    66,
-   11,
+   12,
    0,
-   38,
+   39,
    2,
    "STRING"
   ],
@@ -4383,7 +4526,7 @@
    67,
    2,
    0,
-   38,
+   39,
    18,
    "IMAGE"
   ],
@@ -4391,143 +4534,151 @@
    68,
    3,
    0,
-   38,
-   3,
+   39,
+   19,
    "IMAGE"
   ],
   [
    69,
-   16,
-   0,
-   38,
    4,
+   0,
+   39,
+   3,
    "IMAGE"
   ],
   [
    70,
    17,
    0,
-   38,
+   39,
+   4,
+   "IMAGE"
+  ],
+  [
+   71,
+   18,
+   0,
+   39,
    5,
    "VIDEO"
   ],
   [
-   71,
-   4,
-   0,
-   38,
-   6,
-   "IMAGE"
-  ],
-  [
    72,
-   21,
+   5,
    0,
-   38,
-   7,
+   39,
+   6,
    "IMAGE"
   ],
   [
    73,
    22,
    0,
-   38,
+   39,
+   7,
+   "IMAGE"
+  ],
+  [
+   74,
+   23,
+   0,
+   39,
    8,
    "VIDEO"
   ],
   [
-   74,
-   5,
-   0,
-   38,
-   9,
-   "IMAGE"
-  ],
-  [
    75,
-   26,
+   6,
    0,
-   38,
-   10,
+   39,
+   9,
    "IMAGE"
   ],
   [
    76,
    27,
    0,
-   38,
+   39,
+   10,
+   "IMAGE"
+  ],
+  [
+   77,
+   28,
+   0,
+   39,
    11,
    "VIDEO"
   ],
   [
-   77,
-   6,
-   0,
-   38,
-   12,
-   "IMAGE"
-  ],
-  [
    78,
-   31,
+   7,
    0,
-   38,
-   13,
+   39,
+   12,
    "IMAGE"
   ],
   [
    79,
    32,
    0,
-   38,
+   39,
+   13,
+   "IMAGE"
+  ],
+  [
+   80,
+   33,
+   0,
+   39,
    14,
    "VIDEO"
   ],
   [
-   80,
-   7,
-   0,
-   38,
-   15,
-   "IMAGE"
-  ],
-  [
    81,
-   36,
+   8,
    0,
-   38,
-   16,
+   39,
+   15,
    "IMAGE"
   ],
   [
    82,
    37,
    0,
-   38,
-   17,
-   "VIDEO"
+   39,
+   16,
+   "IMAGE"
   ],
   [
    83,
    38,
    0,
    39,
-   0,
+   17,
    "VIDEO"
   ],
   [
    84,
-   38,
-   1,
+   39,
+   0,
    40,
+   0,
+   "VIDEO"
+  ],
+  [
+   85,
+   39,
+   1,
+   41,
    0,
    "IMAGE"
   ],
   [
-   85,
-   38,
+   86,
+   39,
    2,
-   41,
+   42,
    0,
    "STRING"
   ]
@@ -4562,10 +4713,6 @@
      "vibe"
     ],
     [
-     3,
-     "image"
-    ],
-    [
      4,
      "image"
     ],
@@ -4582,6 +4729,10 @@
      "image"
     ],
     [
+     8,
+     "image"
+    ],
+    [
      2,
      "look_engine"
     ],
@@ -4594,8 +4745,28 @@
      "music_prompt"
     ],
     [
-     8,
+     9,
      "audio"
+    ],
+    [
+     2,
+     "look_labels"
+    ],
+    [
+     2,
+     "brand_name"
+    ],
+    [
+     2,
+     "handle"
+    ],
+    [
+     2,
+     "cta"
+    ],
+    [
+     3,
+     "image"
     ],
     [
      2,
@@ -4611,6 +4782,14 @@
     ],
     [
      2,
+     "glowup"
+    ],
+    [
+     2,
+     "pulse"
+    ],
+    [
+     2,
      "lineup"
     ],
     [
@@ -4623,10 +4802,10 @@
     ]
    ],
    "outputs": [
-    39,
     40,
     41,
-    12
+    42,
+    13
    ]
   }
  },

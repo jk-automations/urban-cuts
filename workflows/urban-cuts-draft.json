@@ -1,8 +1,8 @@
 {
- "id": "5eb72477-3203-4500-a9e3-cf04c4762bae",
+ "id": "0a68d050-b7db-4a16-a878-8edd1fed8560",
  "revision": 0,
- "last_node_id": 20,
- "last_link_id": 22,
+ "last_node_id": 21,
+ "last_link_id": 23,
  "nodes": [
   {
    "id": 1,
@@ -77,10 +77,10 @@
    ],
    "size": [
     400,
-    432
+    606
    ],
    "flags": {},
-   "order": 12,
+   "order": 13,
    "mode": 0,
    "inputs": [
     {
@@ -205,6 +205,66 @@
       "name": "lineup"
      },
      "link": null
+    },
+    {
+     "label": "Look names + prices (one line per look: Name | $89)",
+     "localized_name": "look_labels",
+     "name": "look_labels",
+     "type": "STRING",
+     "widget": {
+      "name": "look_labels"
+     },
+     "link": null
+    },
+    {
+     "label": "Shop name (lineup)",
+     "localized_name": "brand_name",
+     "name": "brand_name",
+     "type": "STRING",
+     "widget": {
+      "name": "brand_name"
+     },
+     "link": null
+    },
+    {
+     "label": "@handle or website (lineup)",
+     "localized_name": "handle",
+     "name": "handle",
+     "type": "STRING",
+     "widget": {
+      "name": "handle"
+     },
+     "link": null
+    },
+    {
+     "label": "Call to action (empty = 'Comment a number to shop')",
+     "localized_name": "cta",
+     "name": "cta",
+     "type": "STRING",
+     "widget": {
+      "name": "cta"
+     },
+     "link": null
+    },
+    {
+     "label": "Beat pulse",
+     "localized_name": "pulse",
+     "name": "pulse",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "pulse"
+     },
+     "link": null
+    },
+    {
+     "label": "Glow-up hit on the first look",
+     "localized_name": "glowup",
+     "name": "glowup",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "glowup"
+     },
+     "link": null
     }
    ],
    "outputs": [
@@ -260,6 +320,12 @@
     "",
     true,
     true,
+    true,
+    "",
+    "",
+    "",
+    "",
+    true,
     true
    ],
    "widgets_values_named": {
@@ -274,7 +340,13 @@
     "headline": "",
     "ai_label": true,
     "hook": true,
-    "lineup": true
+    "lineup": true,
+    "look_labels": "",
+    "brand_name": "",
+    "handle": "",
+    "cta": "",
+    "pulse": true,
+    "glowup": true
    }
   },
   {
@@ -293,7 +365,7 @@
    "mode": 0,
    "inputs": [
     {
-     "label": "Outfit or product 1",
+     "label": "Logo (optional; blank = none)",
      "localized_name": "image",
      "name": "image",
      "type": "COMBO",
@@ -328,16 +400,16 @@
      "links": null
     }
    ],
-   "title": "Outfit or product 1",
+   "title": "Logo (optional)",
    "properties": {
     "Node name for S&R": "LoadImage"
    },
    "widgets_values": [
-    "urban_sample_outfit_1.png",
+    "urban_blank.png",
     "image"
    ],
    "widgets_values_named": {
-    "image": "urban_sample_outfit_1.png",
+    "image": "urban_blank.png",
     "upload": "image"
    }
   },
@@ -354,6 +426,70 @@
    ],
    "flags": {},
    "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Outfit or product 1",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Outfit or product 1",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "urban_sample_outfit_1.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "urban_sample_outfit_1.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 5,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    746
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 3,
    "mode": 0,
    "inputs": [
     {
@@ -382,7 +518,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      12
+      13
      ]
     },
     {
@@ -406,18 +542,18 @@
    }
   },
   {
-   "id": 5,
+   "id": 6,
    "type": "LoadImage",
    "pos": [
     80,
-    746
+    958
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 3,
+   "order": 4,
    "mode": 0,
    "inputs": [
     {
@@ -446,7 +582,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      14
+      15
      ]
     },
     {
@@ -470,18 +606,18 @@
    }
   },
   {
-   "id": 6,
+   "id": 7,
    "type": "LoadImage",
    "pos": [
     80,
-    958
+    1170
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 4,
+   "order": 5,
    "mode": 0,
    "inputs": [
     {
@@ -510,7 +646,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      16
+      17
      ]
     },
     {
@@ -534,18 +670,18 @@
    }
   },
   {
-   "id": 7,
+   "id": 8,
    "type": "LoadImage",
    "pos": [
     80,
-    1170
+    1382
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 5,
+   "order": 6,
    "mode": 0,
    "inputs": [
     {
@@ -574,7 +710,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      18
+      19
      ]
     },
     {
@@ -598,18 +734,18 @@
    }
   },
   {
-   "id": 8,
+   "id": 9,
    "type": "LoadAudio",
    "pos": [
     80,
-    1382
+    1594
    ],
    "size": [
     282.798828125,
     136
    ],
    "flags": {},
-   "order": 6,
+   "order": 7,
    "mode": 0,
    "inputs": [
     {
@@ -665,7 +801,7 @@
    }
   },
   {
-   "id": 9,
+   "id": 10,
    "type": "UrbanMusic",
    "pos": [
     922.798828125,
@@ -676,7 +812,7 @@
     66
    ],
    "flags": {},
-   "order": 13,
+   "order": 14,
    "mode": 0,
    "inputs": [
     {
@@ -717,7 +853,7 @@
    }
   },
   {
-   "id": 10,
+   "id": 11,
    "type": "UrbanBeatDetect",
    "pos": [
     1197.3482421875,
@@ -728,7 +864,7 @@
     46
    ],
    "flags": {},
-   "order": 14,
+   "order": 15,
    "mode": 0,
    "inputs": [
     {
@@ -762,18 +898,18 @@
    }
   },
   {
-   "id": 11,
+   "id": 12,
    "type": "PreviewAny",
    "pos": [
     1477.5304687500002,
-    606
+    626
    ],
    "size": [
     210,
     122
    ],
    "flags": {},
-   "order": 16,
+   "order": 17,
    "mode": 0,
    "inputs": [
     {
@@ -799,18 +935,18 @@
    "widgets_values_named": {}
   },
   {
-   "id": 12,
+   "id": 13,
    "type": "LoadImage",
    "pos": [
     80,
-    1628
+    1840
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 7,
+   "order": 8,
    "mode": 0,
    "inputs": [
     {
@@ -839,7 +975,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      11
+      12
      ]
     },
     {
@@ -863,18 +999,18 @@
    }
   },
   {
-   "id": 13,
+   "id": 14,
    "type": "LoadImage",
    "pos": [
     80,
-    1840
+    2052
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 8,
+   "order": 9,
    "mode": 0,
    "inputs": [
     {
@@ -903,7 +1039,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      13
+      14
      ]
     },
     {
@@ -927,18 +1063,18 @@
    }
   },
   {
-   "id": 14,
+   "id": 15,
    "type": "LoadImage",
    "pos": [
     80,
-    2052
+    2264
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 9,
+   "order": 10,
    "mode": 0,
    "inputs": [
     {
@@ -967,7 +1103,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      15
+      16
      ]
     },
     {
@@ -991,18 +1127,18 @@
    }
   },
   {
-   "id": 15,
+   "id": 16,
    "type": "LoadImage",
    "pos": [
     80,
-    2264
+    2476
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 10,
+   "order": 11,
    "mode": 0,
    "inputs": [
     {
@@ -1031,7 +1167,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      17
+      18
      ]
     },
     {
@@ -1055,18 +1191,18 @@
    }
   },
   {
-   "id": 16,
+   "id": 17,
    "type": "LoadImage",
    "pos": [
     80,
-    2476
+    2688
    ],
    "size": [
     282.798828125,
     102
    ],
    "flags": {},
-   "order": 11,
+   "order": 12,
    "mode": 0,
    "inputs": [
     {
@@ -1095,7 +1231,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      19
+      20
      ]
     },
     {
@@ -1119,7 +1255,7 @@
    }
   },
   {
-   "id": 17,
+   "id": 18,
    "type": "UrbanBeatCut",
    "pos": [
     1477.5304687500002,
@@ -1127,10 +1263,10 @@
    ],
    "size": [
     248.7447265625,
-    386
+    406
    ],
    "flags": {},
-   "order": 15,
+   "order": 16,
    "mode": 0,
    "inputs": [
     {
@@ -1156,14 +1292,14 @@
      "name": "item_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 10
+     "link": 11
     },
     {
      "localized_name": "look_1",
      "name": "look_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 11
+     "link": 12
     },
     {
      "localized_name": "clip_1",
@@ -1177,14 +1313,14 @@
      "name": "item_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 12
+     "link": 13
     },
     {
      "localized_name": "look_2",
      "name": "look_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 13
+     "link": 14
     },
     {
      "localized_name": "clip_2",
@@ -1198,14 +1334,14 @@
      "name": "item_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 14
+     "link": 15
     },
     {
      "localized_name": "look_3",
      "name": "look_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 15
+     "link": 16
     },
     {
      "localized_name": "clip_3",
@@ -1219,14 +1355,14 @@
      "name": "item_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 16
+     "link": 17
     },
     {
      "localized_name": "look_4",
      "name": "look_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 17
+     "link": 18
     },
     {
      "localized_name": "clip_4",
@@ -1240,14 +1376,14 @@
      "name": "item_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 18
+     "link": 19
     },
     {
      "localized_name": "look_5",
      "name": "look_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 19
+     "link": 20
     },
     {
      "localized_name": "clip_5",
@@ -1262,6 +1398,13 @@
      "shape": 7,
      "type": "IMAGE",
      "link": 9
+    },
+    {
+     "localized_name": "logo",
+     "name": "logo",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 10
     }
    ],
    "outputs": [
@@ -1270,7 +1413,7 @@
      "name": "reel",
      "type": "VIDEO",
      "links": [
-      20
+      21
      ]
     },
     {
@@ -1278,7 +1421,7 @@
      "name": "contact_sheet",
      "type": "IMAGE",
      "links": [
-      21
+      22
      ]
     },
     {
@@ -1286,7 +1429,7 @@
      "name": "receipt",
      "type": "STRING",
      "links": [
-      22
+      23
      ]
     }
    ],
@@ -1296,7 +1439,7 @@
    }
   },
   {
-   "id": 18,
+   "id": 19,
    "type": "SaveVideo",
    "pos": [
     1806.2751953125003,
@@ -1307,14 +1450,14 @@
     106
    ],
    "flags": {},
-   "order": 17,
+   "order": 18,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 20
+     "link": 21
     },
     {
      "localized_name": "filename_prefix",
@@ -1378,7 +1521,7 @@
    }
   },
   {
-   "id": 19,
+   "id": 20,
    "type": "PreviewImage",
    "pos": [
     1806.2751953125003,
@@ -1389,14 +1532,14 @@
     26
    ],
    "flags": {},
-   "order": 18,
+   "order": 19,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "images",
      "name": "images",
      "type": "IMAGE",
-     "link": 21
+     "link": 22
     }
    ],
    "outputs": [
@@ -1413,7 +1556,7 @@
    }
   },
   {
-   "id": 20,
+   "id": 21,
    "type": "PreviewAny",
    "pos": [
     1806.2751953125003,
@@ -1424,14 +1567,14 @@
     122
    ],
    "flags": {},
-   "order": 19,
+   "order": 20,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 22
+     "link": 23
     }
    ],
    "outputs": [
@@ -1463,31 +1606,31 @@
    2,
    2,
    1,
-   9,
+   10,
    0,
    "STRING"
   ],
   [
    3,
-   8,
-   0,
    9,
+   0,
+   10,
    1,
    "AUDIO"
   ],
   [
    4,
-   9,
-   0,
    10,
+   0,
+   11,
    0,
    "AUDIO"
   ],
   [
    5,
-   10,
-   1,
    11,
+   1,
+   12,
    0,
    "STRING"
   ],
@@ -1495,23 +1638,23 @@
    6,
    2,
    1,
-   17,
+   18,
    0,
    "STRING"
   ],
   [
    7,
-   9,
+   10,
    0,
-   17,
+   18,
    1,
    "AUDIO"
   ],
   [
    8,
-   10,
+   11,
    0,
-   17,
+   18,
    2,
    "STRING"
   ],
@@ -1519,7 +1662,7 @@
    9,
    2,
    0,
-   17,
+   18,
    18,
    "IMAGE"
   ],
@@ -1527,80 +1670,80 @@
    10,
    3,
    0,
-   17,
-   3,
+   18,
+   19,
    "IMAGE"
   ],
   [
    11,
-   12,
-   0,
-   17,
    4,
+   0,
+   18,
+   3,
    "IMAGE"
   ],
   [
    12,
-   4,
+   13,
    0,
-   17,
+   18,
+   4,
+   "IMAGE"
+  ],
+  [
+   13,
+   5,
+   0,
+   18,
    6,
    "IMAGE"
   ],
   [
-   13,
-   13,
+   14,
+   14,
    0,
-   17,
+   18,
    7,
    "IMAGE"
   ],
   [
-   14,
-   5,
-   0,
-   17,
-   9,
-   "IMAGE"
-  ],
-  [
    15,
-   14,
+   6,
    0,
-   17,
-   10,
+   18,
+   9,
    "IMAGE"
   ],
   [
    16,
-   6,
+   15,
    0,
+   18,
+   10,
+   "IMAGE"
+  ],
+  [
    17,
+   7,
+   0,
+   18,
    12,
    "IMAGE"
   ],
   [
-   17,
-   15,
-   0,
-   17,
-   13,
-   "IMAGE"
-  ],
-  [
    18,
-   7,
+   16,
    0,
-   17,
-   15,
+   18,
+   13,
    "IMAGE"
   ],
   [
    19,
-   16,
+   8,
    0,
-   17,
-   16,
+   18,
+   15,
    "IMAGE"
   ],
   [
@@ -1608,22 +1751,30 @@
    17,
    0,
    18,
+   16,
+   "IMAGE"
+  ],
+  [
+   21,
+   18,
+   0,
+   19,
    0,
    "VIDEO"
   ],
   [
-   21,
-   17,
+   22,
+   18,
    1,
-   19,
+   20,
    0,
    "IMAGE"
   ],
   [
-   22,
-   17,
+   23,
+   18,
    2,
-   20,
+   21,
    0,
    "STRING"
   ]
@@ -1658,10 +1809,6 @@
      "vibe"
     ],
     [
-     3,
-     "image"
-    ],
-    [
      4,
      "image"
     ],
@@ -1678,7 +1825,7 @@
      "image"
     ],
     [
-     12,
+     8,
      "image"
     ],
     [
@@ -1698,8 +1845,32 @@
      "image"
     ],
     [
-     8,
+     17,
+     "image"
+    ],
+    [
+     9,
      "audio"
+    ],
+    [
+     2,
+     "look_labels"
+    ],
+    [
+     2,
+     "brand_name"
+    ],
+    [
+     2,
+     "handle"
+    ],
+    [
+     2,
+     "cta"
+    ],
+    [
+     3,
+     "image"
     ],
     [
      2,
@@ -1715,6 +1886,14 @@
     ],
     [
      2,
+     "glowup"
+    ],
+    [
+     2,
+     "pulse"
+    ],
+    [
+     2,
      "lineup"
     ],
     [
@@ -1727,10 +1906,10 @@
     ]
    ],
    "outputs": [
-    18,
     19,
     20,
-    11
+    21,
+    12
    ]
   }
  },
