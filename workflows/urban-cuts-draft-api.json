@@ -25,15 +25,18 @@
    "music_prompt": "",
    "headline": "",
    "ai_label": true,
-   "hook": true,
-   "lineup": true,
+   "hook": "teaser",
+   "lineup": false,
    "look_labels": "",
    "brand_name": "",
    "handle": "",
    "cta": "",
    "pulse": true,
    "glowup": true,
-   "angles": true
+   "angles": true,
+   "style": "brand",
+   "set": "keep my photo's background",
+   "prices": false
   },
   "_meta": {
    "title": "Your choices"

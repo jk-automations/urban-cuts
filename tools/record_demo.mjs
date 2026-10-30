@@ -50,7 +50,7 @@ await page.screenshot({ path: `${outDir}/graph.png` });
 
 await load("workflows/urban-cuts-draft.json");
 await page.getByRole("switch").first().click();
-const box = page.locator("text=Headline on the first look").locator("xpath=following::input[1] | following::textarea[1]").first();
+const box = page.locator("text=Headline (optional").locator("xpath=following::input[1] | following::textarea[1]").first();
 await box.fill(""); await box.press("Tab");
 await page.waitForTimeout(800);
 await page.screenshot({ path: `${outDir}/draft-form.png` });

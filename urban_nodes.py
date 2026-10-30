@@ -69,11 +69,13 @@ class UrbanBrief:
                             "Nano Banana 2 restages the photo in the vibe's setting. Products always use Nano Banana 2."}),
             "music_source": (core.MUSIC_SOURCES, {"default": core.MUSIC_SOURCES[0]}),
             "music_prompt": ("STRING", {"default": "", "multiline": True, "tooltip": "For Sonilo. Empty = the vibe's default."}),
-            "headline": ("STRING", {"default": "", "tooltip": "Optional big text on the first look, e.g. 'New arrivals'."}),
+            "headline": ("STRING", {"default": "", "tooltip": "Optional one short line, e.g. '4 fits, 1 weekend'. Brand "
+                         "style: small, top third, the whole reel. Hype style: big, on the first look."}),
             "ai_label": ("BOOLEAN", {"default": True, "tooltip": "Keep this on when you post."}),
-            "hook": ("BOOLEAN", {"default": True, "tooltip": "Open on the plain 'before' photo for 2 beats, then cut into "
-                     "look 1 on the beat. The loop comes back to it."}),
-            "lineup": ("BOOLEAN", {"default": True, "tooltip": "End on a grid of every look, one popping in per beat."}),
+            "hook": (core.HOOKS, {"default": "teaser", "tooltip": "teaser: one beat of every look first (show the range "
+                     "up front, like brand posts). before→after: the plain photo for 2 beats, then look 1. off: start on look 1."}),
+            "lineup": ("BOOLEAN", {"default": False, "tooltip": "End on a grid of every look, one popping in per beat "
+                       "(for 'comment a number to shop' posts). Off + a handle = a plain handle card in brand style."}),
             "look_labels": ("STRING", {"default": "", "multiline": True, "tooltip": "One line per look, in order: "
                             "'Rust bomber jacket | $89'. Shown as a numbered tag on each look; the lineup tiles get the numbers."}),
             "brand_name": ("STRING", {"default": "", "tooltip": "Your shop's name, shown over the lineup."}),
@@ -82,22 +84,30 @@ class UrbanBrief:
                     "Empty with labels = 'Comment a number to shop'."}),
             "pulse": ("BOOLEAN", {"default": True, "tooltip": "A small zoom breath on every beat inside a shot."}),
             "glowup": ("BOOLEAN", {"default": True, "tooltip": "The before->look 1 cut stutters, flashes and splits colour."}),
-            "angles": ("BOOLEAN", {"default": True, "tooltip": "Camera angles per look: a full 360 turnaround, then a close-up "
-                       "on the fabric (one Kling storyboard, 5 s, so face and outfit stay the same). Off = one 3 s move."}),
+            "angles": ("BOOLEAN", {"default": True, "tooltip": "Two shots per look from one Kling storyboard (5 s, so face "
+                       "and outfit stay the same): brand style = a pose sequence (hand on hip, turn to the back, look over the "
+                       "shoulder), hype style = a 360 turnaround; then a close-up on the fabric. Off = one 3 s move."}),
+            "style": (core.STYLES, {"default": "brand", "tooltip": "brand: how fashion brands post (plain hard cuts, warm "
+                      "grade, small clean text). hype: punch/flash/whip on every beat, glow-up and beat pulse."}),
+            "set": (core.SETS, {"default": core.SETS[1], "tooltip": "white wall room: each look is moved into a bright room "
+                    "with a white wall and a wooden floor (Nano Banana 2.1 edit, ~$0.05 per look). Or keep your photo's background."}),
+            "prices": ("BOOLEAN", {"default": False, "tooltip": "Show the price from 'Look names + prices' on each look."}),
         }}
 
     def run(self, person, consent, mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, ai_label,
-            hook=True, lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True, angles=True):
+            hook="teaser", lineup=False, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True, angles=True,
+            style="brand", set=core.SETS[1], prices=False):
         b = core.make_brief(mode, vibe, length, aspect, look_engine, music_source, music_prompt, headline, consent, ai_label,
-                            hook, lineup, look_labels, brand_name, handle, cta, pulse, glowup, angles)
+                            hook, lineup, look_labels, brand_name, handle, cta, pulse, glowup, angles, style, set, prices)
         return (person, json.dumps(b), b["engine"], b["music_prompt"], b["music_seconds"])
 
 
 class UrbanShot:
-    """Look k: the Nano Banana 2 edit prompt and the Kling motion prompt."""
+    """Look k: the Nano Banana 2 edit prompt, the Kling motion prompt, the two storyboard prompts (brand: pose sequence,
+    hype: turnaround; then the close-up) and the room restage prompt."""
     CATEGORY = CAT
-    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING")
-    RETURN_NAMES = ("look_prompt", "motion_prompt", "turnaround_prompt", "closeup_prompt")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("look_prompt", "motion_prompt", "shot1_prompt", "closeup_prompt", "room_prompt")
     FUNCTION = "run"
 
     @classmethod
@@ -106,7 +116,7 @@ class UrbanShot:
 
     def run(self, brief, look):
         b = json.loads(brief)
-        return (core.look_prompt(b, look), core.motion_prompt(b, look), *core.angle_prompts(b, look))
+        return (core.look_prompt(b, look), core.motion_prompt(b, look), *core.shot_prompts(b, look), core.restage_prompt(b, look))
 
 
 class UrbanPickLook:
@@ -130,6 +140,29 @@ class UrbanPickLook:
         if img is None:
             raise ValueError(f"no image from the {engine} branch")
         return (img,)
+
+
+class UrbanSet:
+    """Keep the look as it is, or use its 'white wall room' version. The room edit only runs when picked (lazy)."""
+    CATEGORY = CAT
+    RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("look",)
+    FUNCTION = "run"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {"required": {"brief": ("STRING", {"forceInput": True}), "look": ("IMAGE",)},
+                "optional": {"room": ("IMAGE", {"lazy": True})}}
+
+    def check_lazy_status(self, brief, look, room=None):
+        return ["room"] if json.loads(brief).get("set") == "room" and room is None and not _is_blank(look) else []
+
+    def run(self, brief, look, room=None):
+        if json.loads(brief).get("set") == "room" and not _is_blank(look):
+            if room is None:
+                raise ValueError("no image from the room edit")
+            return (room,)
+        return (look,)
 
 
 class UrbanMusic:
@@ -233,8 +266,11 @@ class UrbanBeatCut:
                 looks.append({"still": still})
         motion = any("clip" in lk for lk in looks)
         if motion:
-            vid = "Kling 3.0 storyboard (3 s turnaround + 2 s close-up, 720p)" if b.get("angles") else f"Kling 3.0 video ({core.CLIP_SECONDS} s, 720p)"
-            calls += [f"look {k}: {'Kling Virtual Try-On' if b['engine'] == 'kling' else 'Nano Banana 2.1 edit'} + {vid}" for k in used]
+            first = "pose sequence" if b.get("style") == "brand" else "turnaround"
+            vid = (f"Kling 3.0 storyboard (3 s {first} + 2 s close-up, 720p)" if b.get("angles")
+                   else f"Kling 3.0 video ({core.CLIP_SECONDS} s, 720p)")
+            room = " + Nano Banana 2.1 room edit" if b.get("set") == "room" else ""
+            calls += [f"look {k}: {'Kling Virtual Try-On' if b['engine'] == 'kling' else 'Nano Banana 2.1 edit'}{room} + {vid}" for k in used]
         y, sr = audio_to_numpy(music)
         wav = core.write_wav(tmp / "music.wav", y, sr)
         if b["music"] == "sonilo" and motion:
@@ -251,8 +287,9 @@ class UrbanBeatCut:
         return (VideoFromFile(str(out)), _tensor(sheet), json.dumps(r, indent=1))
 
 
-NODE_CLASS_MAPPINGS = {"UrbanBrief": UrbanBrief, "UrbanShot": UrbanShot, "UrbanPickLook": UrbanPickLook,
+NODE_CLASS_MAPPINGS = {"UrbanBrief": UrbanBrief, "UrbanShot": UrbanShot, "UrbanPickLook": UrbanPickLook, "UrbanSet": UrbanSet,
                        "UrbanMusic": UrbanMusic, "UrbanBeatDetect": UrbanBeatDetect, "UrbanBeatCut": UrbanBeatCut}
 NODE_DISPLAY_NAME_MAPPINGS = {"UrbanBrief": "Urban Cuts: Your Choices + Consent", "UrbanShot": "Urban Cuts: Look Prompts",
-                              "UrbanPickLook": "Urban Cuts: Pick Try-On / Edit", "UrbanMusic": "Urban Cuts: Pick Music",
+                              "UrbanPickLook": "Urban Cuts: Pick Try-On / Edit", "UrbanSet": "Urban Cuts: Set (photo / white wall room)",
+                              "UrbanMusic": "Urban Cuts: Pick Music",
                               "UrbanBeatDetect": "Urban Cuts: Beat Detect", "UrbanBeatCut": "Urban Cuts: Beat Cut Assemble"}

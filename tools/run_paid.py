@@ -48,7 +48,8 @@ if brief_node:
     b = core.make_brief(bi["mode"], bi["vibe"], bi["length"], bi["aspect"], bi["look_engine"], bi["music_source"],
                         bi["music_prompt"], bi["headline"], True, bi["ai_label"], bi.get("hook", True), bi.get("lineup", True),
                         bi.get("look_labels", ""), bi.get("brand_name", ""), bi.get("handle", ""), bi.get("cta", ""),
-                        bi.get("pulse", True), bi.get("glowup", True), bi.get("angles", False))
+                        bi.get("pulse", True), bi.get("glowup", True), bi.get("angles", False),
+                        bi.get("style", "hype"), bi.get("set", core.SETS[0]), bi.get("prices", True))
     used = sum(1 for n in g.values() if n.get("_meta", {}).get("title", "").startswith("Outfit or product")
                and n["inputs"]["image"] != "urban_blank.png")
     est = core.cost_estimate(b, used)["total_usd"]

@@ -55,7 +55,7 @@ await page.waitForTimeout(500);
 console.log("consent after click:", await consentValue());
 // type a headline like a user (also makes this a fresh render, not a cache hit of an earlier run)
 const headline = process.env.HEADLINE || `New arrivals ${new Date().toISOString().slice(11, 19)}`;
-const box = page.locator("text=Headline on the first look").locator("xpath=following::input[1] | following::textarea[1]").first();
+const box = page.locator("text=Headline (optional").locator("xpath=following::input[1] | following::textarea[1]").first();
 await box.fill(headline); await box.press("Tab");
 await page.waitForTimeout(500);
 const ok = await runAndWait("consent on");

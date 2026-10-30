@@ -33,8 +33,9 @@ N = core.MAX_LOOKS
 person = node("LoadImage", "Person photo", image=a.person)
 brief = node("UrbanBrief", "Your choices", person=o(person), consent=False, mode="outfits", vibe="street", length=15.0,
              aspect="9:16", look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1 if not a.draft else 0],
-             music_prompt="", headline="", ai_label=True, hook=True, lineup=True, look_labels="", brand_name="", handle="",
-             cta="", pulse=True, glowup=True, angles=True)
+             music_prompt="", headline="", ai_label=True, hook="teaser", lineup=False, look_labels="", brand_name="",
+             handle="", cta="", pulse=True, glowup=True, angles=True, style="brand",
+             set=core.SETS[0] if a.draft else core.SETS[1], prices=False)
 logo = node("LoadImage", "Logo (optional)", image="urban_blank.png")
 items = [node("LoadImage", f"Outfit or product {k}", image=a.items.split(",")[k - 1]) for k in range(1, N + 1)]
 upload = node("LoadAudio", "Your music", audio=a.music)
@@ -61,7 +62,12 @@ for k in range(1, N + 1):
                                                    "model.thinking_level": "MINIMAL", "model.images.image_1": o(brief, 0),
                                                    "model.images.image_2": o(items[k - 1])})
     pick = node("UrbanPickLook", f"Look {k}", engine=o(brief, 2), kling=o(tryon), banana=o(edit))
-    # one storyboard per look: a 3 s turnaround + a 2 s close-up from the same generation (face and outfit stay the same)
+    # the white wall room: a Nano Banana 2.1 edit of the finished look, only run when that set is picked
+    room = node("GeminiNanoBanana2V2", f"Room {k} (Nano Banana 2.1)", prompt=o(shot, 4), seed=400 + k, response_modalities="IMAGE",
+                model="Gemini Nano Banana 2.1", **{"model.aspect_ratio": "9:16", "model.resolution": "1K",
+                                                   "model.thinking_level": "MINIMAL", "model.images.image_1": o(pick)})
+    pick = node("UrbanSet", f"Set {k}", brief=o(brief, 1), look=o(pick), room=o(room))
+    # one storyboard per look: a 3 s pose sequence (or turnaround) + a 2 s close-up from the same generation
     clip = node("KlingVideoNode", f"Angles {k} (Kling 3.0)", multi_shot="2 storyboards", generate_audio=False, model="kling-v3",
                 seed=300 + k, start_frame=o(pick),
                 **{"multi_shot.storyboard_1_prompt": o(shot, 2), "multi_shot.storyboard_1_duration": core.ANGLE_SHOTS[0],

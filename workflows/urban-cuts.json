@@ -1,8 +1,8 @@
 {
- "id": "306c80e9-e615-416e-9ccf-ba0b78aa61bd",
+ "id": "72be9661-afdf-43e2-a558-063038e4165a",
  "revision": 0,
- "last_node_id": 42,
- "last_link_id": 91,
+ "last_node_id": 52,
+ "last_link_id": 116,
  "nodes": [
   {
    "id": 1,
@@ -77,7 +77,7 @@
    ],
    "size": [
     400,
-    630
+    702
    ],
    "flags": {},
    "order": 8,
@@ -170,7 +170,7 @@
      "link": null
     },
     {
-     "label": "Headline on the first look (optional)",
+     "label": "Headline (optional, one short line)",
      "localized_name": "headline",
      "name": "headline",
      "type": "STRING",
@@ -190,17 +190,17 @@
      "link": null
     },
     {
-     "label": "Before→after hook",
+     "label": "Opening (teaser of every look / before→after / off)",
      "localized_name": "hook",
      "name": "hook",
-     "type": "BOOLEAN",
+     "type": "COMBO",
      "widget": {
       "name": "hook"
      },
      "link": null
     },
     {
-     "label": "Lineup finale",
+     "label": "Lineup grid ending ('comment a number')",
      "localized_name": "lineup",
      "name": "lineup",
      "type": "BOOLEAN",
@@ -220,7 +220,7 @@
      "link": null
     },
     {
-     "label": "Shop name (lineup)",
+     "label": "Shop name (end card)",
      "localized_name": "brand_name",
      "name": "brand_name",
      "type": "STRING",
@@ -230,7 +230,7 @@
      "link": null
     },
     {
-     "label": "@handle or website (lineup)",
+     "label": "@handle or website (end card)",
      "localized_name": "handle",
      "name": "handle",
      "type": "STRING",
@@ -240,7 +240,7 @@
      "link": null
     },
     {
-     "label": "Call to action (empty = 'Comment a number to shop')",
+     "label": "Call to action (end card; lineup default 'Comment a number to shop')",
      "localized_name": "cta",
      "name": "cta",
      "type": "STRING",
@@ -250,7 +250,7 @@
      "link": null
     },
     {
-     "label": "Beat pulse",
+     "label": "Hype only: beat pulse",
      "localized_name": "pulse",
      "name": "pulse",
      "type": "BOOLEAN",
@@ -260,7 +260,7 @@
      "link": null
     },
     {
-     "label": "Glow-up hit on the first look",
+     "label": "Hype only: glow-up hit",
      "localized_name": "glowup",
      "name": "glowup",
      "type": "BOOLEAN",
@@ -270,12 +270,42 @@
      "link": null
     },
     {
-     "label": "Camera angles: 360 turnaround + close-up per look",
+     "label": "Two shots per look: pose sequence + fabric close-up",
      "localized_name": "angles",
      "name": "angles",
      "type": "BOOLEAN",
      "widget": {
       "name": "angles"
+     },
+     "link": null
+    },
+    {
+     "label": "Style (brand = clean cuts, warm grade; hype = flash/whip/punch)",
+     "localized_name": "style",
+     "name": "style",
+     "type": "COMBO",
+     "widget": {
+      "name": "style"
+     },
+     "link": null
+    },
+    {
+     "label": "Set (white wall room, +$0.05 per look)",
+     "localized_name": "set",
+     "name": "set",
+     "type": "COMBO",
+     "widget": {
+      "name": "set"
+     },
+     "link": null
+    },
+    {
+     "label": "Show prices on looks",
+     "localized_name": "prices",
+     "name": "prices",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "prices"
      },
      "link": null
     }
@@ -288,15 +318,15 @@
      "links": [
       10,
       13,
-      22,
-      25,
-      34,
-      37,
-      46,
-      49,
-      58,
+      27,
+      30,
+      44,
+      47,
       61,
-      72
+      64,
+      78,
+      81,
+      97
      ]
     },
     {
@@ -306,11 +336,16 @@
      "links": [
       4,
       9,
-      21,
-      33,
-      45,
-      57,
-      69
+      20,
+      26,
+      37,
+      43,
+      54,
+      60,
+      71,
+      77,
+      88,
+      94
      ]
     },
     {
@@ -319,10 +354,10 @@
      "type": "STRING",
      "links": [
       15,
-      27,
-      39,
-      51,
-      63
+      32,
+      49,
+      66,
+      83
      ]
     },
     {
@@ -357,15 +392,18 @@
     "",
     "",
     true,
-    true,
-    true,
+    "teaser",
+    false,
     "",
     "",
     "",
     "",
     true,
     true,
-    true
+    true,
+    "brand",
+    "white wall room",
+    false
    ],
    "widgets_values_named": {
     "consent": false,
@@ -378,15 +416,18 @@
     "music_prompt": "",
     "headline": "",
     "ai_label": true,
-    "hook": true,
-    "lineup": true,
+    "hook": "teaser",
+    "lineup": false,
     "look_labels": "",
     "brand_name": "",
     "handle": "",
     "cta": "",
     "pulse": true,
     "glowup": true,
-    "angles": true
+    "angles": true,
+    "style": "brand",
+    "set": "white wall room",
+    "prices": false
    }
   },
   {
@@ -430,7 +471,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      73
+      98
      ]
     },
     {
@@ -496,7 +537,7 @@
      "links": [
       11,
       14,
-      74
+      99
      ]
     },
     {
@@ -560,9 +601,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      23,
-      26,
-      77
+      28,
+      31,
+      102
      ]
     },
     {
@@ -626,9 +667,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      35,
-      38,
-      80
+      45,
+      48,
+      105
      ]
     },
     {
@@ -692,9 +733,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      47,
-      50,
-      83
+      62,
+      65,
+      108
      ]
     },
     {
@@ -758,9 +799,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      59,
-      62,
-      86
+      79,
+      82,
+      111
      ]
     },
     {
@@ -855,7 +896,7 @@
    "type": "SoniloTextToMusic",
    "pos": [
     922.798828125,
-    2430
+    2530
    ],
    "size": [
     400,
@@ -965,7 +1006,7 @@
      "type": "AUDIO",
      "links": [
       7,
-      70
+      95
      ]
     }
    ],
@@ -1002,7 +1043,7 @@
      "name": "beats",
      "type": "STRING",
      "links": [
-      71
+      96
      ]
     },
     {
@@ -1024,7 +1065,7 @@
    "type": "PreviewAny",
    "pos": [
     2201.9869140625,
-    2450
+    2650
    ],
    "size": [
     210,
@@ -1065,7 +1106,7 @@
    ],
    "size": [
     274.2642578125,
-    118
+    138
    ],
    "flags": {},
    "order": 14,
@@ -1103,11 +1144,11 @@
      "links": null
     },
     {
-     "localized_name": "turnaround_prompt",
-     "name": "turnaround_prompt",
+     "localized_name": "shot1_prompt",
+     "name": "shot1_prompt",
      "type": "STRING",
      "links": [
-      19
+      24
      ]
     },
     {
@@ -1115,7 +1156,15 @@
      "name": "closeup_prompt",
      "type": "STRING",
      "links": [
-      20
+      25
+     ]
+    },
+    {
+     "localized_name": "room_prompt",
+     "name": "room_prompt",
+     "type": "STRING",
+     "links": [
+      18
      ]
     }
    ],
@@ -1437,8 +1486,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      18,
-      75
+      19,
+      21
      ]
     }
    ],
@@ -1449,9 +1498,245 @@
   },
   {
    "id": 18,
-   "type": "KlingVideoNode",
+   "type": "GeminiNanoBanana2V2",
    "pos": [
     2201.9869140625,
+    110
+   ],
+   "size": [
+    400,
+    398
+   ],
+   "flags": {},
+   "order": 32,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 18
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 19
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      22
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Room 1 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    401,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 401,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 19,
+   "type": "UrbanSet",
+   "pos": [
+    2681.9869140625,
+    110
+   ],
+   "size": [
+    313.569921875,
+    66
+   ],
+   "flags": {},
+   "order": 38,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 20
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "link": 21
+    },
+    {
+     "localized_name": "room",
+     "name": "room",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 22
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      23,
+      100
+     ]
+    }
+   ],
+   "title": "Set 1",
+   "properties": {
+    "Node name for S&R": "UrbanSet"
+   }
+  },
+  {
+   "id": 20,
+   "type": "KlingVideoNode",
+   "pos": [
+    3075.5568359375,
     110
    ],
    "size": [
@@ -1459,7 +1744,7 @@
     358
    ],
    "flags": {},
-   "order": 32,
+   "order": 43,
    "mode": 0,
    "inputs": [
     {
@@ -1467,7 +1752,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 18
+     "link": 23
     },
     {
      "localized_name": "multi_shot",
@@ -1485,7 +1770,7 @@
      "widget": {
       "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 19
+     "link": 24
     },
     {
      "localized_name": "storyboard_1_duration",
@@ -1503,7 +1788,7 @@
      "widget": {
       "name": "multi_shot.storyboard_2_prompt"
      },
-     "link": 20
+     "link": 25
     },
     {
      "localized_name": "storyboard_2_duration",
@@ -1566,7 +1851,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      76
+      101
      ]
     }
    ],
@@ -1604,15 +1889,15 @@
    "bgcolor": "#653"
   },
   {
-   "id": 19,
+   "id": 21,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1518
+    1538
    ],
    "size": [
     274.2642578125,
-    118
+    138
    ],
    "flags": {},
    "order": 15,
@@ -1622,7 +1907,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 21
+     "link": 26
     },
     {
      "localized_name": "look",
@@ -1640,7 +1925,7 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      24
+      29
      ]
     },
     {
@@ -1650,11 +1935,11 @@
      "links": null
     },
     {
-     "localized_name": "turnaround_prompt",
-     "name": "turnaround_prompt",
+     "localized_name": "shot1_prompt",
+     "name": "shot1_prompt",
      "type": "STRING",
      "links": [
-      31
+      41
      ]
     },
     {
@@ -1662,7 +1947,15 @@
      "name": "closeup_prompt",
      "type": "STRING",
      "links": [
-      32
+      42
+     ]
+    },
+    {
+     "localized_name": "room_prompt",
+     "name": "room_prompt",
+     "type": "STRING",
+     "links": [
+      35
      ]
     }
    ],
@@ -1678,7 +1971,7 @@
    }
   },
   {
-   "id": 20,
+   "id": 22,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -1696,13 +1989,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 22
+     "link": 27
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 23
+     "link": 28
     },
     {
      "localized_name": "keep_pose",
@@ -1729,7 +2022,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      28
+      33
      ]
     }
    ],
@@ -1751,7 +2044,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 21,
+   "id": 23,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -1772,7 +2065,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 24
+     "link": 29
     },
     {
      "localized_name": "model",
@@ -1815,14 +2108,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 25
+     "link": 30
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 26
+     "link": 31
     },
     {
      "localized_name": "image_3",
@@ -1893,7 +2186,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      29
+      34
      ]
     },
     {
@@ -1943,7 +2236,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 22,
+   "id": 24,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -1961,21 +2254,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 27
+     "link": 32
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 28
+     "link": 33
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 29
+     "link": 34
     }
    ],
    "outputs": [
@@ -1984,8 +2277,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      30,
-      78
+      36,
+      38
      ]
     }
    ],
@@ -1995,10 +2288,246 @@
    }
   },
   {
-   "id": 23,
-   "type": "KlingVideoNode",
+   "id": 25,
+   "type": "GeminiNanoBanana2V2",
    "pos": [
     2201.9869140625,
+    618
+   ],
+   "size": [
+    400,
+    398
+   ],
+   "flags": {},
+   "order": 33,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 35
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 36
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      39
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Room 2 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    402,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 402,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 26,
+   "type": "UrbanSet",
+   "pos": [
+    2681.9869140625,
+    286
+   ],
+   "size": [
+    313.569921875,
+    66
+   ],
+   "flags": {},
+   "order": 39,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 37
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "link": 38
+    },
+    {
+     "localized_name": "room",
+     "name": "room",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 39
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      40,
+      103
+     ]
+    }
+   ],
+   "title": "Set 2",
+   "properties": {
+    "Node name for S&R": "UrbanSet"
+   }
+  },
+  {
+   "id": 27,
+   "type": "KlingVideoNode",
+   "pos": [
+    3075.5568359375,
     578
    ],
    "size": [
@@ -2006,7 +2535,7 @@
     358
    ],
    "flags": {},
-   "order": 33,
+   "order": 44,
    "mode": 0,
    "inputs": [
     {
@@ -2014,7 +2543,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 30
+     "link": 40
     },
     {
      "localized_name": "multi_shot",
@@ -2032,7 +2561,7 @@
      "widget": {
       "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 31
+     "link": 41
     },
     {
      "localized_name": "storyboard_1_duration",
@@ -2050,7 +2579,7 @@
      "widget": {
       "name": "multi_shot.storyboard_2_prompt"
      },
-     "link": 32
+     "link": 42
     },
     {
      "localized_name": "storyboard_2_duration",
@@ -2113,7 +2642,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      79
+      104
      ]
     }
    ],
@@ -2151,15 +2680,15 @@
    "bgcolor": "#653"
   },
   {
-   "id": 24,
+   "id": 28,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1746
+    1786
    ],
    "size": [
     274.2642578125,
-    118
+    138
    ],
    "flags": {},
    "order": 16,
@@ -2169,7 +2698,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 33
+     "link": 43
     },
     {
      "localized_name": "look",
@@ -2187,7 +2716,7 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      36
+      46
      ]
     },
     {
@@ -2197,11 +2726,11 @@
      "links": null
     },
     {
-     "localized_name": "turnaround_prompt",
-     "name": "turnaround_prompt",
+     "localized_name": "shot1_prompt",
+     "name": "shot1_prompt",
      "type": "STRING",
      "links": [
-      43
+      58
      ]
     },
     {
@@ -2209,7 +2738,15 @@
      "name": "closeup_prompt",
      "type": "STRING",
      "links": [
-      44
+      59
+     ]
+    },
+    {
+     "localized_name": "room_prompt",
+     "name": "room_prompt",
+     "type": "STRING",
+     "links": [
+      52
      ]
     }
    ],
@@ -2225,7 +2762,7 @@
    }
   },
   {
-   "id": 25,
+   "id": 29,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -2243,13 +2780,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 34
+     "link": 44
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 35
+     "link": 45
     },
     {
      "localized_name": "keep_pose",
@@ -2276,7 +2813,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      40
+      50
      ]
     }
    ],
@@ -2298,7 +2835,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 26,
+   "id": 30,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -2319,7 +2856,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 36
+     "link": 46
     },
     {
      "localized_name": "model",
@@ -2362,14 +2899,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 37
+     "link": 47
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 38
+     "link": 48
     },
     {
      "localized_name": "image_3",
@@ -2440,7 +2977,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      41
+      51
      ]
     },
     {
@@ -2490,7 +3027,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 27,
+   "id": 31,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -2508,21 +3045,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 39
+     "link": 49
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 40
+     "link": 50
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 41
+     "link": 51
     }
    ],
    "outputs": [
@@ -2531,8 +3068,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      42,
-      81
+      53,
+      55
      ]
     }
    ],
@@ -2542,10 +3079,246 @@
    }
   },
   {
-   "id": 28,
-   "type": "KlingVideoNode",
+   "id": 32,
+   "type": "GeminiNanoBanana2V2",
    "pos": [
     2201.9869140625,
+    1126
+   ],
+   "size": [
+    400,
+    398
+   ],
+   "flags": {},
+   "order": 34,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 52
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 53
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      56
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Room 3 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    403,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 403,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 33,
+   "type": "UrbanSet",
+   "pos": [
+    2681.9869140625,
+    462
+   ],
+   "size": [
+    313.569921875,
+    66
+   ],
+   "flags": {},
+   "order": 40,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 54
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "link": 55
+    },
+    {
+     "localized_name": "room",
+     "name": "room",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 56
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      57,
+      106
+     ]
+    }
+   ],
+   "title": "Set 3",
+   "properties": {
+    "Node name for S&R": "UrbanSet"
+   }
+  },
+  {
+   "id": 34,
+   "type": "KlingVideoNode",
+   "pos": [
+    3075.5568359375,
     1046
    ],
    "size": [
@@ -2553,7 +3326,7 @@
     358
    ],
    "flags": {},
-   "order": 34,
+   "order": 45,
    "mode": 0,
    "inputs": [
     {
@@ -2561,7 +3334,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 42
+     "link": 57
     },
     {
      "localized_name": "multi_shot",
@@ -2579,7 +3352,7 @@
      "widget": {
       "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 43
+     "link": 58
     },
     {
      "localized_name": "storyboard_1_duration",
@@ -2597,7 +3370,7 @@
      "widget": {
       "name": "multi_shot.storyboard_2_prompt"
      },
-     "link": 44
+     "link": 59
     },
     {
      "localized_name": "storyboard_2_duration",
@@ -2660,7 +3433,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      82
+      107
      ]
     }
    ],
@@ -2698,15 +3471,15 @@
    "bgcolor": "#653"
   },
   {
-   "id": 29,
+   "id": 35,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    1974
+    2034
    ],
    "size": [
     274.2642578125,
-    118
+    138
    ],
    "flags": {},
    "order": 17,
@@ -2716,7 +3489,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 45
+     "link": 60
     },
     {
      "localized_name": "look",
@@ -2734,7 +3507,7 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      48
+      63
      ]
     },
     {
@@ -2744,11 +3517,11 @@
      "links": null
     },
     {
-     "localized_name": "turnaround_prompt",
-     "name": "turnaround_prompt",
+     "localized_name": "shot1_prompt",
+     "name": "shot1_prompt",
      "type": "STRING",
      "links": [
-      55
+      75
      ]
     },
     {
@@ -2756,7 +3529,15 @@
      "name": "closeup_prompt",
      "type": "STRING",
      "links": [
-      56
+      76
+     ]
+    },
+    {
+     "localized_name": "room_prompt",
+     "name": "room_prompt",
+     "type": "STRING",
+     "links": [
+      69
      ]
     }
    ],
@@ -2772,7 +3553,7 @@
    }
   },
   {
-   "id": 30,
+   "id": 36,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -2790,13 +3571,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 46
+     "link": 61
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 47
+     "link": 62
     },
     {
      "localized_name": "keep_pose",
@@ -2823,7 +3604,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      52
+      67
      ]
     }
    ],
@@ -2845,7 +3626,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 31,
+   "id": 37,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -2866,7 +3647,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 48
+     "link": 63
     },
     {
      "localized_name": "model",
@@ -2909,14 +3690,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 49
+     "link": 64
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 50
+     "link": 65
     },
     {
      "localized_name": "image_3",
@@ -2987,7 +3768,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      53
+      68
      ]
     },
     {
@@ -3037,7 +3818,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 32,
+   "id": 38,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -3055,21 +3836,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 51
+     "link": 66
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 52
+     "link": 67
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 53
+     "link": 68
     }
    ],
    "outputs": [
@@ -3078,8 +3859,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      54,
-      84
+      70,
+      72
      ]
     }
    ],
@@ -3089,10 +3870,246 @@
    }
   },
   {
-   "id": 33,
-   "type": "KlingVideoNode",
+   "id": 39,
+   "type": "GeminiNanoBanana2V2",
    "pos": [
     2201.9869140625,
+    1634
+   ],
+   "size": [
+    400,
+    398
+   ],
+   "flags": {},
+   "order": 35,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 69
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 70
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      73
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Room 4 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    404,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 404,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 40,
+   "type": "UrbanSet",
+   "pos": [
+    2681.9869140625,
+    638
+   ],
+   "size": [
+    313.569921875,
+    66
+   ],
+   "flags": {},
+   "order": 41,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 71
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "link": 72
+    },
+    {
+     "localized_name": "room",
+     "name": "room",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 73
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      74,
+      109
+     ]
+    }
+   ],
+   "title": "Set 4",
+   "properties": {
+    "Node name for S&R": "UrbanSet"
+   }
+  },
+  {
+   "id": 41,
+   "type": "KlingVideoNode",
+   "pos": [
+    3075.5568359375,
     1514
    ],
    "size": [
@@ -3100,7 +4117,7 @@
     358
    ],
    "flags": {},
-   "order": 35,
+   "order": 46,
    "mode": 0,
    "inputs": [
     {
@@ -3108,7 +4125,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 54
+     "link": 74
     },
     {
      "localized_name": "multi_shot",
@@ -3126,7 +4143,7 @@
      "widget": {
       "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 55
+     "link": 75
     },
     {
      "localized_name": "storyboard_1_duration",
@@ -3144,7 +4161,7 @@
      "widget": {
       "name": "multi_shot.storyboard_2_prompt"
      },
-     "link": 56
+     "link": 76
     },
     {
      "localized_name": "storyboard_2_duration",
@@ -3207,7 +4224,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      85
+      110
      ]
     }
    ],
@@ -3245,15 +4262,15 @@
    "bgcolor": "#653"
   },
   {
-   "id": 34,
+   "id": 42,
    "type": "UrbanShot",
    "pos": [
     922.798828125,
-    2202
+    2282
    ],
    "size": [
     274.2642578125,
-    118
+    138
    ],
    "flags": {},
    "order": 18,
@@ -3263,7 +4280,7 @@
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 57
+     "link": 77
     },
     {
      "localized_name": "look",
@@ -3281,7 +4298,7 @@
      "name": "look_prompt",
      "type": "STRING",
      "links": [
-      60
+      80
      ]
     },
     {
@@ -3291,11 +4308,11 @@
      "links": null
     },
     {
-     "localized_name": "turnaround_prompt",
-     "name": "turnaround_prompt",
+     "localized_name": "shot1_prompt",
+     "name": "shot1_prompt",
      "type": "STRING",
      "links": [
-      67
+      92
      ]
     },
     {
@@ -3303,7 +4320,15 @@
      "name": "closeup_prompt",
      "type": "STRING",
      "links": [
-      68
+      93
+     ]
+    },
+    {
+     "localized_name": "room_prompt",
+     "name": "room_prompt",
+     "type": "STRING",
+     "links": [
+      86
      ]
     }
    ],
@@ -3319,7 +4344,7 @@
    }
   },
   {
-   "id": 35,
+   "id": 43,
    "type": "KlingTryOnNode",
    "pos": [
     922.798828125,
@@ -3337,13 +4362,13 @@
      "localized_name": "person_image",
      "name": "person_image",
      "type": "IMAGE",
-     "link": 58
+     "link": 78
     },
     {
      "localized_name": "garment_image",
      "name": "garment_image",
      "type": "IMAGE",
-     "link": 59
+     "link": 79
     },
     {
      "localized_name": "keep_pose",
@@ -3370,7 +4395,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      64
+      84
      ]
     }
    ],
@@ -3392,7 +4417,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 36,
+   "id": 44,
    "type": "GeminiNanoBanana2V2",
    "pos": [
     1402.798828125,
@@ -3413,7 +4438,7 @@
      "widget": {
       "name": "prompt"
      },
-     "link": 60
+     "link": 80
     },
     {
      "localized_name": "model",
@@ -3456,14 +4481,14 @@
      "name": "model.images.image_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 61
+     "link": 81
     },
     {
      "localized_name": "image_2",
      "name": "model.images.image_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 62
+     "link": 82
     },
     {
      "localized_name": "image_3",
@@ -3534,7 +4559,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      65
+      85
      ]
     },
     {
@@ -3584,7 +4609,7 @@
    "bgcolor": "#653"
   },
   {
-   "id": 37,
+   "id": 45,
    "type": "UrbanPickLook",
    "pos": [
     1882.798828125,
@@ -3602,21 +4627,21 @@
      "localized_name": "engine",
      "name": "engine",
      "type": "STRING",
-     "link": 63
+     "link": 83
     },
     {
      "localized_name": "kling",
      "name": "kling",
      "shape": 7,
      "type": "IMAGE",
-     "link": 64
+     "link": 84
     },
     {
      "localized_name": "banana",
      "name": "banana",
      "shape": 7,
      "type": "IMAGE",
-     "link": 65
+     "link": 85
     }
    ],
    "outputs": [
@@ -3625,8 +4650,8 @@
      "name": "look",
      "type": "IMAGE",
      "links": [
-      66,
-      87
+      87,
+      89
      ]
     }
    ],
@@ -3636,10 +4661,246 @@
    }
   },
   {
-   "id": 38,
-   "type": "KlingVideoNode",
+   "id": 46,
+   "type": "GeminiNanoBanana2V2",
    "pos": [
     2201.9869140625,
+    2142
+   ],
+   "size": [
+    400,
+    398
+   ],
+   "flags": {},
+   "order": 36,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 86
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "aspect_ratio",
+     "name": "model.aspect_ratio",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.aspect_ratio"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "resolution",
+     "name": "model.resolution",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.resolution"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "thinking_level",
+     "name": "model.thinking_level",
+     "type": "COMBO",
+     "widget": {
+      "name": "model.thinking_level"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "image_1",
+     "name": "model.images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 87
+    },
+    {
+     "localized_name": "image_2",
+     "name": "model.images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "files",
+     "name": "model.files",
+     "shape": 7,
+     "type": "GEMINI_INPUT_FILES",
+     "link": null
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "response_modalities",
+     "name": "response_modalities",
+     "type": "COMBO",
+     "widget": {
+      "name": "response_modalities"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "system_prompt",
+     "name": "system_prompt",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "system_prompt"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "temperature",
+     "name": "temperature",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "temperature"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "top_p",
+     "name": "top_p",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "top_p"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      90
+     ]
+    },
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "thought_image",
+     "name": "thought_image",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "title": "Room 5 (Nano Banana 2.1)",
+   "properties": {
+    "Node name for S&R": "GeminiNanoBanana2V2"
+   },
+   "widgets_values": [
+    "",
+    "Gemini Nano Banana 2.1",
+    "9:16",
+    "1K",
+    "MINIMAL",
+    405,
+    "fixed",
+    "IMAGE",
+    "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    1,
+    0.95
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "model": "Gemini Nano Banana 2.1",
+    "model.aspect_ratio": "9:16",
+    "model.resolution": "1K",
+    "model.thinking_level": "MINIMAL",
+    "seed": 405,
+    "control_after_generate": "fixed",
+    "response_modalities": "IMAGE",
+    "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+    "temperature": 1,
+    "top_p": 0.95
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  },
+  {
+   "id": 47,
+   "type": "UrbanSet",
+   "pos": [
+    2681.9869140625,
+    814
+   ],
+   "size": [
+    313.569921875,
+    66
+   ],
+   "flags": {},
+   "order": 42,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 88
+    },
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "link": 89
+    },
+    {
+     "localized_name": "room",
+     "name": "room",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 90
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "look",
+     "name": "look",
+     "type": "IMAGE",
+     "links": [
+      91,
+      112
+     ]
+    }
+   ],
+   "title": "Set 5",
+   "properties": {
+    "Node name for S&R": "UrbanSet"
+   }
+  },
+  {
+   "id": 48,
+   "type": "KlingVideoNode",
+   "pos": [
+    3075.5568359375,
     1982
    ],
    "size": [
@@ -3647,7 +4908,7 @@
     358
    ],
    "flags": {},
-   "order": 36,
+   "order": 47,
    "mode": 0,
    "inputs": [
     {
@@ -3655,7 +4916,7 @@
      "name": "start_frame",
      "shape": 7,
      "type": "IMAGE",
-     "link": 66
+     "link": 91
     },
     {
      "localized_name": "multi_shot",
@@ -3673,7 +4934,7 @@
      "widget": {
       "name": "multi_shot.storyboard_1_prompt"
      },
-     "link": 67
+     "link": 92
     },
     {
      "localized_name": "storyboard_1_duration",
@@ -3691,7 +4952,7 @@
      "widget": {
       "name": "multi_shot.storyboard_2_prompt"
      },
-     "link": 68
+     "link": 93
     },
     {
      "localized_name": "storyboard_2_duration",
@@ -3754,7 +5015,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      88
+      113
      ]
     }
    ],
@@ -3792,10 +5053,10 @@
    "bgcolor": "#653"
   },
   {
-   "id": 39,
+   "id": 49,
    "type": "UrbanBeatCut",
    "pos": [
-    2681.9869140625,
+    3555.5568359375,
     110
    ],
    "size": [
@@ -3803,145 +5064,145 @@
     406
    ],
    "flags": {},
-   "order": 38,
+   "order": 48,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "brief",
      "name": "brief",
      "type": "STRING",
-     "link": 69
+     "link": 94
     },
     {
      "localized_name": "music",
      "name": "music",
      "type": "AUDIO",
-     "link": 70
+     "link": 95
     },
     {
      "localized_name": "beats",
      "name": "beats",
      "type": "STRING",
-     "link": 71
+     "link": 96
     },
     {
      "localized_name": "item_1",
      "name": "item_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 74
+     "link": 99
     },
     {
      "localized_name": "look_1",
      "name": "look_1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 75
+     "link": 100
     },
     {
      "localized_name": "clip_1",
      "name": "clip_1",
      "shape": 7,
      "type": "VIDEO",
-     "link": 76
+     "link": 101
     },
     {
      "localized_name": "item_2",
      "name": "item_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 77
+     "link": 102
     },
     {
      "localized_name": "look_2",
      "name": "look_2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 78
+     "link": 103
     },
     {
      "localized_name": "clip_2",
      "name": "clip_2",
      "shape": 7,
      "type": "VIDEO",
-     "link": 79
+     "link": 104
     },
     {
      "localized_name": "item_3",
      "name": "item_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 80
+     "link": 105
     },
     {
      "localized_name": "look_3",
      "name": "look_3",
      "shape": 7,
      "type": "IMAGE",
-     "link": 81
+     "link": 106
     },
     {
      "localized_name": "clip_3",
      "name": "clip_3",
      "shape": 7,
      "type": "VIDEO",
-     "link": 82
+     "link": 107
     },
     {
      "localized_name": "item_4",
      "name": "item_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 83
+     "link": 108
     },
     {
      "localized_name": "look_4",
      "name": "look_4",
      "shape": 7,
      "type": "IMAGE",
-     "link": 84
+     "link": 109
     },
     {
      "localized_name": "clip_4",
      "name": "clip_4",
      "shape": 7,
      "type": "VIDEO",
-     "link": 85
+     "link": 110
     },
     {
      "localized_name": "item_5",
      "name": "item_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 86
+     "link": 111
     },
     {
      "localized_name": "look_5",
      "name": "look_5",
      "shape": 7,
      "type": "IMAGE",
-     "link": 87
+     "link": 112
     },
     {
      "localized_name": "clip_5",
      "name": "clip_5",
      "shape": 7,
      "type": "VIDEO",
-     "link": 88
+     "link": 113
     },
     {
      "localized_name": "before",
      "name": "before",
      "shape": 7,
      "type": "IMAGE",
-     "link": 72
+     "link": 97
     },
     {
      "localized_name": "logo",
      "name": "logo",
      "shape": 7,
      "type": "IMAGE",
-     "link": 73
+     "link": 98
     }
    ],
    "outputs": [
@@ -3950,7 +5211,7 @@
      "name": "reel",
      "type": "VIDEO",
      "links": [
-      89
+      114
      ]
     },
     {
@@ -3958,7 +5219,7 @@
      "name": "contact_sheet",
      "type": "IMAGE",
      "links": [
-      90
+      115
      ]
     },
     {
@@ -3966,7 +5227,7 @@
      "name": "receipt",
      "type": "STRING",
      "links": [
-      91
+      116
      ]
     }
    ],
@@ -3976,10 +5237,10 @@
    }
   },
   {
-   "id": 40,
+   "id": 50,
    "type": "SaveVideo",
    "pos": [
-    3010.731640625,
+    3884.3015625000003,
     110
    ],
    "size": [
@@ -3987,14 +5248,14 @@
     106
    ],
    "flags": {},
-   "order": 39,
+   "order": 49,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 89
+     "link": 114
     },
     {
      "localized_name": "filename_prefix",
@@ -4058,10 +5319,10 @@
    }
   },
   {
-   "id": 41,
+   "id": 51,
    "type": "PreviewImage",
    "pos": [
-    3010.731640625,
+    3884.3015625000003,
     326
    ],
    "size": [
@@ -4069,14 +5330,14 @@
     26
    ],
    "flags": {},
-   "order": 40,
+   "order": 50,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "images",
      "name": "images",
      "type": "IMAGE",
-     "link": 90
+     "link": 115
     }
    ],
    "outputs": [
@@ -4093,10 +5354,10 @@
    }
   },
   {
-   "id": 42,
+   "id": 52,
    "type": "PreviewAny",
    "pos": [
-    3010.731640625,
+    3884.3015625000003,
     462
    ],
    "size": [
@@ -4104,14 +5365,14 @@
     122
    ],
    "flags": {},
-   "order": 41,
+   "order": 51,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 91
+     "link": 116
     }
    ],
    "outputs": [
@@ -4269,30 +5530,22 @@
   ],
   [
    18,
-   17,
-   0,
+   14,
+   4,
    18,
    0,
-   "IMAGE"
+   "STRING"
   ],
   [
    19,
-   14,
-   2,
+   17,
+   0,
    18,
-   2,
-   "STRING"
+   5,
+   "IMAGE"
   ],
   [
    20,
-   14,
-   3,
-   18,
-   4,
-   "STRING"
-  ],
-  [
-   21,
    2,
    1,
    19,
@@ -4300,56 +5553,64 @@
    "STRING"
   ],
   [
+   21,
+   17,
+   0,
+   19,
+   1,
+   "IMAGE"
+  ],
+  [
    22,
+   18,
+   0,
+   19,
    2,
-   0,
-   20,
-   0,
    "IMAGE"
   ],
   [
    23,
-   5,
+   19,
    0,
    20,
-   1,
+   0,
    "IMAGE"
   ],
   [
    24,
-   19,
-   0,
-   21,
-   0,
+   14,
+   2,
+   20,
+   2,
    "STRING"
   ],
   [
    25,
-   2,
-   0,
-   21,
-   5,
-   "IMAGE"
+   14,
+   3,
+   20,
+   4,
+   "STRING"
   ],
   [
    26,
-   5,
-   0,
+   2,
+   1,
    21,
-   6,
-   "IMAGE"
-  ],
-  [
-   27,
-   2,
-   2,
-   22,
    0,
    "STRING"
   ],
   [
+   27,
+   2,
+   0,
+   22,
+   0,
+   "IMAGE"
+  ],
+  [
    28,
-   20,
+   5,
    0,
    22,
    1,
@@ -4359,255 +5620,255 @@
    29,
    21,
    0,
-   22,
-   2,
-   "IMAGE"
+   23,
+   0,
+   "STRING"
   ],
   [
    30,
-   22,
+   2,
    0,
    23,
-   0,
+   5,
    "IMAGE"
   ],
   [
    31,
-   19,
-   2,
+   5,
+   0,
    23,
-   2,
-   "STRING"
+   6,
+   "IMAGE"
   ],
   [
    32,
-   19,
-   3,
-   23,
-   4,
-   "STRING"
-  ],
-  [
-   33,
    2,
-   1,
+   2,
    24,
    0,
    "STRING"
   ],
   [
+   33,
+   22,
+   0,
+   24,
+   1,
+   "IMAGE"
+  ],
+  [
    34,
+   23,
+   0,
+   24,
    2,
-   0,
-   25,
-   0,
    "IMAGE"
   ],
   [
    35,
-   6,
-   0,
+   21,
+   4,
    25,
-   1,
-   "IMAGE"
+   0,
+   "STRING"
   ],
   [
    36,
    24,
    0,
-   26,
-   0,
-   "STRING"
+   25,
+   5,
+   "IMAGE"
   ],
   [
    37,
    2,
-   0,
+   1,
    26,
-   5,
-   "IMAGE"
+   0,
+   "STRING"
   ],
   [
    38,
-   6,
+   24,
    0,
    26,
-   6,
+   1,
    "IMAGE"
   ],
   [
    39,
-   2,
-   2,
-   27,
+   25,
    0,
-   "STRING"
+   26,
+   2,
+   "IMAGE"
   ],
   [
    40,
-   25,
+   26,
    0,
    27,
-   1,
+   0,
    "IMAGE"
   ],
   [
    41,
-   26,
-   0,
-   27,
+   21,
    2,
-   "IMAGE"
-  ],
-  [
-   42,
    27,
-   0,
-   28,
-   0,
-   "IMAGE"
-  ],
-  [
-   43,
-   24,
-   2,
-   28,
    2,
    "STRING"
   ],
   [
-   44,
-   24,
+   42,
+   21,
    3,
-   28,
+   27,
    4,
    "STRING"
   ],
   [
-   45,
+   43,
    2,
    1,
-   29,
+   28,
    0,
    "STRING"
+  ],
+  [
+   44,
+   2,
+   0,
+   29,
+   0,
+   "IMAGE"
+  ],
+  [
+   45,
+   6,
+   0,
+   29,
+   1,
+   "IMAGE"
   ],
   [
    46,
-   2,
+   28,
    0,
    30,
-   0,
-   "IMAGE"
-  ],
-  [
-   47,
-   7,
-   0,
-   30,
-   1,
-   "IMAGE"
-  ],
-  [
-   48,
-   29,
-   0,
-   31,
    0,
    "STRING"
   ],
   [
-   49,
+   47,
    2,
    0,
-   31,
+   30,
    5,
    "IMAGE"
   ],
   [
-   50,
-   7,
+   48,
+   6,
    0,
-   31,
+   30,
    6,
    "IMAGE"
   ],
   [
-   51,
+   49,
    2,
    2,
-   32,
+   31,
    0,
    "STRING"
   ],
   [
-   52,
-   30,
+   50,
+   29,
    0,
-   32,
+   31,
    1,
    "IMAGE"
+  ],
+  [
+   51,
+   30,
+   0,
+   31,
+   2,
+   "IMAGE"
+  ],
+  [
+   52,
+   28,
+   4,
+   32,
+   0,
+   "STRING"
   ],
   [
    53,
    31,
    0,
    32,
-   2,
+   5,
    "IMAGE"
   ],
   [
    54,
+   2,
+   1,
+   33,
+   0,
+   "STRING"
+  ],
+  [
+   55,
+   31,
+   0,
+   33,
+   1,
+   "IMAGE"
+  ],
+  [
+   56,
    32,
    0,
    33,
+   2,
+   "IMAGE"
+  ],
+  [
+   57,
+   33,
+   0,
+   34,
    0,
    "IMAGE"
   ],
   [
-   55,
-   29,
+   58,
+   28,
    2,
-   33,
+   34,
    2,
    "STRING"
   ],
   [
-   56,
-   29,
+   59,
+   28,
    3,
-   33,
+   34,
    4,
    "STRING"
   ],
   [
-   57,
-   2,
-   1,
-   34,
-   0,
-   "STRING"
-  ],
-  [
-   58,
-   2,
-   0,
-   35,
-   0,
-   "IMAGE"
-  ],
-  [
-   59,
-   8,
-   0,
-   35,
-   1,
-   "IMAGE"
-  ],
-  [
    60,
-   34,
-   0,
-   36,
+   2,
+   1,
+   35,
    0,
    "STRING"
   ],
@@ -4616,246 +5877,446 @@
    2,
    0,
    36,
-   5,
+   0,
    "IMAGE"
   ],
   [
    62,
-   8,
+   7,
    0,
    36,
-   6,
+   1,
    "IMAGE"
   ],
   [
    63,
-   2,
-   2,
+   35,
+   0,
    37,
    0,
    "STRING"
   ],
   [
    64,
-   35,
+   2,
    0,
    37,
-   1,
+   5,
    "IMAGE"
   ],
   [
    65,
-   36,
+   7,
    0,
    37,
-   2,
+   6,
    "IMAGE"
   ],
   [
    66,
-   37,
-   0,
+   2,
+   2,
    38,
    0,
-   "IMAGE"
+   "STRING"
   ],
   [
    67,
-   34,
-   2,
+   36,
+   0,
    38,
-   2,
-   "STRING"
+   1,
+   "IMAGE"
   ],
   [
    68,
-   34,
-   3,
+   37,
+   0,
    38,
-   4,
-   "STRING"
+   2,
+   "IMAGE"
   ],
   [
    69,
-   2,
-   1,
+   35,
+   4,
    39,
    0,
    "STRING"
   ],
   [
    70,
-   11,
+   38,
    0,
    39,
-   1,
-   "AUDIO"
+   5,
+   "IMAGE"
   ],
   [
    71,
-   12,
-   0,
-   39,
    2,
+   1,
+   40,
+   0,
    "STRING"
   ],
   [
    72,
-   2,
+   38,
    0,
-   39,
-   18,
+   40,
+   1,
    "IMAGE"
   ],
   [
    73,
-   3,
-   0,
    39,
-   19,
+   0,
+   40,
+   2,
    "IMAGE"
   ],
   [
    74,
-   4,
-   0,
-   39,
-   3,
-   "IMAGE"
-  ],
-  [
-   75,
-   17,
-   0,
-   39,
-   4,
-   "IMAGE"
-  ],
-  [
-   76,
-   18,
-   0,
-   39,
-   5,
-   "VIDEO"
-  ],
-  [
-   77,
-   5,
-   0,
-   39,
-   6,
-   "IMAGE"
-  ],
-  [
-   78,
-   22,
-   0,
-   39,
-   7,
-   "IMAGE"
-  ],
-  [
-   79,
-   23,
-   0,
-   39,
-   8,
-   "VIDEO"
-  ],
-  [
-   80,
-   6,
-   0,
-   39,
-   9,
-   "IMAGE"
-  ],
-  [
-   81,
-   27,
-   0,
-   39,
-   10,
-   "IMAGE"
-  ],
-  [
-   82,
-   28,
-   0,
-   39,
-   11,
-   "VIDEO"
-  ],
-  [
-   83,
-   7,
-   0,
-   39,
-   12,
-   "IMAGE"
-  ],
-  [
-   84,
-   32,
-   0,
-   39,
-   13,
-   "IMAGE"
-  ],
-  [
-   85,
-   33,
-   0,
-   39,
-   14,
-   "VIDEO"
-  ],
-  [
-   86,
-   8,
-   0,
-   39,
-   15,
-   "IMAGE"
-  ],
-  [
-   87,
-   37,
-   0,
-   39,
-   16,
-   "IMAGE"
-  ],
-  [
-   88,
-   38,
-   0,
-   39,
-   17,
-   "VIDEO"
-  ],
-  [
-   89,
-   39,
-   0,
    40,
    0,
-   "VIDEO"
-  ],
-  [
-   90,
-   39,
-   1,
    41,
    0,
    "IMAGE"
   ],
   [
-   91,
-   39,
+   75,
+   35,
    2,
+   41,
+   2,
+   "STRING"
+  ],
+  [
+   76,
+   35,
+   3,
+   41,
+   4,
+   "STRING"
+  ],
+  [
+   77,
+   2,
+   1,
    42,
+   0,
+   "STRING"
+  ],
+  [
+   78,
+   2,
+   0,
+   43,
+   0,
+   "IMAGE"
+  ],
+  [
+   79,
+   8,
+   0,
+   43,
+   1,
+   "IMAGE"
+  ],
+  [
+   80,
+   42,
+   0,
+   44,
+   0,
+   "STRING"
+  ],
+  [
+   81,
+   2,
+   0,
+   44,
+   5,
+   "IMAGE"
+  ],
+  [
+   82,
+   8,
+   0,
+   44,
+   6,
+   "IMAGE"
+  ],
+  [
+   83,
+   2,
+   2,
+   45,
+   0,
+   "STRING"
+  ],
+  [
+   84,
+   43,
+   0,
+   45,
+   1,
+   "IMAGE"
+  ],
+  [
+   85,
+   44,
+   0,
+   45,
+   2,
+   "IMAGE"
+  ],
+  [
+   86,
+   42,
+   4,
+   46,
+   0,
+   "STRING"
+  ],
+  [
+   87,
+   45,
+   0,
+   46,
+   5,
+   "IMAGE"
+  ],
+  [
+   88,
+   2,
+   1,
+   47,
+   0,
+   "STRING"
+  ],
+  [
+   89,
+   45,
+   0,
+   47,
+   1,
+   "IMAGE"
+  ],
+  [
+   90,
+   46,
+   0,
+   47,
+   2,
+   "IMAGE"
+  ],
+  [
+   91,
+   47,
+   0,
+   48,
+   0,
+   "IMAGE"
+  ],
+  [
+   92,
+   42,
+   2,
+   48,
+   2,
+   "STRING"
+  ],
+  [
+   93,
+   42,
+   3,
+   48,
+   4,
+   "STRING"
+  ],
+  [
+   94,
+   2,
+   1,
+   49,
+   0,
+   "STRING"
+  ],
+  [
+   95,
+   11,
+   0,
+   49,
+   1,
+   "AUDIO"
+  ],
+  [
+   96,
+   12,
+   0,
+   49,
+   2,
+   "STRING"
+  ],
+  [
+   97,
+   2,
+   0,
+   49,
+   18,
+   "IMAGE"
+  ],
+  [
+   98,
+   3,
+   0,
+   49,
+   19,
+   "IMAGE"
+  ],
+  [
+   99,
+   4,
+   0,
+   49,
+   3,
+   "IMAGE"
+  ],
+  [
+   100,
+   19,
+   0,
+   49,
+   4,
+   "IMAGE"
+  ],
+  [
+   101,
+   20,
+   0,
+   49,
+   5,
+   "VIDEO"
+  ],
+  [
+   102,
+   5,
+   0,
+   49,
+   6,
+   "IMAGE"
+  ],
+  [
+   103,
+   26,
+   0,
+   49,
+   7,
+   "IMAGE"
+  ],
+  [
+   104,
+   27,
+   0,
+   49,
+   8,
+   "VIDEO"
+  ],
+  [
+   105,
+   6,
+   0,
+   49,
+   9,
+   "IMAGE"
+  ],
+  [
+   106,
+   33,
+   0,
+   49,
+   10,
+   "IMAGE"
+  ],
+  [
+   107,
+   34,
+   0,
+   49,
+   11,
+   "VIDEO"
+  ],
+  [
+   108,
+   7,
+   0,
+   49,
+   12,
+   "IMAGE"
+  ],
+  [
+   109,
+   40,
+   0,
+   49,
+   13,
+   "IMAGE"
+  ],
+  [
+   110,
+   41,
+   0,
+   49,
+   14,
+   "VIDEO"
+  ],
+  [
+   111,
+   8,
+   0,
+   49,
+   15,
+   "IMAGE"
+  ],
+  [
+   112,
+   47,
+   0,
+   49,
+   16,
+   "IMAGE"
+  ],
+  [
+   113,
+   48,
+   0,
+   49,
+   17,
+   "VIDEO"
+  ],
+  [
+   114,
+   49,
+   0,
+   50,
+   0,
+   "VIDEO"
+  ],
+  [
+   115,
+   49,
+   1,
+   51,
+   0,
+   "IMAGE"
+  ],
+  [
+   116,
+   49,
+   2,
+   52,
    0,
    "STRING"
   ]
@@ -4947,6 +6408,22 @@
     ],
     [
      2,
+     "style"
+    ],
+    [
+     2,
+     "set"
+    ],
+    [
+     2,
+     "headline"
+    ],
+    [
+     2,
+     "prices"
+    ],
+    [
+     2,
      "length"
     ],
     [
@@ -4963,6 +6440,10 @@
     ],
     [
      2,
+     "lineup"
+    ],
+    [
+     2,
      "glowup"
     ],
     [
@@ -4971,21 +6452,13 @@
     ],
     [
      2,
-     "lineup"
-    ],
-    [
-     2,
-     "headline"
-    ],
-    [
-     2,
      "ai_label"
     ]
    ],
    "outputs": [
-    40,
-    41,
-    42,
+    50,
+    51,
+    52,
     13
    ]
   }

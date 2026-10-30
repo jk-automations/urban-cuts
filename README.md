@@ -1,8 +1,9 @@
 # Urban Cuts for ComfyUI
 
 An open clone of Higgsfield's **Urban Cuts** app, built as a ComfyUI App Mode workflow. Give it one photo of a person,
-3 to 5 outfits (or products) and a piece of music. It dresses the person in each look, films each look as a 360
-turnaround plus a fabric close-up, and cuts a 15 s 9:16 reel on the beat that loops.
+3 to 5 outfits (or products) and a piece of music. It dresses the person in each look, moves each look into a bright
+white wall room, films the model posing (hand on hip, a turn to the back, a look over the shoulder) plus a fabric
+close-up, and cuts a 15 s 9:16 reel on the beat that loops.
 
 ![App Mode](docs/img/app-mode.png)
 
@@ -11,34 +12,44 @@ Apache-2.0.
 
 ## What you get
 
-- `Your reel`: an H.264 + AAC MP4 at 9:16 (or 4:5 / 1:1). It opens on the plain "before" photo for 2 beats (the
-  before→after hook). Then each look gets two camera angles, cut on the beat: a 4-beat 360° turnaround (front, side,
-  back, front) and a 2-beat close-up pushing in on the fabric. It ends on a lineup of every look, one tile popping in per beat.
-  Each cut hits with a punch-zoom, flash or whip pan, and each shot speeds up into the next cut. The last frame blends
-  into the first, so the reel loops back to "before". Sound is -14 LUFS with true peak under -1 dBTP, and an `AI-generated` label is on by default.
+- `Your reel`: an H.264 + AAC MP4 at 9:16 (or 4:5 / 1:1). In the default **brand** style:
+  - **Teaser:** one beat of every look first, so the whole range shows in the first 2 seconds.
+  - **Each look:** two shots from one Kling generation, cut on the beat: a 4-beat pose sequence on a locked camera
+    (the model moves, not the camera) and a 2-beat handheld close-up on the fabric.
+  - **Clean:** plain hard cuts, a warm natural grade with light grain, one short headline for the whole reel and a small
+    item name on each look (prices optional).
+  - **Ending:** a 1 s card in the set's own wall colour with your shop name and @handle, then it loops.
+  - Sound is -14 LUFS with true peak under -1 dBTP, and an `AI-generated` label is on by default.
 - `Contact sheet`: the looks, plus one frame per cut with its time and effect.
 - `Receipt`: JSON with BPM, beat times, the cut list, the partner calls made and their cost.
 - `Beats`: BPM and beat times, as text.
 
+**Why brand style:** we watched 15 recent outfit Shorts from top fashion brands (6 from a big fast-fashion label, plus
+others). Across all 15 there were no flashes, whip pans, punch-zooms, prices or lineup grids. They use a locked camera
+with the model posing in a real-looking room, plain hard cuts, the range up front and one short line of text. Brand
+style copies those editing patterns. No brand assets are used.
+
+**Hype style** (one switch) keeps the louder edit: a punch-zoom, flash or whip on each cut, a speed ramp into each cut,
+a glow-up hit from a before photo, a beat pulse, numbered name-and-price tags and a lineup grid ending ("Comment a
+number to shop"). It films a 360 turnaround instead of the pose sequence.
+
 Two modes:
 - **Outfits**: the person wears each outfit.
-- **Products**: the person presents each product, a "new arrivals" reel for a shop. There's an optional headline on the first look.
+- **Products**: the person presents each product, a "new arrivals" reel for a shop.
 
-Three vibes (`street`, `runway`, `boutique`) set the moves and the cut effects. The hook and the lineup are switches in the form, and both are on by default.
+Three vibes (`street`, `runway`, `boutique`) set the moves, the energy and the default music.
 
-**Camera angles** (on by default): one Kling 3.0 generation per look with 2 storyboards, a 3 s turnaround and a 2 s
-close-up. Both shots come from the same generation, so the face and the clothes match between angles. Switch it off
-for the cheaper single-move version (one 3 s clip per look, 10 s reels, $1.69). Note: the back of a garment is the
-model's guess unless your outfit photo shows it, and footwear not in the outfit is invented.
-
-**For a shop:**
-- **Look tags:** type one line per look (`Rust bomber | $89`) and each look gets a numbered name-and-price tag, placed
-  clear of the Reels/TikTok caption and buttons.
-- **Branded lineup:** the lineup shows the tile numbers, your shop name and optional logo, and your call to action and
-  handle. With tags and no call to action, it reads "Comment a number to shop".
-- **Glow-up hit:** the before photo stutters into look 1 with a flash and a colour split.
-- **Beat pulse:** a small zoom breath on every beat inside a shot.
-- Every one of these has a switch or a field in the form.
+**Form options:**
+- **Style:** brand or hype.
+- **Set:** the white wall room (a Nano Banana 2.1 edit of each finished look, about $0.05 each), or keep your photo's
+  own background.
+- **Opening:** a teaser of every look, before→after, or off.
+- **Ending:** the handle card (brand), the lineup grid, or neither (the last look loops back).
+- **Two shots per look:** on by default. Off = one 3 s move per look, 10 s reels, the cheapest run.
+- **Text:** headline, look names (one line per look, `Rust bomber | $89`), show prices, shop name, @handle, call to
+  action, logo (lineup).
+- Notes: the back of a garment is the model's guess unless your outfit photo shows it, and footwear not in the outfit
+  is invented.
 
 **Consistency:**
 - **Background lock:** with Kling try-on the motion prompt locks the background, so the person stays in their own photo's setting.
@@ -53,13 +64,15 @@ model's guess unless your outfit photo shows it, and footwear not in the outfit 
 |---|---|---|
 | Choices + consent gate | `Urban Cuts: Your Choices + Consent` | CPU, free |
 | Try-on per look | `Kling Virtual Try-On` (or `Nano Banana 2.1` edit; products always use Nano Banana 2.1) | Comfy partner API |
-| Motion per look | `Kling 3.0 Video`, image to video, 720p, no audio: 2 storyboards (3 s turnaround + 2 s close-up), or one 3 s move with angles off | Comfy partner API |
+| Set per look | `Nano Banana 2.1` edit into the white wall room (`Urban Cuts: Set` picks it or your photo; only the picked one runs) | Comfy partner API |
+| Motion per look | `Kling 3.0 Video`, image to video, 720p, no audio: 2 storyboards (3 s pose sequence or turnaround + 2 s close-up), or one 3 s move | Comfy partner API |
 | Music | your uploaded track, or `Sonilo Text to Music` | upload: free / Sonilo: partner API |
 | Beat Detect | `Urban Cuts: Beat Detect` (librosa if installed, else a numpy onset envelope + dynamic-programming beat tracker) | CPU, free |
 | Beat Cut Assemble | `Urban Cuts: Beat Cut Assemble` (numpy frame effects + ffmpeg) | CPU, free |
 
 The pack avoids paying for steps it doesn't use:
-- Unused branches are **lazy inputs**. When you pick Kling try-on, the Nano Banana node never runs.
+- Unused branches are **lazy inputs**. When you pick Kling try-on, the Nano Banana node never runs; when you keep your
+  photo's background, the room edit never runs.
 - With your own track, Sonilo never runs.
 - A slot left on `urban_blank.png` skips that look's try-on and video.
 - The consent switch sits in front of every node, so a run with it off stops before anything is generated.
@@ -77,13 +90,14 @@ Reused from Comfy's own templates rather than rebuilt:
 Prices come from the nodes' own price badges (ComfyUI 0.42 `comfy_api_nodes`, read 2026-10-29). The `Receipt` output
 gives the same estimate for each run.
 
-| Partner call | Unit price | Default run (4 looks, 15 s, angles on) | Angles off (4 looks, 10 s) |
+| Partner call | Unit price | Default run (4 looks, 15 s, room, two shots) | Cheapest (4 looks, 10 s, own background, one move) |
 |---|---|---|---|
 | Kling Virtual Try-On | $0.16016 per image | 4 × = $0.641 | 4 × = $0.641 |
-| Nano Banana 2.1 edit, 1K, minimal thinking (fallback / products) | $0.048048 per image | (instead of try-on: 4 × = $0.192) | (4 × = $0.192) |
+| Nano Banana 2.1 edit, 1K, minimal thinking: room set | $0.048048 per image | 4 × = $0.192 | none |
+| Nano Banana 2.1 edit instead of try-on (fallback / products) | $0.048048 per image | (instead of try-on: 4 × = $0.192) | (4 × = $0.192) |
 | Kling 3.0 video, `kling-v3`, 720p, no audio | $0.084 per second | 4 × 5 s = $1.68 | 4 × 3 s = $1.008 |
 | Sonilo Text to Music | $0.0025 per second | 20 s = $0.05 | 15 s = $0.038 |
-| **Total** | | **$2.37** with Kling try-on, **$1.92** with Nano Banana | **$1.69** / **$1.23** |
+| **Total** | | **$2.56** with Kling try-on | **$1.69** (**$1.23** with Nano Banana) |
 | Free Draft | | **$0** |
 
 ## Install
@@ -118,17 +132,17 @@ Partner nodes need a Comfy account with credits.
 
 ## Demo output (paid partner run, 2026-10-29)
 
-- `docs/examples/demo-reel-street.mp4`: a fictional model made with Nano Banana 2.1 (not a real person), 4 plain
-  outfits with no logos, Kling try-on, Kling 3.0 with 2 storyboards per look (360 turnaround + close-up), and a 20 s
-  Sonilo track. 15.00 s, -14.2 LUFS, -1.2 dBTP, 120.2 BPM.
-  - Timeline: before 0–1.00 s; each look is a turnaround then a close-up, cutting at 1.00 / 3.00 / 4.01 / 6.00 / 7.00 /
-    9.00 / 10.00 / 12.00 s; the lineup starts at 13.00 s with tiles at 13.00 / 13.50 / 14.00 / 14.50 s.
+- `docs/examples/demo-reel-street.mp4` (brand style): a fictional model made with Nano Banana 2.1 (not a real person),
+  4 plain outfits with no logos, Kling try-on, a Nano Banana 2.1 edit into the white wall room, Kling 3.0 with 2
+  storyboards per look (pose sequence + close-up), and a 20 s Sonilo track. 15.00 s, -14.2 LUFS, -1.2 dBTP, 120.2 BPM.
+  - Timeline: teaser beats at 0 / 0.50 / 1.00 / 1.50 s; each look is a pose sequence then a close-up, cutting at 2.00 /
+    4.01 / 5.00 / 7.00 / 8.00 / 10.00 / 11.01 / 13.00 s; the handle card runs from 14.00 s, then it loops.
 - `docs/examples/demo-contact-sheet-street.png` and `docs/examples/demo-receipt.json`.
-- Demo video (105 s): `docs/demo/urban-cuts-demo.mp4`, built by `tools/record_demo.mjs` (real screenshots of the app) and `tools/make_demo_video.py`.
+- Demo video (112 s): `docs/demo/urban-cuts-demo.mp4`, built by `tools/record_demo.mjs` (real screenshots of the app) and `tools/make_demo_video.py`.
 - Spend: $0.24 for the input stills, $1.68 for the first app run (single 3 s moves), $0.25 to regenerate look 3 with
-  the background-locked prompt (the first version walked onto a street), then $1.68 for the 4 turnaround + close-up
-  clips and $0.05 for a 20 s track. That's $3.90 in all, estimated from the price badges. The reel is cut from the
-  saved try-on stills and clips at no extra cost.
+  the background-locked prompt, $1.68 + $0.05 for a 360-turnaround version and a 20 s track, then $1.87 for the room
+  edits and the pose-sequence clips. That's $5.77 in all, estimated from the price badges. The reel is cut from the
+  saved stills and clips at no extra cost.
 - After the run, a fix made each cut snap to the tempo grid (the tracker had slipped near the end of the track). The reel
   was then re-cut from the same saved clips at no extra cost.
 

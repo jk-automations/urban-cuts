@@ -1,0 +1,80 @@
+{
+ "1": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "urban_demo_look_4.png"
+  },
+  "_meta": {
+   "title": "Look still"
+  }
+ },
+ "2": {
+  "class_type": "GeminiNanoBanana2V2",
+  "_meta": {
+   "title": "Room 4 (Nano Banana 2.1)"
+  },
+  "inputs": {
+   "prompt": "Place the person from Image 1 in a bright, simple room: a plain warm-white wall and a herringbone wooden parquet floor, soft natural daylight from the side. Keep the person exactly the same: face, hair, body, pose and the outfit, which must match exactly: cut, colour, fabric and fit. Same full-body framing with space above the head, vertical 9:16, sharp focus. No logos, no brand names, no text, no other people, no furniture.",
+   "seed": 404,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "1",
+    0
+   ]
+  }
+ },
+ "3": {
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "room still 4"
+  },
+  "inputs": {
+   "images": [
+    "2",
+    0
+   ],
+   "filename_prefix": "urban-demo/room_4"
+  }
+ },
+ "4": {
+  "class_type": "KlingVideoNode",
+  "_meta": {
+   "title": "Poses 4 (Kling 3.0)"
+  },
+  "inputs": {
+   "generate_audio": false,
+   "model": "kling-v3",
+   "seed": 504,
+   "start_frame": [
+    "2",
+    0
+   ],
+   "model.resolution": "720p",
+   "model.aspect_ratio": "9:16",
+   "multi_shot": "2 storyboards",
+   "multi_shot.storyboard_1_prompt": "Fashion try-on video, locked-off camera, full body from head to shoes. The person puts one hand on the hip, then turns around to show the back of the outfit, looks back over the shoulder at the camera, and turns to face the camera again in a relaxed pose, cool, confident attitude. Same background and light as the first frame. The outfit stays exactly the same: colours, fabric and fit.",
+   "multi_shot.storyboard_1_duration": 3,
+   "multi_shot.storyboard_2_prompt": "Close-up, slight handheld movement: the camera glides down the outfit from the chest to the waist while the person's hand brushes the fabric, showing texture, stitching and fit. Same background and light as the first frame. Same outfit, same colours.",
+   "multi_shot.storyboard_2_duration": 2
+  }
+ },
+ "5": {
+  "class_type": "SaveVideo",
+  "_meta": {
+   "title": "clip 4"
+  },
+  "inputs": {
+   "video": [
+    "4",
+    0
+   ],
+   "filename_prefix": "urban-demo/clip_4_room",
+   "format": "mp4",
+   "format.codec": "auto"
+  }
+ }
+}

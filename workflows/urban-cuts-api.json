@@ -25,15 +25,18 @@
    "music_prompt": "",
    "headline": "",
    "ai_label": true,
-   "hook": true,
-   "lineup": true,
+   "hook": "teaser",
+   "lineup": false,
    "look_labels": "",
    "brand_name": "",
    "handle": "",
    "cta": "",
    "pulse": true,
    "glowup": true,
-   "angles": true
+   "angles": true,
+   "style": "brand",
+   "set": "white wall room",
+   "prices": false
   },
   "_meta": {
    "title": "Your choices"
@@ -241,6 +244,48 @@
   }
  },
  "18": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "14",
+    4
+   ],
+   "seed": 401,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "17",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Room 1 (Nano Banana 2.1)"
+  }
+ },
+ "19": {
+  "class_type": "UrbanSet",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": [
+    "17",
+    0
+   ],
+   "room": [
+    "18",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Set 1"
+  }
+ },
+ "20": {
   "class_type": "KlingVideoNode",
   "inputs": {
    "multi_shot": "2 storyboards",
@@ -248,7 +293,7 @@
    "model": "kling-v3",
    "seed": 301,
    "start_frame": [
-    "17",
+    "19",
     0
    ],
    "multi_shot.storyboard_1_prompt": [
@@ -268,7 +313,7 @@
    "title": "Angles 1 (Kling 3.0)"
   }
  },
- "19": {
+ "21": {
   "class_type": "UrbanShot",
   "inputs": {
    "brief": [
@@ -281,7 +326,7 @@
    "title": "Look 2 prompts"
   }
  },
- "20": {
+ "22": {
   "class_type": "KlingTryOnNode",
   "inputs": {
    "person_image": [
@@ -299,11 +344,11 @@
    "title": "Try-on 2 (Kling)"
   }
  },
- "21": {
+ "23": {
   "class_type": "GeminiNanoBanana2V2",
   "inputs": {
    "prompt": [
-    "19",
+    "21",
     0
    ],
    "seed": 202,
@@ -325,7 +370,7 @@
    "title": "Edit 2 (Nano Banana 2.1)"
   }
  },
- "22": {
+ "24": {
   "class_type": "UrbanPickLook",
   "inputs": {
    "engine": [
@@ -333,11 +378,11 @@
     2
    ],
    "kling": [
-    "20",
+    "22",
     0
    ],
    "banana": [
-    "21",
+    "23",
     0
    ]
   },
@@ -345,7 +390,49 @@
    "title": "Look 2"
   }
  },
- "23": {
+ "25": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "21",
+    4
+   ],
+   "seed": 402,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "24",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Room 2 (Nano Banana 2.1)"
+  }
+ },
+ "26": {
+  "class_type": "UrbanSet",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": [
+    "24",
+    0
+   ],
+   "room": [
+    "25",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Set 2"
+  }
+ },
+ "27": {
   "class_type": "KlingVideoNode",
   "inputs": {
    "multi_shot": "2 storyboards",
@@ -353,16 +440,16 @@
    "model": "kling-v3",
    "seed": 302,
    "start_frame": [
-    "22",
+    "26",
     0
    ],
    "multi_shot.storyboard_1_prompt": [
-    "19",
+    "21",
     2
    ],
    "multi_shot.storyboard_1_duration": 3,
    "multi_shot.storyboard_2_prompt": [
-    "19",
+    "21",
     3
    ],
    "multi_shot.storyboard_2_duration": 2,
@@ -373,7 +460,7 @@
    "title": "Angles 2 (Kling 3.0)"
   }
  },
- "24": {
+ "28": {
   "class_type": "UrbanShot",
   "inputs": {
    "brief": [
@@ -386,7 +473,7 @@
    "title": "Look 3 prompts"
   }
  },
- "25": {
+ "29": {
   "class_type": "KlingTryOnNode",
   "inputs": {
    "person_image": [
@@ -404,11 +491,11 @@
    "title": "Try-on 3 (Kling)"
   }
  },
- "26": {
+ "30": {
   "class_type": "GeminiNanoBanana2V2",
   "inputs": {
    "prompt": [
-    "24",
+    "28",
     0
    ],
    "seed": 203,
@@ -430,7 +517,7 @@
    "title": "Edit 3 (Nano Banana 2.1)"
   }
  },
- "27": {
+ "31": {
   "class_type": "UrbanPickLook",
   "inputs": {
    "engine": [
@@ -438,11 +525,11 @@
     2
    ],
    "kling": [
-    "25",
+    "29",
     0
    ],
    "banana": [
-    "26",
+    "30",
     0
    ]
   },
@@ -450,7 +537,49 @@
    "title": "Look 3"
   }
  },
- "28": {
+ "32": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "28",
+    4
+   ],
+   "seed": 403,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "31",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Room 3 (Nano Banana 2.1)"
+  }
+ },
+ "33": {
+  "class_type": "UrbanSet",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": [
+    "31",
+    0
+   ],
+   "room": [
+    "32",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Set 3"
+  }
+ },
+ "34": {
   "class_type": "KlingVideoNode",
   "inputs": {
    "multi_shot": "2 storyboards",
@@ -458,16 +587,16 @@
    "model": "kling-v3",
    "seed": 303,
    "start_frame": [
-    "27",
+    "33",
     0
    ],
    "multi_shot.storyboard_1_prompt": [
-    "24",
+    "28",
     2
    ],
    "multi_shot.storyboard_1_duration": 3,
    "multi_shot.storyboard_2_prompt": [
-    "24",
+    "28",
     3
    ],
    "multi_shot.storyboard_2_duration": 2,
@@ -478,7 +607,7 @@
    "title": "Angles 3 (Kling 3.0)"
   }
  },
- "29": {
+ "35": {
   "class_type": "UrbanShot",
   "inputs": {
    "brief": [
@@ -491,7 +620,7 @@
    "title": "Look 4 prompts"
   }
  },
- "30": {
+ "36": {
   "class_type": "KlingTryOnNode",
   "inputs": {
    "person_image": [
@@ -509,11 +638,11 @@
    "title": "Try-on 4 (Kling)"
   }
  },
- "31": {
+ "37": {
   "class_type": "GeminiNanoBanana2V2",
   "inputs": {
    "prompt": [
-    "29",
+    "35",
     0
    ],
    "seed": 204,
@@ -535,7 +664,7 @@
    "title": "Edit 4 (Nano Banana 2.1)"
   }
  },
- "32": {
+ "38": {
   "class_type": "UrbanPickLook",
   "inputs": {
    "engine": [
@@ -543,11 +672,11 @@
     2
    ],
    "kling": [
-    "30",
+    "36",
     0
    ],
    "banana": [
-    "31",
+    "37",
     0
    ]
   },
@@ -555,7 +684,49 @@
    "title": "Look 4"
   }
  },
- "33": {
+ "39": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "35",
+    4
+   ],
+   "seed": 404,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "38",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Room 4 (Nano Banana 2.1)"
+  }
+ },
+ "40": {
+  "class_type": "UrbanSet",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": [
+    "38",
+    0
+   ],
+   "room": [
+    "39",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Set 4"
+  }
+ },
+ "41": {
   "class_type": "KlingVideoNode",
   "inputs": {
    "multi_shot": "2 storyboards",
@@ -563,16 +734,16 @@
    "model": "kling-v3",
    "seed": 304,
    "start_frame": [
-    "32",
+    "40",
     0
    ],
    "multi_shot.storyboard_1_prompt": [
-    "29",
+    "35",
     2
    ],
    "multi_shot.storyboard_1_duration": 3,
    "multi_shot.storyboard_2_prompt": [
-    "29",
+    "35",
     3
    ],
    "multi_shot.storyboard_2_duration": 2,
@@ -583,7 +754,7 @@
    "title": "Angles 4 (Kling 3.0)"
   }
  },
- "34": {
+ "42": {
   "class_type": "UrbanShot",
   "inputs": {
    "brief": [
@@ -596,7 +767,7 @@
    "title": "Look 5 prompts"
   }
  },
- "35": {
+ "43": {
   "class_type": "KlingTryOnNode",
   "inputs": {
    "person_image": [
@@ -614,11 +785,11 @@
    "title": "Try-on 5 (Kling)"
   }
  },
- "36": {
+ "44": {
   "class_type": "GeminiNanoBanana2V2",
   "inputs": {
    "prompt": [
-    "34",
+    "42",
     0
    ],
    "seed": 205,
@@ -640,7 +811,7 @@
    "title": "Edit 5 (Nano Banana 2.1)"
   }
  },
- "37": {
+ "45": {
   "class_type": "UrbanPickLook",
   "inputs": {
    "engine": [
@@ -648,11 +819,11 @@
     2
    ],
    "kling": [
-    "35",
+    "43",
     0
    ],
    "banana": [
-    "36",
+    "44",
     0
    ]
   },
@@ -660,7 +831,49 @@
    "title": "Look 5"
   }
  },
- "38": {
+ "46": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": [
+    "42",
+    4
+   ],
+   "seed": 405,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL",
+   "model.images.image_1": [
+    "45",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Room 5 (Nano Banana 2.1)"
+  }
+ },
+ "47": {
+  "class_type": "UrbanSet",
+  "inputs": {
+   "brief": [
+    "2",
+    1
+   ],
+   "look": [
+    "45",
+    0
+   ],
+   "room": [
+    "46",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Set 5"
+  }
+ },
+ "48": {
   "class_type": "KlingVideoNode",
   "inputs": {
    "multi_shot": "2 storyboards",
@@ -668,16 +881,16 @@
    "model": "kling-v3",
    "seed": 305,
    "start_frame": [
-    "37",
+    "47",
     0
    ],
    "multi_shot.storyboard_1_prompt": [
-    "34",
+    "42",
     2
    ],
    "multi_shot.storyboard_1_duration": 3,
    "multi_shot.storyboard_2_prompt": [
-    "34",
+    "42",
     3
    ],
    "multi_shot.storyboard_2_duration": 2,
@@ -688,7 +901,7 @@
    "title": "Angles 5 (Kling 3.0)"
   }
  },
- "39": {
+ "49": {
   "class_type": "UrbanBeatCut",
   "inputs": {
    "brief": [
@@ -716,11 +929,11 @@
     0
    ],
    "look_1": [
-    "17",
+    "19",
     0
    ],
    "clip_1": [
-    "18",
+    "20",
     0
    ],
    "item_2": [
@@ -728,11 +941,11 @@
     0
    ],
    "look_2": [
-    "22",
+    "26",
     0
    ],
    "clip_2": [
-    "23",
+    "27",
     0
    ],
    "item_3": [
@@ -740,11 +953,11 @@
     0
    ],
    "look_3": [
-    "27",
+    "33",
     0
    ],
    "clip_3": [
-    "28",
+    "34",
     0
    ],
    "item_4": [
@@ -752,11 +965,11 @@
     0
    ],
    "look_4": [
-    "32",
+    "40",
     0
    ],
    "clip_4": [
-    "33",
+    "41",
     0
    ],
    "item_5": [
@@ -764,11 +977,11 @@
     0
    ],
    "look_5": [
-    "37",
+    "47",
     0
    ],
    "clip_5": [
-    "38",
+    "48",
     0
    ]
   },
@@ -776,11 +989,11 @@
    "title": "Beat cut"
   }
  },
- "40": {
+ "50": {
   "class_type": "SaveVideo",
   "inputs": {
    "video": [
-    "39",
+    "49",
     0
    ],
    "filename_prefix": "urban-cuts/reel",
@@ -791,11 +1004,11 @@
    "title": "Your reel"
   }
  },
- "41": {
+ "51": {
   "class_type": "PreviewImage",
   "inputs": {
    "images": [
-    "39",
+    "49",
     1
    ]
   },
@@ -803,11 +1016,11 @@
    "title": "Contact sheet"
   }
  },
- "42": {
+ "52": {
   "class_type": "PreviewAny",
   "inputs": {
    "source": [
-    "39",
+    "49",
     2
    ]
   },

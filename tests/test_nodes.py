@@ -41,7 +41,7 @@ def audio_of(wav):
 def brief_json(nodes, **kw):
     args = dict(person=textured(0), consent=True, mode="outfits", vibe="street", length=10.0, aspect="9:16",
                 look_engine=core.LOOK_ENGINES[0], music_source=core.MUSIC_SOURCES[1], music_prompt="", headline="", ai_label=True,
-                angles=False)
+                angles=False, set=core.SETS[0])
     args.update(kw)
     return nodes.UrbanBrief().run(**args)
 
@@ -128,3 +128,13 @@ def test_no_looks_is_refused(nodes, click_wav):
     beats, _ = nodes.UrbanBeatDetect().run(music)
     with pytest.raises(ValueError, match="at least one"):
         nodes.UrbanBeatCut().run(brief, music, beats, item_1=BLANK)
+
+
+def test_room_set_is_lazy(nodes):
+    look = textured(1)
+    photo = brief_json(nodes)[1]
+    room = brief_json(nodes, set=core.SETS[1])[1]
+    s = nodes.UrbanSet()
+    assert s.check_lazy_status(photo, look) == []              # keep the photo: the room edit never runs or bills
+    assert s.check_lazy_status(room, look) == ["room"]
+    assert s.run(photo, look)[0] is look and s.run(room, look, room=textured(2))[0] is not look

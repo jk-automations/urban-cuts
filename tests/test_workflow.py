@@ -28,7 +28,7 @@ def test_opens_in_app_mode_with_the_form(name):
     wf, nodes = load(name)
     assert wf["extra"]["linearMode"] is True
     names = [(nodes[i]["type"], w) for i, w in wf["extra"]["linearData"]["inputs"]]
-    for w in ("consent", "mode", "vibe", "length", "aspect", "headline"):
+    for w in ("consent", "mode", "vibe", "length", "aspect", "headline", "style", "hook", "prices"):
         assert ("UrbanBrief", w) in names
     assert sum(t == "LoadImage" for t, _ in names) >= 6   # person + 5 outfit/product slots
     outs = sorted(nodes[i]["title"] for i in wf["extra"]["linearData"]["outputs"])
@@ -39,7 +39,7 @@ def test_opens_in_app_mode_with_the_form(name):
 def test_partner_graph_shape():
     g = json.loads((WF / "urban-cuts-api.json").read_text())
     types = [n["class_type"] for n in g.values()]
-    for t, n in [("KlingTryOnNode", 5), ("GeminiNanoBanana2V2", 5), ("KlingVideoNode", 5), ("SoniloTextToMusic", 1)]:
+    for t, n in [("KlingTryOnNode", 5), ("GeminiNanoBanana2V2", 10), ("KlingVideoNode", 5), ("SoniloTextToMusic", 1)]:
         assert types.count(t) == n
     for n in g.values():
         if n["class_type"] == "KlingVideoNode":

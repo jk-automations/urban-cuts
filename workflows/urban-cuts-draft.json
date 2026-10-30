@@ -1,5 +1,5 @@
 {
- "id": "8606131b-bbfc-4df6-8a79-ef8ff8c3dd80",
+ "id": "11d3d3f8-5296-4882-a4bc-f6b4cefcbee6",
  "revision": 0,
  "last_node_id": 21,
  "last_link_id": 23,
@@ -77,7 +77,7 @@
    ],
    "size": [
     400,
-    630
+    702
    ],
    "flags": {},
    "order": 13,
@@ -167,7 +167,7 @@
      "link": null
     },
     {
-     "label": "Headline on the first look (optional)",
+     "label": "Headline (optional, one short line)",
      "localized_name": "headline",
      "name": "headline",
      "type": "STRING",
@@ -187,17 +187,17 @@
      "link": null
     },
     {
-     "label": "Before→after hook",
+     "label": "Opening (teaser of every look / before→after / off)",
      "localized_name": "hook",
      "name": "hook",
-     "type": "BOOLEAN",
+     "type": "COMBO",
      "widget": {
       "name": "hook"
      },
      "link": null
     },
     {
-     "label": "Lineup finale",
+     "label": "Lineup grid ending ('comment a number')",
      "localized_name": "lineup",
      "name": "lineup",
      "type": "BOOLEAN",
@@ -217,7 +217,7 @@
      "link": null
     },
     {
-     "label": "Shop name (lineup)",
+     "label": "Shop name (end card)",
      "localized_name": "brand_name",
      "name": "brand_name",
      "type": "STRING",
@@ -227,7 +227,7 @@
      "link": null
     },
     {
-     "label": "@handle or website (lineup)",
+     "label": "@handle or website (end card)",
      "localized_name": "handle",
      "name": "handle",
      "type": "STRING",
@@ -237,7 +237,7 @@
      "link": null
     },
     {
-     "label": "Call to action (empty = 'Comment a number to shop')",
+     "label": "Call to action (end card; lineup default 'Comment a number to shop')",
      "localized_name": "cta",
      "name": "cta",
      "type": "STRING",
@@ -247,7 +247,7 @@
      "link": null
     },
     {
-     "label": "Beat pulse",
+     "label": "Hype only: beat pulse",
      "localized_name": "pulse",
      "name": "pulse",
      "type": "BOOLEAN",
@@ -257,7 +257,7 @@
      "link": null
     },
     {
-     "label": "Glow-up hit on the first look",
+     "label": "Hype only: glow-up hit",
      "localized_name": "glowup",
      "name": "glowup",
      "type": "BOOLEAN",
@@ -267,12 +267,41 @@
      "link": null
     },
     {
-     "label": "Camera angles: 360 turnaround + close-up per look",
+     "label": "Two shots per look: pose sequence + fabric close-up",
      "localized_name": "angles",
      "name": "angles",
      "type": "BOOLEAN",
      "widget": {
       "name": "angles"
+     },
+     "link": null
+    },
+    {
+     "label": "Style (brand = clean cuts, warm grade; hype = flash/whip/punch)",
+     "localized_name": "style",
+     "name": "style",
+     "type": "COMBO",
+     "widget": {
+      "name": "style"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "set",
+     "name": "set",
+     "type": "COMBO",
+     "widget": {
+      "name": "set"
+     },
+     "link": null
+    },
+    {
+     "label": "Show prices on looks",
+     "localized_name": "prices",
+     "name": "prices",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "prices"
      },
      "link": null
     }
@@ -329,15 +358,18 @@
     "",
     "",
     true,
-    true,
-    true,
+    "teaser",
+    false,
     "",
     "",
     "",
     "",
     true,
     true,
-    true
+    true,
+    "brand",
+    "keep my photo's background",
+    false
    ],
    "widgets_values_named": {
     "consent": false,
@@ -350,15 +382,18 @@
     "music_prompt": "",
     "headline": "",
     "ai_label": true,
-    "hook": true,
-    "lineup": true,
+    "hook": "teaser",
+    "lineup": false,
     "look_labels": "",
     "brand_name": "",
     "handle": "",
     "cta": "",
     "pulse": true,
     "glowup": true,
-    "angles": true
+    "angles": true,
+    "style": "brand",
+    "set": "keep my photo's background",
+    "prices": false
    }
   },
   {
@@ -1886,6 +1921,18 @@
     ],
     [
      2,
+     "style"
+    ],
+    [
+     2,
+     "headline"
+    ],
+    [
+     2,
+     "prices"
+    ],
+    [
+     2,
      "length"
     ],
     [
@@ -1902,19 +1949,15 @@
     ],
     [
      2,
+     "lineup"
+    ],
+    [
+     2,
      "glowup"
     ],
     [
      2,
      "pulse"
-    ],
-    [
-     2,
-     "lineup"
-    ],
-    [
-     2,
-     "headline"
     ],
     [
      2,

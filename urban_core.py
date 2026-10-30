@@ -37,6 +37,9 @@ VIBES = {
 ASPECTS = {"9:16": (720, 1280), "4:5": (864, 1080), "1:1": (1080, 1080)}
 LOOK_ENGINES = ["Kling try-on", "Nano Banana 2 edit"]
 MUSIC_SOURCES = ["my own track (upload)", "Sonilo (text to music)"]
+STYLES = ["brand", "hype"]             # brand: how fashion brands post (hard cuts, warm grade, clean text); hype: flash/whip/punch
+HOOKS = ["teaser", "before→after", "off"]
+SETS = ["keep my photo's background", "white wall room"]
 SPOT_MOVES = ["shifts their weight and turns slightly to the side, then back to face the camera with a confident look",
               "does a slow half turn on the spot to show the back of the outfit, then turns back to the camera",
               "puts one hand on the hip and turns the shoulders toward the camera with a small smile",
@@ -62,7 +65,8 @@ NEGATIVE = ("logos, brand names, text, watermark, extra people, distorted hands,
 # ---------------------------------------------------------------- the brief and the prompts
 def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_engine=LOOK_ENGINES[0],
                music_source=MUSIC_SOURCES[0], music_prompt="", headline="", consent=False, ai_label=True, hook=True,
-               lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True, angles=False):
+               lineup=True, look_labels="", brand_name="", handle="", cta="", pulse=True, glowup=True, angles=False,
+               style="hype", set=SETS[0], prices=True):
     if not consent:
         raise ValueError("Urban Cuts needs the person's consent: tick 'I have this person's consent to use their photo' "
                          "(you, or someone who agreed). Nothing was generated.")
@@ -72,6 +76,11 @@ def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_e
         raise ValueError(f"vibe must be one of {list(VIBES)}")
     if aspect not in ASPECTS:
         raise ValueError(f"aspect must be one of {list(ASPECTS)}")
+    if style not in STYLES:
+        raise ValueError(f"style must be one of {STYLES}")
+    hook = {True: "before", False: None, "teaser": "teaser", "before→after": "before", "before": "before", "off": None}.get(hook, hook)
+    if hook not in ("before", "teaser", None):
+        raise ValueError(f"hook must be one of {HOOKS}")
     if not 4.0 <= float(length) <= 20.0:
         raise ValueError("length must be 4 to 20 seconds")
     engine = "banana" if mode == "products" or look_engine.startswith("Nano") else "kling"
@@ -79,7 +88,8 @@ def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_e
     mp = music_prompt.strip() or default_music_prompt(vibe)
     return {"mode": mode, "vibe": vibe, "length": float(length), "aspect": aspect, "engine": engine, "music": music,
             "music_prompt": mp, "music_seconds": int(np.ceil(float(length))) + 5, "headline": headline.strip(),
-            "ai_label": bool(ai_label), "hook": bool(hook), "lineup": bool(lineup), "labels": parse_labels(look_labels),
+            "ai_label": bool(ai_label), "hook": hook, "lineup": bool(lineup), "labels": parse_labels(look_labels),
+            "style": style, "set": "room" if set.startswith("white") else "photo", "prices": bool(prices),
             "brand": {"name": brand_name.strip(), "handle": handle.strip(), "cta": cta.strip()},
             "pulse": bool(pulse), "glowup": bool(glowup), "angles": bool(angles),
             "shots": list(ANGLE_SHOTS) if angles else [CLIP_SECONDS], "pattern": list(ANGLE_PATTERN) if angles else None}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
@@ -123,7 +133,8 @@ def angle_prompts(brief, k):
     across the angles. Shot 1: a full 360-degree turnaround, full body. Shot 2: a close-up on the fabric and details.
     The flat-lay shows only the front, so the back of the outfit is the video model's best guess."""
     v = VIBES[brief["vibe"]]
-    lock = ("Same background and light as the first frame." if brief["engine"] == "kling" else f"{v['setting'].capitalize()}.")
+    lock = ("Same background and light as the first frame." if brief["engine"] == "kling" or brief.get("set") == "room"
+            else f"{v['setting'].capitalize()}.")
     if brief["mode"] == "products":
         turn = (f"The person slowly turns the product in their hands to show every side of it, then holds it toward the "
                 f"camera. {lock} Steady camera, the person and the product fully in frame.")
@@ -136,6 +147,38 @@ def angle_prompts(brief, k):
         detail = (f"Close-up: the camera slowly pushes in on the outfit from the chest to the waist, showing the fabric, "
                   f"stitching and details, while the person stands still. {lock} Same outfit, same colours.")
     return turn, detail
+
+
+def shot_prompts(brief, k):
+    """The two storyboard prompts for look k: brand style films a pose sequence, hype style a 360 turnaround."""
+    return pose_prompts(brief, k) if brief.get("style") == "brand" else angle_prompts(brief, k)
+
+
+def restage_prompt(brief, k):
+    """Nano Banana 2.1 edit that moves a finished look into the 'room' set (the white wall + wooden floor that brand
+    try-on posts use) without touching the person or the outfit. Image 1 = the look still."""
+    return ("Place the person from Image 1 in a bright, simple room: a plain warm-white wall and a herringbone wooden "
+            "parquet floor, soft natural daylight from the side. Keep the person exactly the same: face, hair, body, pose "
+            "and the outfit, which must match exactly: cut, colour, fabric and fit. Same full-body framing with space above "
+            "the head, vertical 9:16, sharp focus. No logos, no brand names, no text, no other people, no furniture.")
+
+
+def pose_prompts(brief, k):
+    """Brand style: two storyboard shots from one Kling 3.0 generation, the way brand try-on posts are filmed. Shot 1:
+    a locked-off full-body pose sequence where the MODEL moves (hand on hip, turn to the back, a look over the shoulder),
+    not a camera orbit. Shot 2: a handheld close-up on the fabric."""
+    v = VIBES[brief["vibe"]]
+    lock = ("Same background and light as the first frame." if brief["engine"] == "kling" or brief.get("set") == "room"
+            else f"{v['setting'].capitalize()}.")
+    if brief["mode"] == "products":
+        return angle_prompts(brief, k)
+    pose = (f"Fashion try-on video, locked-off camera, full body from head to shoes. The person puts one hand on the hip, "
+            f"then turns around to show the back of the outfit, looks back over the shoulder at the camera, and turns to "
+            f"face the camera again in a relaxed pose, {v['energy']}. {lock} The outfit stays exactly the same: colours, "
+            f"fabric and fit.")
+    detail = (f"Close-up, slight handheld movement: the camera glides down the outfit from the chest to the waist while the "
+              f"person's hand brushes the fabric, showing texture, stitching and fit. {lock} Same outfit, same colours.")
+    return pose, detail
 
 
 def motion_prompt(brief, k):
@@ -266,14 +309,15 @@ def detect_beats(samples, sr, prefer_librosa=True):
 
 
 # ---------------------------------------------------------------- the cut list
-def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None, hook=False, lineup=False, pattern=None):
+def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None, hook=False, lineup=False, pattern=None, card=False):
     """Where each look starts and ends on the music. The reel starts on a downbeat (music offset `start`); then the
     looks cycle 1..n. Each look is a run of shots whose lengths in beats are `pattern` (default: one shot of
     `beats_per_look` beats; with camera angles [4, 2]: a 4-beat turnaround, then a 2-beat close-up). Returns the music
     offset, the segments [{kind, look, shot, t0, t1}] on the reel timeline (t1 of the last = length) and the cut times.
-    hook: the first 2 beats are the plain 'before' photo. lineup: from the last bar line that leaves most of a bar,
-    every look in a grid, one tile popping in per beat ('pops'). Either is dropped (see 'skipped') when there is too
-    little time for every look to show at least once."""
+    hook: True/'before' = the first 2 beats are the plain 'before' photo; 'teaser' = one beat of every look first, the
+    way brand posts show the whole range up front. lineup: from the last bar line that leaves most of a bar, every
+    look in a grid, one tile popping in per beat ('pops'). card (when no lineup): the last 2 beats are a handle card.
+    Each is dropped (see 'skipped') when there is too little time for every look to show at least once."""
     bt = np.array(beats["beats"], dtype=float)
     if n_looks < 1:
         raise ValueError("need at least one look")
@@ -287,31 +331,34 @@ def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None, hook=Fa
     per_look = sum(pattern)
     beats_avail = length / period
     skipped = []
-    hook_beats = 2 if hook else 0
+    hook = "before" if hook is True else (hook or None)
+    hook_beats = {"before": 2, "teaser": n_looks}.get(hook, 0)
+    end_kind = "lineup" if (lineup and n_looks >= 2) else ("card" if card else None)
     need = lambda hb: hb + (n_looks - 1) * per_look + pattern[0]   # beats until every look has shown its first shot
     lineup_b = None
-    if lineup and n_looks >= 2:
-        # where a shot starts (the lineup must start on a cut), at least most of a bar before the end
+    if end_kind:
+        # where a shot starts (the ending must start on a cut): most of a bar before the end for the lineup, 2 beats for the card
         starts = list(np.cumsum([hook_beats] + pattern * (n_looks * 8)))
-        starts = [b for b in starts if length - b * period >= 3.6 * period]
+        starts = [b for b in starts if length - b * period >= (3.6 if end_kind == "lineup" else 1.6) * period]
         full = hook_beats + n_looks * per_look     # every shot of every look shown
         pick = ([b for b in starts if b >= full and b % 4 == 0] or [b for b in starts if b >= full]
                 or [b for b in starts if b >= need(hook_beats)])
         if pick:
             lineup_b = pick[-1]
         else:
-            skipped.append("lineup: reel too short for a whole bar after every look")
+            skipped.append(f"{end_kind}: reel too short for it after every look")
     end_b = lineup_b if lineup_b is not None else beats_avail
     if hook and need(hook_beats) > end_b + 1e-6:
-        hook, hook_beats = False, 0
-        skipped.append("hook: reel too short to show every look after the before photo")
-    slots = [("before", None, None, 0)] if hook else []
+        hook, hook_beats = None, 0
+        skipped.append("hook: reel too short to show every look after it")
+    slots = ([("before", None, None, 0)] if hook == "before" else
+             [("teaser", j, 0, j) for j in range(n_looks)] if hook == "teaser" else [])
     b, k = hook_beats, 0
     while b < end_b - 0.5 and b * period < length - 0.25:
         j = k % len(pattern)
         slots.append(("look", (k // len(pattern)) % n_looks, j, b)); b += pattern[j]; k += 1
     if lineup_b is not None:
-        slots.append(("lineup", None, None, lineup_b))
+        slots.append((end_kind, None, None, lineup_b))
     # Walk the tempo grid and snap each cut to the detected beat nearest to it. A tracker slip (an extra or missing
     # beat) then cannot shift every later cut off the grid: when no detected beat is within 15% of a beat period, the
     # grid time is used and marked "grid" in `snapped`.
@@ -335,7 +382,7 @@ def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None, hook=Fa
             seg["t1"] = float(length)
         segs.append(seg)
     used_cuts = [s["t0"] for s in segs[1:]]
-    return {"music_start": round(float(start), 4), "segments": segs, "cuts": used_cuts, "snapped": snapped,
+    return {"hook": hook, "music_start": round(float(start), 4), "segments": segs, "cuts": used_cuts, "snapped": snapped,
             "beat_times": [round(float(t), 4) for t in rel], "length": float(length), "skipped": skipped,
             "pattern": pattern}
 
@@ -652,6 +699,70 @@ def lineup_frames(stills, n, W, H, pop_frames, bg=(24, 21, 18), brand=None, logo
     return out
 
 
+def warm_grade(frames, seed=0):
+    """Brand style grade: a little warmer, soft lifted blacks and a light film grain (the warm, natural look of brand
+    try-on posts instead of a flat grey). In place, chunked to keep memory flat."""
+    rng = np.random.default_rng(seed)
+    gain = np.array([1.04, 1.0, 0.94], np.float32)
+    for i in range(0, len(frames), 16):
+        f = frames[i:i + 16].astype(np.float32)
+        f = 10 + f * gain * (235 / 255)
+        f += rng.normal(0, 3.2, f.shape[:3])[..., None].astype(np.float32)
+        frames[i:i + 16] = np.clip(f, 0, 255).astype(np.uint8)
+    return frames
+
+
+def _soft_text(txt, f, fill=(255, 255, 255)):
+    """Text with a soft shadow, no box (brand posts' small type). Dark ink gets a light glow instead of a shadow."""
+    d = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    tw = int(np.ceil(d.textlength(txt, font=f))) + 12
+    h = int(f.size * 1.4) + 8
+    sh = Image.new("RGBA", (tw, h), (0, 0, 0, 0))
+    glow = (255, 255, 255, 110) if sum(fill[:3]) < 300 else (0, 0, 0, 150)
+    ImageDraw.Draw(sh).text((6, 5), txt, font=f, fill=glow)
+    sh = sh.filter(ImageFilter.GaussianBlur(3))
+    ImageDraw.Draw(sh).text((6, 4), txt, font=f, fill=fill)
+    return sh
+
+
+INK_DARK = (34, 30, 27)
+
+
+def ink_for(region):
+    """White text on a dark or busy area, dark text on a light wall (white-on-white is what kills brand text)."""
+    return INK_DARK if float(np.median(np.asarray(region, np.float32).mean(axis=-1))) > 165 else (255, 255, 255)
+
+
+def small_tag_png(txt, W, fill=(255, 255, 255)):
+    """Brand style item tag: just the name (and the price when prices are on), small, top right."""
+    return _soft_text(txt, _font(max(18, W // 28)), fill)
+
+
+def headline_png(txt, W, fill=(255, 255, 255)):
+    """Brand style headline: one short line for the whole reel, top third, medium weight, soft shadow."""
+    f = _font(max(28, W // 15))
+    d = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+    while d.textlength(txt, font=f) > W * 0.86 and f.size > 20:
+        f = _font(f.size - 2)
+    return _soft_text(txt, f, fill)
+
+
+def card_frames(n, W, H, brand, bg):
+    """Brand style ending: a plain card in the set's own wall colour with the handle (and shop name / call to action
+    when given). Dark text on a light wall, light text on a dark one."""
+    bg = tuple(int(c) for c in bg)
+    ink = (34, 30, 27) if sum(bg) / 3 > 140 else (245, 238, 228)
+    im = Image.new("RGB", (W, H), bg); d = ImageDraw.Draw(im)
+    rows = [(brand.get("name", ""), max(30, W // 14)), (brand.get("handle", ""), max(22, W // 22)), (brand.get("cta", ""), max(18, W // 30))]
+    rows = [(t, z) for t, z in rows if t]
+    y = H * 0.46 - sum(z * 1.5 for _, z in rows) / 2
+    for t, z in rows:
+        f = _font(z)
+        d.text(((W - d.textlength(t, font=f)) / 2, y), t, font=f, fill=ink); y += z * 1.5
+    still = np.asarray(im)
+    return np.repeat(still[None], max(n, 1), axis=0)
+
+
 def _rgb_split(fr, px):
     if px < 1:
         return fr
@@ -670,13 +781,16 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
     work = Path(work); work.mkdir(parents=True, exist_ok=True)
     W, H = ASPECTS[brief["aspect"]]
     L = float(brief["length"])
-    plan = plan_cuts(beats, len(looks), L, hook=brief.get("hook", False) and before is not None,
-                     lineup=brief.get("lineup", False), pattern=brief.get("pattern"))
-    if brief.get("hook") and before is None:
+    brand = brief.get("style") == "brand"
+    hook = "before" if brief.get("hook") is True else brief.get("hook")
+    plan = plan_cuts(beats, len(looks), L, hook=None if (hook == "before" and before is None) else hook,
+                     lineup=brief.get("lineup", False), pattern=brief.get("pattern"),
+                     card=brand and bool((brief.get("brand") or {}).get("handle")))
+    if hook == "before" and before is None:
         plan["skipped"].append("hook: no person photo given")
     n_total = int(round(L * fps))
     vibe = brief["vibe"]
-    fx_cycle = VIBES[vibe]["fx"]
+    fx_cycle = [None] if brand else VIBES[vibe]["fx"]   # brand style: plain hard cuts
     punch = PUNCH[vibe]
     # source frames for each look
     src, trimmed = [], {}
@@ -714,6 +828,9 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
             seg_src[si] = kenburns(before, n + 10, W, H, 0, punch)
         elif s["kind"] == "look" and s.get("shot") == 1 and not looks[s["look"]].get("clip"):
             seg_src[si] = detail_kenburns(looks[s["look"]]["still"], n + 10, W, H)   # draft stand-in for the close-up
+        elif s["kind"] == "card":
+            fr0 = src[0][win[0][0][0]]
+            seg_src[si] = card_frames(n, W, H, brief.get("brand") or {}, np.median(fr0[: H // 6].reshape(-1, 3), axis=0))
         elif s["kind"] == "lineup":
             f0 = int(round(s["t0"] * fps))
             seg_src[si] = lineup_frames(tiles, n, W, H, [int(round(p * fps)) - f0 for p in s["pops"]],
@@ -729,19 +846,23 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         if n <= 0:
             continue
         cut_frames.append(f0)
-        if s["kind"] == "lineup":
+        if s["kind"] in ("lineup", "card"):
             frames[f0:f1] = seg_src[si][:n]
-            fx_used.append("pop")
+            fx_used.append("pop" if s["kind"] == "lineup" else None)
             continue
         S = seg_src[si] if si in seg_src else src[s["look"]]
-        ramp = min(max(2, n // 4), 8) if si + 1 < len(plan["segments"]) else 0   # speed up into the next cut
+        ramp = min(max(2, n // 4), 8) if si + 1 < len(plan["segments"]) and not brand else 0   # speed up into the next cut
         idx = np.arange(n, dtype=float)
         if ramp:
             j = idx[n - ramp:] - (n - ramp)
             idx[n - ramp:] = (n - ramp) + j + j * (j + 1) / (2 * ramp) * 2   # accelerates to ~2x at the cut
         need = int(idx[-1]) + 1
-        ck = s["look"] if (s["kind"] == "look" and si not in seg_src) else None
-        if ck is not None and angles and looks[ck].get("clip") and s.get("shot") is not None and s["shot"] < len(win[ck]):
+        ck = s["look"] if (s["kind"] in ("look", "teaser") and si not in seg_src) else None
+        if ck is not None and s["kind"] == "teaser":
+            # teaser: a beat of the look's first shot, from a third of the way in (the model is already moving)
+            a, b = win[ck][0]
+            src_idx = np.clip((a + (b - a) // 3 + idx).astype(int), a, b - 1)
+        elif ck is not None and angles and looks[ck].get("clip") and s.get("shot") is not None and s["shot"] < len(win[ck]):
             # camera angles: play this storyboard shot's whole window in the slot (up to 1.6x, centred when longer)
             a, b = win[ck][s["shot"]]
             speed = min(1.6, max(1.0, (b - a) / max(need, 1)))
@@ -756,13 +877,13 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         else:
             src_idx = np.clip(idx.astype(int), 0, len(S) - 1)
         fx = fx_cycle[si % len(fx_cycle)] if s["kind"] == "look" else None
-        glow = (brief.get("glowup", False) and s["kind"] == "look" and si > 0 and plan["segments"][si - 1]["kind"] == "before")
+        glow = (not brand and brief.get("glowup", False) and s["kind"] == "look" and si > 0 and plan["segments"][si - 1]["kind"] == "before")
         if glow:
             fx = "glow-up"
         fx_used.append(fx)
         # beat pulse: a small zoom breath on every beat that falls inside the shot (cuts already have their hit)
         pulse_at = ([int(round((b - s["t0"]) * fps)) for b in plan["beat_times"] if s["t0"] + 0.1 < b < s["t1"] - 0.1]
-                    if brief.get("pulse", False) and s["kind"] == "look" else [])
+                    if brief.get("pulse", False) and s["kind"] == "look" and not brand else [])
         prev = frames[f0 - 1].copy() if f0 > 0 else None
         for i in range(n):
             fr = S[src_idx[i]]
@@ -786,7 +907,7 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                 elif fx == "whip":
                     fr = _whip(fr, a, direction=-1)
             nxt = plan["segments"][si + 1] if si + 1 < len(plan["segments"]) else None
-            glow_next = brief.get("glowup", False) and s["kind"] == "before"
+            glow_next = brief.get("glowup", False) and s["kind"] == "before" and not brand
             if ramp and i >= n - 3 and nxt and nxt["kind"] == "look" and not glow_next and fx_cycle[(si + 1) % len(fx_cycle)] == "whip":
                 fr = _whip(fr, (i - (n - 4)) / 3, direction=1)
             frames[f0 + i] = fr
@@ -797,16 +918,35 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
         a = (i + 1) / nb
         k = n_total - nb + i
         frames[k] = (frames[k].astype(np.float32) * (1 - a) + first * a).round().astype(np.uint8)
-    # overlays: headline on the first look, AI label throughout
+    if brand:
+        warm_grade(frames)
+        frames[-1] = frames[0]   # the grain is random per frame: keep the loop seam exact
+    # overlays: headline (brand: the whole reel; hype: the first look), item tags, AI label throughout
     over = []
-    if brief.get("headline"):
+    tags = brief.get("labels") or []
+    if not brief.get("prices", True):
+        tags = [t.split(" · ")[0] for t in tags]
+    end_f = next((cut_frames[k] for k, s in enumerate(plan["segments"]) if s["kind"] in ("lineup", "card")), n_total - nb)
+    if brand:
+        if brief.get("headline"):
+            cap = headline_png(brief["headline"], W)
+            y = int(H * 0.14)
+            cap = headline_png(brief["headline"], W, ink_for(frames[:end_f:15, y:y + cap.height, (W - cap.width) // 2:(W + cap.width) // 2]))
+            over.append((cap, ((W - cap.width) // 2, int(H * 0.14)), 0, end_f))
+        for k, s in enumerate(plan["segments"]):
+            if s["kind"] == "look" and s["look"] < len(tags) and tags[s["look"]]:
+                tag = small_tag_png(tags[s["look"]], W)
+                a1 = cut_frames[k + 1] if k + 1 < len(cut_frames) else end_f
+                x, y = W - tag.width - int(W * 0.04), int(H * 0.055)
+                tag = small_tag_png(tags[s["look"]], W, ink_for(frames[cut_frames[k]:a1:5, y:y + tag.height, x:x + tag.width]))
+                over.append((tag, (x, y), cut_frames[k], a1))
+    elif brief.get("headline"):
         cap = text_png(brief["headline"], max(36, W // 12), W)
         first_look = next(k for k, s in enumerate(plan["segments"]) if s["kind"] == "look")
         a0 = cut_frames[first_look]
         a1 = cut_frames[first_look + 1] if first_look + 1 < len(cut_frames) else n_total
         over.append((cap, ((W - cap.width) // 2, int(H * 0.12)), a0, a1))
-    tags = brief.get("labels") or []
-    for k, s in enumerate(plan["segments"]):
+    for k, s in enumerate(plan["segments"] if not brand else []):
         if s["kind"] == "look" and s["look"] < len(tags) and tags[s["look"]]:
             tag = look_tag_png(s["look"] + 1, tags[s["look"]], W)
             a0 = cut_frames[k] + (5 if fx_used[k] == "glow-up" else 2)   # after the glow-up stutter
@@ -865,13 +1005,15 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
                "loudness": {"target_I": -14, "target_TP": -1, "music_I": m0["I"], "out_I": m["I"], "out_TP": m["TP"],
                             "gain_db": round(gain, 2)},
                "label": lab_txt or None, "headline": brief.get("headline") or None,
-               "hook": plan["segments"][0]["kind"] == "before", "lineup": plan["segments"][-1]["kind"] == "lineup",
+               "style": brief.get("style", "hype"), "set": brief.get("set", "photo"),
+               "hook": plan["hook"], "lineup": plan["segments"][-1]["kind"] == "lineup",
+               "card": plan["segments"][-1]["kind"] == "card", "prices": bool(brief.get("prices", True)),
                "look_labels": brief.get("labels") or [], "brand": brief.get("brand") or {}, "logo": logo is not None,
                "pulse": bool(brief.get("pulse")), "glowup": any(f == "glow-up" for f in fx_used),
                "skipped": plan["skipped"], "drift_trimmed": {k: f"kept {a} of {b} frames" for k, (a, b) in trimmed.items()}}
     (work / "receipt.json").write_text(json.dumps(receipt, indent=1))
     np.save(work / "first_last.npy", np.stack([frames[0], frames[-1]]))
-    receipt["_thumbs"] = [frames[min(f + 2, n_total - 1)] if s["kind"] != "lineup" else frames[n_total - nb - 1]
+    receipt["_thumbs"] = [frames[min(f + 2, n_total - 1)] if s["kind"] not in ("lineup", "card") else frames[n_total - nb - 1]
                           for f, s in zip(cut_frames, plan["segments"])]
     return receipt
 
@@ -905,7 +1047,11 @@ def cost_estimate(brief, n_looks, clip_seconds=None, generated_motion=True):
         rows.append(["Nano Banana 2.1 edit (1K, minimal thinking)", n_looks, round(PRICES["GeminiNanoBanana2V2_1K_minimal"] * n_looks, 4)])
     if clip_seconds is None:
         clip_seconds = sum(brief.get("shots") or [CLIP_SECONDS])
-    what = "turnaround + close-up storyboard" if brief.get("angles") else "image-to-video"
+    if brief.get("set") == "room":
+        rows.append(["Nano Banana 2.1 edit: move the look into the white wall room", n_looks,
+                     round(PRICES["GeminiNanoBanana2V2_1K_minimal"] * n_looks, 4)])
+    what = (("pose sequence" if brief.get("style") == "brand" else "turnaround") + " + close-up storyboard"
+            if brief.get("angles") else "image-to-video")
     rows.append([f"Kling 3.0 {what}, 720p, {clip_seconds} s, no audio", n_looks,
                  round(PRICES["KlingVideoNode_720p_per_s"] * clip_seconds * n_looks, 4)])
     if brief["music"] == "sonilo":

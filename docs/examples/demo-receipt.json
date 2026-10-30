@@ -41,17 +41,23 @@
   14.5024
  ],
  "cut_times": [
+  0.4992,
   0.9984,
-  3.0047,
+  1.4976,
+  1.9968,
   4.0056,
-  6.0023,
+  5.004,
   7.0027,
-  9.0036,
+  8.0044,
   10.0033,
-  12.0043,
-  13.0032
+  11.0052,
+  13.0032,
+  14.0035
  ],
  "cut_snapped_to": [
+  "grid",
+  "grid",
+  "grid",
   "grid",
   "beat",
   "beat",
@@ -64,80 +70,95 @@
  ],
  "cuts": [
   {
-   "kind": "before",
-   "look": null,
+   "kind": "teaser",
+   "look": 1,
    "start": 0.0,
+   "end": 0.4992,
+   "fx": null
+  },
+  {
+   "kind": "teaser",
+   "look": 2,
+   "start": 0.4992,
    "end": 0.9984,
+   "fx": null
+  },
+  {
+   "kind": "teaser",
+   "look": 3,
+   "start": 0.9984,
+   "end": 1.4976,
+   "fx": null
+  },
+  {
+   "kind": "teaser",
+   "look": 4,
+   "start": 1.4976,
+   "end": 1.9968,
    "fx": null
   },
   {
    "kind": "look",
    "look": 1,
-   "start": 0.9984,
-   "end": 3.0047,
-   "fx": "glow-up"
+   "start": 1.9968,
+   "end": 4.0056,
+   "fx": null
   },
   {
    "kind": "look",
    "look": 1,
-   "start": 3.0047,
-   "end": 4.0056,
-   "fx": "punch"
-  },
-  {
-   "kind": "look",
-   "look": 2,
    "start": 4.0056,
-   "end": 6.0023,
-   "fx": "flash"
+   "end": 5.004,
+   "fx": null
   },
   {
    "kind": "look",
    "look": 2,
-   "start": 6.0023,
+   "start": 5.004,
    "end": 7.0027,
-   "fx": "punch"
+   "fx": null
   },
   {
    "kind": "look",
-   "look": 3,
+   "look": 2,
    "start": 7.0027,
-   "end": 9.0036,
-   "fx": "whip"
+   "end": 8.0044,
+   "fx": null
   },
   {
    "kind": "look",
    "look": 3,
-   "start": 9.0036,
+   "start": 8.0044,
    "end": 10.0033,
-   "fx": "punch"
+   "fx": null
   },
   {
    "kind": "look",
-   "look": 4,
+   "look": 3,
    "start": 10.0033,
-   "end": 12.0043,
-   "fx": "flash"
+   "end": 11.0052,
+   "fx": null
   },
   {
    "kind": "look",
    "look": 4,
-   "start": 12.0043,
+   "start": 11.0052,
    "end": 13.0032,
-   "fx": "punch"
+   "fx": null
   },
   {
-   "kind": "lineup",
-   "look": null,
+   "kind": "look",
+   "look": 4,
    "start": 13.0032,
+   "end": 14.0035,
+   "fx": null
+  },
+  {
+   "kind": "card",
+   "look": null,
+   "start": 14.0035,
    "end": 15.0,
-   "fx": "pop",
-   "pops": [
-    13.0032,
-    13.5015,
-    14.0035,
-    14.5024
-   ]
+   "fx": null
   }
  ],
  "loop_blend_frames": 7,
@@ -150,14 +171,18 @@
   "gain_db": 0.4
  },
  "label": "AI-generated",
- "headline": null,
- "hook": true,
- "lineup": true,
+ "headline": "new in: fall fits",
+ "style": "brand",
+ "set": "room",
+ "hook": "teaser",
+ "lineup": false,
+ "card": true,
+ "prices": false,
  "look_labels": [
-  "Rust bomber \u00b7 \\$89",
-  "Cable knit + linen \u00b7 \\$124",
-  "Navy suit \u00b7 \\$210",
-  "Mustard tee + pleat skirt \u00b7 \\$76"
+  "Rust bomber \u00b7 $89",
+  "Cable knit + linen \u00b7 $124",
+  "Navy suit \u00b7 $210",
+  "Mustard tee + pleat skirt \u00b7 $76"
  ],
  "brand": {
   "name": "YOUR SHOP",
@@ -166,26 +191,37 @@
  },
  "logo": false,
  "pulse": true,
- "glowup": true,
+ "glowup": false,
  "skipped": [],
  "drift_trimmed": {
-  "2.2": "kept 30 of 60 frames"
+  "1.2": "kept 30 of 60 frames",
+  "2.1": "kept 86 of 90 frames",
+  "2.2": "kept 30 of 60 frames",
+  "3.2": "kept 30 of 60 frames",
+  "4.2": "kept 45 of 60 frames"
  },
  "partner_calls": [
-  "KlingTryOnNode x4",
-  "KlingVideoNode x4 (kling-v3 720p, multi_shot 2 storyboards: 360 turnaround 3 s + fabric close-up 2 s)",
-  "SoniloTextToMusic x1 (20 s)"
+  "look 1: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "look 2: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "look 3: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "look 4: Kling Virtual Try-On + Nano Banana 2.1 room edit + Kling 3.0 storyboard (3 s pose sequence + 2 s close-up, 720p)",
+  "music: Sonilo text to music (20 s)"
  ],
  "cost_estimate": {
-  "total_usd": 2.3706,
+  "total_usd": 2.5628,
   "rows": [
    [
-    "Kling virtual try-on (person + 4 outfits)",
+    "Kling Virtual Try-On",
     4,
     0.6406
    ],
    [
-    "Kling 3.0, 2 storyboards (3 s turnaround + 2 s close-up), 720p",
+    "Nano Banana 2.1 edit: move the look into the white wall room",
+    4,
+    0.1922
+   ],
+   [
+    "Kling 3.0 pose sequence + close-up storyboard, 720p, 5 s, no audio",
     4,
     1.68
    ],
@@ -196,5 +232,5 @@
    ]
   ]
  },
- "note": "cut for \\$0 from the paid demo assets: the 4 try-on stills, one 2-storyboard Kling clip per look, and a 20 s Sonilo track"
+ "note": "cut for $0 from the paid demo assets: 4 try-on stills moved into the white wall room, one 2-storyboard Kling clip per look, a 20 s Sonilo track"
 }
