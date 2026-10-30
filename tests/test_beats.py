@@ -40,3 +40,14 @@ def test_plan_cuts_every_two_beats_from_a_downbeat():
     assert np.allclose(np.diff([0.0] + p["cuts"]), 1.0, atol=0.02)   # 2 beats at 120 BPM = 1 s
     assert [s["look"] for s in p["segments"][:5]] == [0, 1, 2, 3, 0]
     assert p["segments"][-1]["t1"] == 10.0
+
+
+def test_a_tracker_slip_does_not_shift_later_cuts():
+    """Seen on the paid demo's Sonilo track: the tracker added a half-beat near the end. Cuts must stay on the grid."""
+    y, sr = core.click_track(120, 14)
+    b = core.detect_beats(y, sr, prefer_librosa=False)
+    bad = dict(b, beats=sorted(b["beats"] + [8.25]))
+    bad["beats"] = [t for t in bad["beats"] if abs(t - 9.0) > 0.05]   # and a missed beat
+    p = core.plan_cuts(bad, 4, 10.0, start=0.0)
+    assert np.allclose(p["cuts"], np.arange(1, 10), atol=0.03)
+    assert p["snapped"].count("grid") == 1

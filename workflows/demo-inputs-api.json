@@ -1,0 +1,142 @@
+{
+ "1": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": "Full-body fashion catalogue photo of a fictional adult model, an invented person who does not resemble any real person or celebrity. Standing straight, facing the camera, arms relaxed, calm friendly expression. Wearing a plain fitted light grey t-shirt, plain light grey slim trousers and plain white sneakers. Plain light grey studio wall, soft even light, sharp focus, the whole body visible from head to shoes with space above the head, vertical frame. No text, no letters, no logos, no brand names, no labels, no watermark.",
+   "seed": 501,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "9:16",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL"
+  },
+  "_meta": {
+   "title": "model"
+  }
+ },
+ "2": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "1",
+    0
+   ],
+   "filename_prefix": "urban-demo/model"
+  },
+  "_meta": {
+   "title": "Save model"
+  }
+ },
+ "3": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": "Flat-lay product photo of a complete outfit laid out on a plain white background, seen from above: a rust-orange cotton bomber jacket over a plain white t-shirt, with straight dark charcoal trousers. Clean e-commerce style, even light, the whole outfit visible, nothing else in frame. No text, no letters, no logos, no brand names, no labels, no watermark.",
+   "seed": 511,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "3:4",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL"
+  },
+  "_meta": {
+   "title": "outfit1"
+  }
+ },
+ "4": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "3",
+    0
+   ],
+   "filename_prefix": "urban-demo/outfit1"
+  },
+  "_meta": {
+   "title": "Save outfit1"
+  }
+ },
+ "5": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": "Flat-lay product photo of a complete outfit laid out on a plain white background, seen from above: a chunky cream knit jumper with relaxed sage-green linen trousers. Clean e-commerce style, even light, the whole outfit visible, nothing else in frame. No text, no letters, no logos, no brand names, no labels, no watermark.",
+   "seed": 512,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "3:4",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL"
+  },
+  "_meta": {
+   "title": "outfit2"
+  }
+ },
+ "6": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "5",
+    0
+   ],
+   "filename_prefix": "urban-demo/outfit2"
+  },
+  "_meta": {
+   "title": "Save outfit2"
+  }
+ },
+ "7": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": "Flat-lay product photo of a complete outfit laid out on a plain white background, seen from above: a navy blue two-piece suit, single-breasted jacket and matching trousers, with a plain white shirt. Clean e-commerce style, even light, the whole outfit visible, nothing else in frame. No text, no letters, no logos, no brand names, no labels, no watermark.",
+   "seed": 513,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "3:4",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL"
+  },
+  "_meta": {
+   "title": "outfit3"
+  }
+ },
+ "8": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "7",
+    0
+   ],
+   "filename_prefix": "urban-demo/outfit3"
+  },
+  "_meta": {
+   "title": "Save outfit3"
+  }
+ },
+ "9": {
+  "class_type": "GeminiNanoBanana2V2",
+  "inputs": {
+   "prompt": "Flat-lay product photo of a complete outfit laid out on a plain white background, seen from above: a mustard-yellow fitted short-sleeve top with a black pleated midi skirt. Clean e-commerce style, even light, the whole outfit visible, nothing else in frame. No text, no letters, no logos, no brand names, no labels, no watermark.",
+   "seed": 514,
+   "response_modalities": "IMAGE",
+   "model": "Gemini Nano Banana 2.1",
+   "model.aspect_ratio": "3:4",
+   "model.resolution": "1K",
+   "model.thinking_level": "MINIMAL"
+  },
+  "_meta": {
+   "title": "outfit4"
+  }
+ },
+ "10": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "9",
+    0
+   ],
+   "filename_prefix": "urban-demo/outfit4"
+  },
+  "_meta": {
+   "title": "Save outfit4"
+  }
+ }
+}

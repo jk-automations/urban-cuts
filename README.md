@@ -59,8 +59,8 @@ gives the same estimate for each run.
 | Kling Virtual Try-On | $0.16016 per image | 4 × = $0.641 |
 | Nano Banana 2.1 edit, 1K, minimal thinking (fallback / products) | $0.048048 per image | (instead of try-on: 4 × = $0.192) |
 | Kling 3.0 video, `kling-v3`, 720p, no audio | $0.084 per second | 4 × 3 s = $1.008 |
-| Sonilo Text to Music | $0.0025 per second | 12 s = $0.030 |
-| **Total** | | **$1.68** with Kling try-on, **$1.23** with Nano Banana |
+| Sonilo Text to Music | $0.0025 per second | 15 s = $0.038 |
+| **Total** | | **$1.69** with Kling try-on, **$1.23** with Nano Banana |
 | Free Draft | | **$0** |
 
 ## Install
@@ -92,6 +92,16 @@ Partner nodes need a Comfy account with credits.
 - **Music:** use a track you own or have licensed, or generate one with Sonilo. Never a trending or copyrighted song.
 - **Labelling:** keep the AI label on when you post. The draft labels itself `Free draft`.
 - **Prompts:** the generation prompts ask for no logos, brand names or text, and no other people.
+
+## Demo output (paid partner run, 2026-10-29)
+
+- `docs/examples/demo-reel-street.mp4`: a fictional model made with Nano Banana 2.1 (not a real person), 4 plain
+  outfits with no logos, Kling try-on, Kling 3.0 motion, and a Sonilo track. 10.00 s, -14.2 LUFS, -2.1 dBTP. The cuts
+  land at 1.00 / 2.00 / 3.00 / 4.00 / 5.00 / 6.00 / 7.00 / 8.00 / 9.00 s on 119.8 BPM.
+- `docs/examples/demo-contact-sheet-street.png` and `docs/examples/demo-receipt.json`.
+- Spend: $0.24 for the input stills and $1.68 for the app run, estimated from the price badges.
+- After the run, a fix made each cut snap to the tempo grid (the tracker had slipped near the end of the track). The reel
+  was then re-cut from the same saved clips at no extra cost.
 
 ## Examples (free draft, code-drawn sample inputs, original code-made beat)
 

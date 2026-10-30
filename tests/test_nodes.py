@@ -52,7 +52,7 @@ def test_unticked_consent_stops_the_run(nodes):
 
 def test_brief_outputs(nodes):
     person, brief, engine, mp, secs = brief_json(nodes)
-    assert engine == "kling" and secs == 12 and "no vocals" in mp and person.shape == (1, 128, 72, 3)
+    assert engine == "kling" and secs == 15 and "no vocals" in mp and person.shape == (1, 128, 72, 3)
     assert brief_json(nodes, mode="products")[2] == "banana"
     assert brief_json(nodes, look_engine=core.LOOK_ENGINES[1])[2] == "banana"
 
@@ -104,7 +104,7 @@ def test_mocked_partner_pipeline(nodes, clips, click_wav, tmp_path):
     r = json.loads(receipt)
     assert r["looks_used"] == [1, 2, 3, 4] and r["label"] == "AI-generated"
     assert len(r["partner_calls"]) == 5 and "Sonilo" in r["partner_calls"][-1]
-    assert r["cost_estimate"]["total_usd"] == pytest.approx(4 * 0.16016 + 4 * 3 * 0.084 + 12 * 0.0025, abs=1e-3)
+    assert r["cost_estimate"]["total_usd"] == pytest.approx(4 * 0.16016 + 4 * 3 * 0.084 + 15 * 0.0025, abs=1e-3)
     assert sheet.ndim == 4 and sheet.shape[-1] == 3
     video.save_to(str(tmp_path / "reel.mp4"))
     assert abs(core.probe(tmp_path / "reel.mp4")["dur"] - 10) < 0.1

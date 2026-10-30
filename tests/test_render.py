@@ -85,5 +85,5 @@ def test_consent_is_required():
 def test_cost_estimate_matches_price_badges():
     b = core.make_brief(consent=True, music_source=core.MUSIC_SOURCES[1])
     c = core.cost_estimate(b, 4)
-    assert c["total_usd"] == pytest.approx(4 * 0.16016 + 4 * 3 * 0.084 + 12 * 0.0025, abs=1e-3)
+    assert c["total_usd"] == pytest.approx(4 * 0.16016 + 4 * 3 * 0.084 + 15 * 0.0025, abs=1e-3)
     assert core.cost_estimate(b, 4, generated_motion=False)["total_usd"] == 0.0

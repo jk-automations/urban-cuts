@@ -67,8 +67,8 @@ def make_brief(mode="outfits", vibe="street", length=10.0, aspect="9:16", look_e
     music = "sonilo" if music_source.startswith("Sonilo") else "upload"
     mp = music_prompt.strip() or default_music_prompt(vibe)
     return {"mode": mode, "vibe": vibe, "length": float(length), "aspect": aspect, "engine": engine, "music": music,
-            "music_prompt": mp, "music_seconds": int(np.ceil(float(length))) + 2, "headline": headline.strip(),
-            "ai_label": bool(ai_label)}
+            "music_prompt": mp, "music_seconds": int(np.ceil(float(length))) + 5, "headline": headline.strip(),
+            "ai_label": bool(ai_label)}   # music_seconds: room to start on a downbeat, and Sonilo tracks tail off at the end
 
 
 def default_music_prompt(vibe):
@@ -225,17 +225,27 @@ def plan_cuts(beats, n_looks, length=10.0, beats_per_look=2, start=None):
         start = ok[0] if ok else (bt[0] if bt[0] + length <= beats["duration"] else 0.0)
     rel = bt[bt >= start - 1e-6] - start
     rel = rel[rel < length - 0.25]   # no cut in the final quarter second
-    cuts = [float(t) for t in rel[::beats_per_look]]
-    if not cuts or cuts[0] > 1e-3:
-        cuts = [0.0] + cuts
-    cuts[0] = 0.0
+    # Walk the tempo grid (every `beats_per_look` beats from the downbeat) and snap each cut to the detected beat
+    # nearest to it. A tracker slip (an extra or missing beat) then cannot shift every later cut off the grid: when no
+    # detected beat is within 15% of a beat period, the grid time is used and marked "grid" in `snapped`.
+    period = 60.0 / beats["bpm"]
+    cuts, snapped = [0.0], []
+    while True:
+        target = cuts[-1] + beats_per_look * period
+        if target >= length - 0.25:
+            break
+        near = rel[np.argmin(np.abs(rel - target))] if len(rel) else None
+        if near is not None and abs(near - target) <= 0.15 * period and near > cuts[-1] + 1e-3:
+            cuts.append(float(near)); snapped.append("beat")
+        else:
+            cuts.append(float(target)); snapped.append("grid")
     if len(cuts) < 2:   # very slow music: fall back to an even grid so every look still shows
         cuts = list(np.linspace(0, length, n_looks + 1)[:-1])
     segs = []
     for k, t0 in enumerate(cuts):
         t1 = cuts[k + 1] if k + 1 < len(cuts) else length
         segs.append({"look": k % n_looks, "t0": round(t0, 4), "t1": round(t1, 4)})
-    return {"music_start": round(float(start), 4), "segments": segs, "cuts": [round(c, 4) for c in cuts[1:]],
+    return {"music_start": round(float(start), 4), "segments": segs, "cuts": [round(c, 4) for c in cuts[1:]], "snapped": snapped,
             "beat_times": [round(float(t), 4) for t in rel], "length": float(length)}
 
 
@@ -514,7 +524,7 @@ def render(looks, beats, out, work, brief, fps=30, music_path=None, sr=44100, la
     receipt = {"length": L, "fps": fps, "size": [W, H], "bpm": beats["bpm"], "beat_method": beats["method"],
                "music_start": plan["music_start"],
                "beat_times_in_reel": [b for b in plan["beat_times"]],
-               "cut_times": plan["cuts"], "cuts": cut_list, "loop_blend_frames": nb,
+               "cut_times": plan["cuts"], "cut_snapped_to": plan["snapped"], "cuts": cut_list, "loop_blend_frames": nb,
                "loudness": {"target_I": -14, "target_TP": -1, "music_I": m0["I"], "out_I": m["I"], "out_TP": m["TP"],
                             "gain_db": round(gain, 2)},
                "label": lab_txt or None, "headline": brief.get("headline") or None}

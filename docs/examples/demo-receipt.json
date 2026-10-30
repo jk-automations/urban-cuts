@@ -1,0 +1,156 @@
+{
+ "length": 10.0,
+ "fps": 30,
+ "size": [
+  720,
+  1280
+ ],
+ "bpm": 119.8,
+ "beat_method": "numpy onset envelope + DP tracker",
+ "music_start": 1.0866,
+ "beat_times_in_reel": [
+  0.0,
+  0.4993,
+  1.0031,
+  1.5006,
+  2.0015,
+  2.4942,
+  3.0008,
+  3.4888,
+  3.9995,
+  4.4927,
+  5.0023,
+  5.4907,
+  6.0014,
+  6.4914,
+  7.0011,
+  7.4887,
+  7.9996,
+  8.2542,
+  8.7538,
+  9.3109
+ ],
+ "cut_times": [
+  1.0031,
+  2.0015,
+  3.0008,
+  3.9995,
+  5.0023,
+  6.0014,
+  7.0011,
+  7.9996,
+  9.0013
+ ],
+ "cut_snapped_to": [
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "beat",
+  "grid"
+ ],
+ "cuts": [
+  {
+   "look": 1,
+   "start": 0.0,
+   "end": 1.0031,
+   "fx": "punch"
+  },
+  {
+   "look": 2,
+   "start": 1.0031,
+   "end": 2.0015,
+   "fx": "whip"
+  },
+  {
+   "look": 3,
+   "start": 2.0015,
+   "end": 3.0008,
+   "fx": "punch"
+  },
+  {
+   "look": 4,
+   "start": 3.0008,
+   "end": 3.9995,
+   "fx": "flash"
+  },
+  {
+   "look": 1,
+   "start": 3.9995,
+   "end": 5.0023,
+   "fx": "punch"
+  },
+  {
+   "look": 2,
+   "start": 5.0023,
+   "end": 6.0014,
+   "fx": "whip"
+  },
+  {
+   "look": 3,
+   "start": 6.0014,
+   "end": 7.0011,
+   "fx": "punch"
+  },
+  {
+   "look": 4,
+   "start": 7.0011,
+   "end": 7.9996,
+   "fx": "flash"
+  },
+  {
+   "look": 1,
+   "start": 7.9996,
+   "end": 9.0013,
+   "fx": "punch"
+  },
+  {
+   "look": 2,
+   "start": 9.0013,
+   "end": 10.0,
+   "fx": "whip"
+  }
+ ],
+ "loop_blend_frames": 8,
+ "loudness": {
+  "target_I": -14,
+  "target_TP": -1,
+  "music_I": -13.9,
+  "out_I": -14.1,
+  "out_TP": -2.2,
+  "gain_db": -0.1
+ },
+ "label": "AI-generated",
+ "headline": null,
+ "partner_calls": [
+  "look 1: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
+  "look 2: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
+  "look 3: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
+  "look 4: Kling Virtual Try-On + Kling 3.0 video (3 s, 720p)",
+  "music: Sonilo text to music (12 s)"
+ ],
+ "cost_estimate": {
+  "total_usd": 1.6786,
+  "rows": [
+   [
+    "Kling Virtual Try-On",
+    4,
+    0.6406
+   ],
+   [
+    "Kling 3.0 image-to-video, 720p, 3 s, no audio",
+    4,
+    1.008
+   ],
+   [
+    "Sonilo text to music, 12 s",
+    1,
+    0.03
+   ]
+  ]
+ },
+ "note": "re-cut for $0 from the paid run's saved Kling clips and Sonilo track after the grid-snap fix"
+}
